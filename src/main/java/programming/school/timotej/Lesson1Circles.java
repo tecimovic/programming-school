@@ -16,6 +16,7 @@ public class Lesson1Circles implements IDrawingInstructions {
 		g.drawOval(0, 0, 1000, 1000);
 		g.setColor(Color.RED);
 		g.drawLine(0, 0, 1000, 1000);
+		g.drawString("long string", 300, 300);
 	}
 
 	public static void main(String[] args) {
