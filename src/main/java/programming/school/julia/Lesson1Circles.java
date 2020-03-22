@@ -1,14 +1,14 @@
 /*
  * What is this?
  */
-package programming.school.manca;
+package programming.school.julia;
 
 import programming.school.DrawingContainer;
 import programming.school.IDrawingInstructions;
 
 import java.awt.Graphics;
 
-public class Circles implements IDrawingInstructions {
+public class Lesson1Circles implements IDrawingInstructions {
 
 	@Override
 	public void draw(Graphics g) {
@@ -17,7 +17,7 @@ public class Circles implements IDrawingInstructions {
 	}
 
 	public static void main(String[] args) {
-		new DrawingContainer(new Circles()).runContainer(args);
+		new DrawingContainer(new Lesson1Circles()).runContainer(args);
 	}
 
 }
