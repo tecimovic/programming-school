@@ -3,12 +3,23 @@
  */
 package programming.school;
 
-public class App {
-    public String getGreeting() {
-        return "Hello world.";
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class App extends JPanel {
+
+    @Override
+    public void paint(Graphics g) {
+        g.drawOval(10, 10, 100, 100);
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        JFrame f= new JFrame("Test");
+        f.add(new App());
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(800, 600);
+        f.setVisible(true);
     }
 }
