@@ -13,9 +13,11 @@ public class Lesson1Circles implements IDrawingInstructions {
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawOval(0, 0, 1000, 1000);
-		g.setColor(Color.RED);
-		g.drawLine(0, 0, 1000, 1000);
+		g.fillOval(480, 480, 40, 40);
+		g.setColor(Color.MAGENTA);
+		g.drawOval(280, 280, 100, 100);
+		g.drawOval(600, 280, 100, 100);
+		g.drawLine(200, 800, 600, 800);
 	}
 
 	public static void main(String[] args) {
