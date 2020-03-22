@@ -18,6 +18,7 @@ public class Lesson1Circles implements IDrawingInstructions {
 		g.drawOval(280, 280, 100, 100);
 		g.drawOval(600, 280, 100, 100);
 		g.drawLine(200, 800, 600, 800);
+		g.drawString("LOL", 300,600 );
 	}
 
 	public static void main(String[] args) {
