@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 
 public class DrawingContainer extends JPanel {
 
-	private IDrawingInstructions drawingInstructions;
+    private static final long serialVersionUID = 8415073764828949487L;
+    
+    private IDrawingInstructions drawingInstructions;
 	
 	public DrawingContainer(IDrawingInstructions instr) {
 		this.drawingInstructions = instr;
