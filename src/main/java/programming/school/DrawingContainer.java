@@ -4,6 +4,7 @@
 package programming.school;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,7 +20,7 @@ public class DrawingContainer extends JPanel {
 	}
 	
     public void drawPicture(Graphics g) {
-    	drawingInstructions.draw(g);
+    	drawingInstructions.draw((Graphics2D)g);
     }
 
     @Override

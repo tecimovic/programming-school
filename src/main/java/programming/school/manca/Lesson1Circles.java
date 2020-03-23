@@ -3,16 +3,16 @@
  */
 package programming.school.manca;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import programming.school.DrawingContainer;
 import programming.school.IDrawingInstructions;
-
-import java.awt.Color;
-import java.awt.Graphics;
 
 public class Lesson1Circles implements IDrawingInstructions {
 
 	@Override
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		g.setColor(Color.ORANGE);
 		g.drawLine(40, 40, 40, 640);
 		g.drawLine(640, 40, 640, 640);
