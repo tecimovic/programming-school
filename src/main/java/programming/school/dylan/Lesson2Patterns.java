@@ -18,10 +18,14 @@ public class Lesson2Patterns implements IDrawingInstructions {
 
 	@Override
 	public void draw(Graphics2D g) {
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 500; i++) {
 			setRandomColor(g);
-			g.drawLine(i, 0, 1000 - i, 1000);
-			g.drawLine(0, i, 1000, 1000 - i);
+			g.drawOval(i, i, i, i);
+
+		}
+		for (int OMGWHATSTHAT = 0; OMGWHATSTHAT < 500; OMGWHATSTHAT++) {
+			setRandomColor(g);
+			g.drawOval(1000 - OMGWHATSTHAT, OMGWHATSTHAT, OMGWHATSTHAT, OMGWHATSTHAT);
 		}
 	}
 
