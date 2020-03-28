@@ -5,20 +5,27 @@ package programming.school;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class DrawingContainer extends JPanel {
+public class DrawingContainer extends JPanel implements KeyListener {
 
     private static final long serialVersionUID = 8415073764828949487L;
     
     private IDrawingInstructions drawingInstructions;
-	
+    private IKeyboardAction keyboardAction;
+
 	public DrawingContainer(IDrawingInstructions instr) {
-		this.drawingInstructions = instr;
+        this.drawingInstructions = instr;
 	}
-	
+    
+    public void setKeyboardAction(IKeyboardAction a) {
+        this.keyboardAction = a;
+    }
+
     public void drawPicture(Graphics g) {
     	drawingInstructions.draw((Graphics2D)g);
     }
@@ -31,9 +38,24 @@ public class DrawingContainer extends JPanel {
     public void runContainer(String[] args) {
         JFrame f= new JFrame("Test");
         f.add(this);
+        f.addKeyListener(this);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(1000, 1000);
         f.setVisible(true);
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if ( keyboardAction != null ) {
+            keyboardAction.keyPressed((Graphics2D)getGraphics(), e.getKeyChar());
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
 }
