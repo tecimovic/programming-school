@@ -1,7 +1,6 @@
 package programming.school.timotej;
 
 import java.awt.Graphics2D;
-import java.util.concurrent.ConcurrentHashMap;
 
 import programming.school.DrawingContainer;
 import programming.school.IDrawingInstructions;
