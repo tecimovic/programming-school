@@ -22,10 +22,11 @@ public class DrawingContainer extends JPanel implements KeyListener {
         this.drawingInstructions = instr;
 	}
     
-    public void setKeyboardAction(IKeyboardAction a) {
-        this.keyboardAction = a;
-    }
-
+	public DrawingContainer(IDrawingInstructions instr, IKeyboardAction action) {
+        this.drawingInstructions = instr;
+        this.keyboardAction = action;
+	}
+    
     public void drawPicture(Graphics g) {
     	drawingInstructions.draw((Graphics2D)g);
     }

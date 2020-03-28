@@ -1,6 +1,7 @@
 package programming.school.timotej;
 
 import java.awt.Graphics2D;
+import java.util.concurrent.ConcurrentHashMap;
 
 import programming.school.DrawingContainer;
 import programming.school.IDrawingInstructions;
@@ -45,9 +46,7 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 
 	public static void main(String[] args) {
         Lesson3Drawing l = new Lesson3Drawing();
-        DrawingContainer dc = new DrawingContainer(l);
-        dc.setKeyboardAction(l);
-		dc.runContainer(args);
+        new DrawingContainer(l,l).runContainer(args);
 	}
 
 }
