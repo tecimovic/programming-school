@@ -1,10 +1,11 @@
 package programming.school.julia;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 
 import programming.school.DrawingContainer;
 import programming.school.IDrawingInstructions;
 import programming.school.IKeyboardAction;
+import programming.school.Utilities;
 
 public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 
@@ -19,6 +20,9 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 	@Override
 	public void draw(Graphics2D g) {
         plotDot(g);
+	}
+	private void setrandomColor(Graphics2D g) {
+		g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
 	}
 
     @Override
@@ -36,7 +40,15 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
             case 'w':
                 y-=3;
                 break;
+            case 'n'  :
+                    size=10;
+            break;  
+            
+            case 'c' :
+            setrandomColor(g);
+
         }
+        size++;
         plotDot(g);
     }
 
