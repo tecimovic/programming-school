@@ -1,10 +1,11 @@
 package programming.school.manca;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 
 import programming.school.DrawingContainer;
 import programming.school.IDrawingInstructions;
 import programming.school.IKeyboardAction;
+import programming.school.Utilities;
 
 public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 
@@ -20,22 +21,35 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 	public void draw(Graphics2D g) {
         plotDot(g);
 	}
+    private void setRandomColor(Graphics2D g) {
+		g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
+	}
+
 
     @Override
     public void keyPressed(Graphics2D g, char ch) {
         switch(ch) {
             case 'a': 
                 x-=3;
+                size++;
                 break;
             case 'd':
                 x+=3;
+                size++;
                 break;
             case 's':
                 y+=3;
+                size++;
                 break;
             case 'w':
                 y-=3;
+                size++;
                 break;
+            case 'n':
+                size =10;
+                break;   
+            case 'c' :
+                setRandomColor(g);
         }
         plotDot(g);
     }
