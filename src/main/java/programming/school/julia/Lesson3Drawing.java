@@ -26,21 +26,18 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
         switch(ch) {
             case 'a': 
                 x-=3;
-                plotDot(g);
                 break;
             case 'd':
                 x+=3;
-                plotDot(g);
                 break;
             case 's':
                 y+=3;
-                plotDot(g);
                 break;
             case 'w':
                 y-=3;
-                plotDot(g);
                 break;
         }
+        plotDot(g);
     }
 
 	public static void main(String[] args) {
