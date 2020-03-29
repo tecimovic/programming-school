@@ -1,10 +1,11 @@
 package programming.school.timotej;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 
 import programming.school.DrawingContainer;
 import programming.school.IDrawingInstructions;
 import programming.school.IKeyboardAction;
+import programming.school.Utilities;
 
 public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 
@@ -36,9 +37,21 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
             case 'w':
                 y-=3;
                 break;
+            case 'n':
+                size=10;
+                break;
+            case 'c':
+                setRandomColor(g);
+                break;
         }
+        size++;
         plotDot(g);
     }
+
+    private void setRandomColor(Graphics2D g) {
+		g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
+	}
+   
 
 	public static void main(String[] args) {
         Lesson3Drawing l = new Lesson3Drawing();
