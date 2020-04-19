@@ -21,34 +21,34 @@ public class DrawingContainer extends JPanel implements KeyListener {
     private final IKeyboardAction keyboardAction;
     private final boolean loopForever;
     private boolean quit = false;
-    
+
     public final static int MAX_X = 1024;
     public final static int MAX_Y = 768;
 
-    public DrawingContainer(IDrawingInstructions instr) {
+    public DrawingContainer(final IDrawingInstructions instr) {
         this(instr, null, false);
     }
 
-    public DrawingContainer(IDrawingInstructions instr, IKeyboardAction action) {
+    public DrawingContainer(final IDrawingInstructions instr, final IKeyboardAction action) {
         this(instr, action, false);
     }
 
-    public DrawingContainer(IDrawingInstructions instr, IKeyboardAction action, boolean loopForever) {
+    public DrawingContainer(final IDrawingInstructions instr, final IKeyboardAction action, final boolean loopForever) {
         this.drawingInstructions = instr;
         this.keyboardAction = action;
         this.loopForever = loopForever;
     }
 
-    public void drawPicture(Graphics g) {
+    public void drawPicture(final Graphics g) {
         drawingInstructions.draw((Graphics2D) g);
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(final Graphics g) {
         drawPicture(g);
     }
 
-    public void runContainer(String[] args) {
+    public void runContainer(final String[] args) {
         JFrame f = new JFrame("Test");
         f.add(this);
         f.addKeyListener(this);
@@ -58,7 +58,6 @@ public class DrawingContainer extends JPanel implements KeyListener {
         if (loopForever) {
             Timer t = new Timer();
             t.scheduleAtFixedRate(new TimerTask(){
-            
                 @Override
                 public void run() {
                     DrawingContainer.this.repaint();
@@ -71,7 +70,7 @@ public class DrawingContainer extends JPanel implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(final KeyEvent e) {
         if (keyboardAction != null) {
             if ( e.getKeyChar() == 'q' ) {
                 quit = true;
@@ -81,10 +80,10 @@ public class DrawingContainer extends JPanel implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(final KeyEvent e) {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(final KeyEvent e) {
     }
 }

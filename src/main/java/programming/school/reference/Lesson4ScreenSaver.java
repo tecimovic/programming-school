@@ -10,13 +10,13 @@ import programming.school.IKeyboardAction;
 
 public class Lesson4ScreenSaver implements IDrawingInstructions, IKeyboardAction {
 
-    private static final int SPEED = 3;
-    private Random rnd = new Random();
+    private int speed = 3;
+    private final Random rnd = new Random();
 
     private int x = rnd.nextInt(DrawingContainer.MAX_X);
     private int y = rnd.nextInt(DrawingContainer.MAX_Y);
-    private int vx = SPEED;
-    private int vy = SPEED;
+    private int vx = speed;
+    private int vy = speed;
 
     private void reset() {
         x += vx;
@@ -24,22 +24,23 @@ public class Lesson4ScreenSaver implements IDrawingInstructions, IKeyboardAction
 
         if ( x < 0 ) {
             x = 0;
-            vx = SPEED;
+            vx = speed;
         } else if ( x > DrawingContainer.MAX_X ) {
             x = DrawingContainer.MAX_X;
-            vx = -SPEED;
+            vx = -speed;
         }
+
         if ( y < 0 ) {
             y = 0;
-            vy = SPEED;
+            vy = speed;
         } else if ( y > DrawingContainer.MAX_Y ) {
             y = DrawingContainer.MAX_Y;
-            vy = -SPEED;
+            vy = -speed;
         }
     }
 
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(final Graphics2D g) {
         reset();
         switch(rnd.nextInt(3)) {
             case 0: g.setColor(Color.BLUE); break;
@@ -50,12 +51,19 @@ public class Lesson4ScreenSaver implements IDrawingInstructions, IKeyboardAction
 	}
 
     @Override
-    public void keyPressed(Graphics2D g, char ch) {
+    public void keyPressed(final Graphics2D g, final char ch) {
         switch(ch) {
+        case '+':
+        	speed++;
+        	break;
+        case '-':
+        	speed--;
+        	if ( speed < 1 ) speed = 1;
+        	break;
         }
     }
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
         Lesson4ScreenSaver l = new Lesson4ScreenSaver();
         new DrawingContainer(l,l, true).runContainer(args);
 	}
