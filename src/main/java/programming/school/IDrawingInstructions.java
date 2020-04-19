@@ -11,4 +11,5 @@ import java.awt.Graphics2D;
 public interface IDrawingInstructions {
 
 	public void draw(Graphics2D g);
+
 }

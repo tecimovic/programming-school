@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,21 +16,31 @@ import javax.swing.JPanel;
 public class DrawingContainer extends JPanel implements KeyListener {
 
     private static final long serialVersionUID = 8415073764828949487L;
-    
-    private IDrawingInstructions drawingInstructions;
-    private IKeyboardAction keyboardAction;
 
-	public DrawingContainer(IDrawingInstructions instr) {
-        this.drawingInstructions = instr;
-	}
+    private final IDrawingInstructions drawingInstructions;
+    private final IKeyboardAction keyboardAction;
+    private final boolean loopForever;
+    private boolean quit = false;
     
-	public DrawingContainer(IDrawingInstructions instr, IKeyboardAction action) {
+    public final static int MAX_X = 1024;
+    public final static int MAX_Y = 768;
+
+    public DrawingContainer(IDrawingInstructions instr) {
+        this(instr, null, false);
+    }
+
+    public DrawingContainer(IDrawingInstructions instr, IKeyboardAction action) {
+        this(instr, action, false);
+    }
+
+    public DrawingContainer(IDrawingInstructions instr, IKeyboardAction action, boolean loopForever) {
         this.drawingInstructions = instr;
         this.keyboardAction = action;
-	}
-    
+        this.loopForever = loopForever;
+    }
+
     public void drawPicture(Graphics g) {
-    	drawingInstructions.draw((Graphics2D)g);
+        drawingInstructions.draw((Graphics2D) g);
     }
 
     @Override
@@ -37,18 +49,34 @@ public class DrawingContainer extends JPanel implements KeyListener {
     }
 
     public void runContainer(String[] args) {
-        JFrame f= new JFrame("Test");
+        JFrame f = new JFrame("Test");
         f.add(this);
         f.addKeyListener(this);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setSize(1000, 1000);
+        f.setSize(MAX_X, MAX_Y);
         f.setVisible(true);
+        if (loopForever) {
+            Timer t = new Timer();
+            t.scheduleAtFixedRate(new TimerTask(){
+            
+                @Override
+                public void run() {
+                    DrawingContainer.this.repaint();
+                    if ( quit ) {
+                        f.dispose();
+                    }
+                }
+            }, 0, 10);
+        }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if ( keyboardAction != null ) {
-            keyboardAction.keyPressed((Graphics2D)getGraphics(), e.getKeyChar());
+        if (keyboardAction != null) {
+            if ( e.getKeyChar() == 'q' ) {
+                quit = true;
+            }
+            keyboardAction.keyPressed((Graphics2D) getGraphics(), e.getKeyChar());
         }
     }
 
