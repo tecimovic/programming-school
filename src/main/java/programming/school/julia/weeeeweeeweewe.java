@@ -1,6 +1,7 @@
 package programming.school.julia;
 
 import java.awt.*;
+import java.lang.ProcessBuilder.Redirect;
 
 import programming.school.DrawingContainer;
 import programming.school.IDrawingInstructions;
@@ -40,12 +41,15 @@ public class weeeeweeeweewe implements IDrawingInstructions, IKeyboardAction {
                 size++;
                 break;
             case 'n':
-                size = 10;
+                y-=100;
                 break;
             case 'f':
-                setRandomColor(g);
+                y+=100;
                     break;
-                
+            case 'm' :   
+                g.setColor(Color.RED);
+                size++;
+                break;
         }
         plotDot(g);
     }
