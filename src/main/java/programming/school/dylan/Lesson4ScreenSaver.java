@@ -10,7 +10,7 @@ import programming.school.IKeyboardAction;
 
 public class Lesson4ScreenSaver implements IDrawingInstructions, IKeyboardAction {
 
-    private int speed = 3;
+    private int speed = 100;
     private final Random rnd = new Random();
 
     private int x = rnd.nextInt(DrawingContainer.MAX_X);
