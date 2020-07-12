@@ -1,8 +1,10 @@
 package programming.school.adventure;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Player {
 
@@ -101,7 +103,7 @@ public class Player {
     return sb.toString();
   }
 
-  public void processText(PrintStream out, String line) {
+  public void processText(final PrintStream out, final String line) {
     String[] commands = line.split("\\s+");
 
     if ( commands.length != 2 ) {
@@ -110,6 +112,32 @@ public class Player {
     }
 
     runCommand(out, commands[0], commands[1]);
+  }
+
+  public void play(final IAdventureGame game, final Scanner in, final PrintStream out) {
+    out.println("Welcome, " + name() + "! You need to retrieve the treasure to win this game.\n\n");
+    while(state() == PlayerState.NORMAL) {
+      out.println(place().visit());
+      out.println("You carry: " + inventoryDescription());
+      out.println("You can go to: " + place().directions());
+      out.println("\nWhat would you like to do?\n>");
+      String text = in.nextLine();
+      processText(out, text);
+      game.evaluateState(this, out);
+    }
+
+    if ( state() == PlayerState.DEAD ) {
+      out.println("\nYou died. Game over.");
+    } else if ( state() == PlayerState.WIN ) {
+      out.println("\nYou win! You got the treasure! You live happily ever after!");
+    }
+  }
+
+  public static void start(final IAdventureGame game, final InputStream input, final PrintStream out) {
+    Player player = new Player(game.playerName(), game.startingPlace());
+    try (Scanner in = new Scanner(input)) {
+      player.play(game, in, out);
+    }
   }
 
 

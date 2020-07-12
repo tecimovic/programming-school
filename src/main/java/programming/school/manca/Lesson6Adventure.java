@@ -1,18 +1,15 @@
 package programming.school.manca;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
+import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.PlayerState;
 import programming.school.adventure.Thing;
 
-public class Lesson6Adventure {
+public class Lesson6Adventure implements IAdventureGame {
 
-  private final Player player;
   // Create places
   private final Place forest = new Place("You are in a beautiful forest. There are trees all around.");
   private final Place castle = new Place("You are inside the walls of a medieval castle. It has a lot of tall towers and is very beautiful.");
@@ -46,11 +43,20 @@ public class Lesson6Adventure {
     cave.addThing(key);
     treasureRoom.addThing(treasure);
 
-    // Initialize a player
-    player = new Player("knight Poldi", forest);
   }
 
-  private void evaluateState(final PrintStream out) {
+  @Override
+  public String playerName() {
+    return "knight Poldi";
+  }
+
+  @Override
+  public Place startingPlace() {
+    return forest;
+  }
+
+  @Override
+  public void evaluateState(final Player player, final PrintStream out) {
     if ( player.carries(treasure) && !player.carries(key) ) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
@@ -65,30 +71,8 @@ public class Lesson6Adventure {
     }
   }
 
-  public void play(final Scanner in, final PrintStream out) {
-    out.println("Welcome, " + player.name() + "! You need to retrieve the treasure to win this game.\n\n");
-    while(player.state() == PlayerState.NORMAL) {
-      out.println(player.place().visit());
-      out.println("You carry: " + player.inventoryDescription());
-      out.println("You can go to: " + player.place().directions());
-      out.println("\nWhat would you like to do?\n>");
-      String text = in.nextLine();
-      player.processText(out, text);
-      evaluateState(out);
-    }
-
-    if ( player.state() == PlayerState.DEAD ) {
-      out.println("\nYou died. Game over.");
-    } else if ( player.state() == PlayerState.WIN ) {
-      out.println("\nYou win! You got the treasure! You live happily ever after!");
-    }
-  }
-
   public static void main(final String[] args) {
-    Lesson6Adventure g = new Lesson6Adventure();
-    try (Scanner s = new Scanner(System.in)) {
-      g.play(s, System.out);
-    }
+    Player.start(new Lesson6Adventure(), System.in, System.out);
   }
 
 
