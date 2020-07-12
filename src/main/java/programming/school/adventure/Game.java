@@ -55,31 +55,6 @@ public class Game {
     player = new Player("knight Poldi", forest);
   }
 
-  private void help(final PrintStream out) {
-    out.println("Valid commands are 'go' and 'take'\n");
-  }
-
-  private void runCommand(final PrintStream out, final String command, final String argument) {
-    switch(command) {
-
-    case "go":
-      if ( !player.go(argument) ) {
-        out.println("Unknown destination. Valid destinations are: " + player.place().directions());
-      }
-      return;
-
-    case "take":
-      if ( !player.take(argument) ) {
-        out.println("You can't take this. Valid things to take are: " + player.place().things());
-      }
-      return;
-
-    default:
-      help(out);
-      return;
-    }
-  }
-
   private void evaluateState(final PrintStream out) {
     if ( player.carries(treasure) && !player.carries(key) ) {
       out.println("You don't have the key to open the treasure!");
@@ -107,11 +82,11 @@ public class Game {
       String[] commands = text.split("\\s+");
 
       if ( commands.length != 2 ) {
-        help(out);
+        player.help(out);
         continue;
       }
 
-      runCommand(out, commands[0], commands[1]);
+      player.runCommand(out, commands[0], commands[1]);
       evaluateState(out);
     }
 

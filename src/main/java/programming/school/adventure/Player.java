@@ -1,5 +1,6 @@
 package programming.school.adventure;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +59,32 @@ public class Player {
     place.removeThing(thing);
     return true;
   }
+
+  public void help(final PrintStream out) {
+    out.println("Valid commands are 'go' and 'take'\n");
+  }
+
+  public void runCommand(final PrintStream out, final String command, final String argument) {
+    switch(command) {
+
+    case "go":
+      if ( !go(argument) ) {
+        out.println("Unknown destination. Valid destinations are: " + place().directions());
+      }
+      return;
+
+    case "take":
+      if ( !take(argument) ) {
+        out.println("You can't take this. Valid things to take are: " + place().things());
+      }
+      return;
+
+    default:
+      help(out);
+      return;
+    }
+  }
+
 
   public String inventoryDescription() {
     if ( inventory.size() == 0 )

@@ -1,4 +1,4 @@
-package programming.school.dylan;
+package programming.school.manca;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -108,5 +108,7 @@ public class Lesson6Adventure {
       g.play(s, System.out);
     }
   }
+
+
 
 }
