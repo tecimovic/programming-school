@@ -1,0 +1,1 @@
+/usr/local/opt/openjdk/bin/java -cp build/classes/java/main/ programming.school.timotej.Lesson6Adventure
