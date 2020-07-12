@@ -12,7 +12,6 @@ import programming.school.adventure.Thing;
 
 public class Lesson6Adventure {
 
-  private final List<Place> places = new ArrayList<>();
   private final Player player;
   // Create places
   private final Place forest = new Place("You are in a beautiful forest. There are trees all around.");
@@ -37,13 +36,6 @@ public class Lesson6Adventure {
   private final Thing saloonsaddle = new Thing("saddle");
 
   public Lesson6Adventure() {
-
-    // Add places
-    places.add(forest);
-    places.add(castle);
-    places.add(treasureRoom);
-    places.add(cave);
-    places.add(armory);
 
     // Link places
     forest.addDirection("north", castle);
@@ -108,15 +100,7 @@ public class Lesson6Adventure {
       out.println("You can go to: " + player.place().directions());
       out.println("\nWhat would you like to do?\n>");
       String text = in.nextLine();
-
-      String[] commands = text.split("\\s+");
-
-      if (commands.length != 2) {
-        player.help(out);
-        continue;
-      }
-
-      player.runCommand(out, commands[0], commands[1]);
+      player.processText(out, text);
       evaluateState(out);
     }
 
