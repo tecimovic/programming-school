@@ -14,7 +14,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place forest = new Place("You are in a beautiful forest. There are trees all around.");
   private final Place castle = new Place("You are inside the walls of a medieval castle. It has a lot of tall towers and is very beautiful.");
   private final Place armory = new Place("Armory is where the weapons are. There is all kind of weapons here.");
-  private final Place treasureRoom = new Place("Treasure room is shining with treasures. There are treasures of all kids in here.");
+  private final Place treasureRoom = new Place("Treasure room is shining with treasures. There are treasures of all kinds in here.");
   private final Place cave = new Place("You are in a dark dangerous cave. There is something dangerous lurking in the corner.");
 
   // Create things
@@ -67,7 +67,7 @@ public class Lesson6Adventure implements IAdventureGame {
       out.println("You got attacked by a dragon. You have no weapons. Dragon eats you....");
       player.setState(PlayerState.DEAD);
     } else if ( player.isIn(cave) && player.carries(sword) ) {
-      out.println("You got attached by a dragon, but you have a showrd, so you fight it off.");
+      out.println("You got attached by a dragon, but you have a sword, so you fight it off.");
     }
   }
 

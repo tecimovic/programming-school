@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Place {
 
@@ -27,14 +28,8 @@ public class Place {
     return sb.toString();
   }
 
-  public String directions() {
-    StringBuilder sb = new StringBuilder();
-    String prefix = "";
-    for ( String d: directionsMap.keySet() ) {
-      sb.append(prefix).append(d);
-      prefix = ", ";
-    }
-    return sb.toString();
+  public Set<String> directions() {
+    return directionsMap.keySet();
   }
 
   public void addDirection(final String direction, final Place place) {
@@ -62,15 +57,8 @@ public class Place {
     return null;
   }
 
-  public String visit() {
-    StringBuilder sb = new StringBuilder();
-    sb.append(description);
-    sb.append("\n");
-    if ( things.size() == 0 ) {
-      sb.append("You see nothing here.\n");
-    } else {
-      sb.append("You see: " + things() + "\n");
-    }
-    return sb.toString();
-  }
+  public String description() { return description; }
+
+  public List<Thing> inventory() { return things; }
+
 }

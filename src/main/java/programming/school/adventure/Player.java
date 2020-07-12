@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Player {
 
@@ -53,6 +54,22 @@ public class Player {
     place.addThing(t);
   }
 
+  private Thing findInInventory(final String name) {
+    for ( Thing t: inventory ) {
+      if ( t.name().equals(name) )
+        return t;
+    }
+    return null;
+  }
+
+  public boolean drop(final String name) {
+    Thing thing = findInInventory(name);
+    if ( thing == null ) return false;
+    inventory.remove(thing);
+    place.addThing(thing);
+    return true;
+  }
+
   // Takes an object from a room. Returns true if succesful.
   public boolean take(final String name) {
     Thing thing = place.findThing(name);
@@ -66,35 +83,59 @@ public class Player {
     out.println("Valid commands are 'go' and 'take'\n");
   }
 
-  public void runCommand(final PrintStream out, final String command, final String argument) {
-    switch(command) {
+  public void runCommand(final PrintStream out, final String cmd, final String rest) {
+    switch(cmd) {
 
     case "go":
-      if ( !go(argument) ) {
+      if ( !go(rest) ) {
         out.println("Unknown destination. Valid destinations are: " + place().directions());
       }
       return;
 
     case "take":
-      if ( !take(argument) ) {
+      if ( !take(rest) ) {
         out.println("You can't take this. Valid things to take are: " + place().things());
       }
       return;
 
+    case "die":
+      out.println("You kill yourself!");
+      setState(PlayerState.DEAD);
+      return;
+
+    case "inventory":
+      out.println("You carry: " + inventoryDescription(inventory));
+      return;
+
+    case "drop":
+      if (!drop(rest) ) {
+        out.println("You can't drop this.");
+      }
+      return;
     default:
       help(out);
       return;
     }
   }
 
+  public static String directionDescription(final Set<String> directions) {
+    StringBuilder sb = new StringBuilder();
+    String prefix = "";
+    for ( String d: directions ) {
+      sb.append(prefix).append(d);
+      prefix = ", ";
+    }
+    return sb.toString();
+  }
 
-  public String inventoryDescription() {
-    if ( inventory.size() == 0 )
+
+  private static String inventoryDescription(final List<Thing> list) {
+    if ( list.size() == 0 )
       return "nothing.";
 
     StringBuilder sb = new StringBuilder();
     String prefix = "";
-    for ( Thing t: inventory ) {
+    for ( Thing t: list ) {
       sb.append(prefix).append(t.name());
       prefix = ", ";
     }
@@ -104,30 +145,41 @@ public class Player {
   }
 
   public void processText(final PrintStream out, final String line) {
-    String[] commands = line.split("\\s+");
+    String l = line.trim();
 
-    if ( commands.length != 2 ) {
-      help(out);
-      return;
+    int space = l.indexOf(' ');
+    String cmd;
+    String rest;
+    if ( space == -1 ) {
+      cmd = l;
+      rest = "";
+    } else {
+      cmd = l.substring(0, space).trim();
+      rest = l.substring(space+1).trim();
     }
+    runCommand(out, cmd, rest);
+  }
 
-    runCommand(out, commands[0], commands[1]);
+  private void separate(final PrintStream out) {
+    out.println("-----------------------------------------------------------------");
   }
 
   public void play(final IAdventureGame game, final Scanner in, final PrintStream out) {
-    out.println("Welcome, " + name() + "! You need to retrieve the treasure to win this game.\n\n");
+    out.println("Welcome, " + name() + "! You need to retrieve the treasure to win this game.");
     while(state() == PlayerState.NORMAL) {
-      out.println(place().visit());
-      out.println("You carry: " + inventoryDescription());
-      out.println("You can go to: " + place().directions());
-      out.println("\nWhat would you like to do?\n>");
+      separate(out);
+      out.println(place().description());
+      out.println();
+      out.println("You see: " + inventoryDescription(place().inventory()));
+      out.println("You can go to: " + directionDescription(place().directions()));
+      out.print("\nWhat would you like to do?\n> ");
       String text = in.nextLine();
       processText(out, text);
       game.evaluateState(this, out);
     }
 
     if ( state() == PlayerState.DEAD ) {
-      out.println("\nYou died. Game over.");
+      out.println("\nYou are dead. Game over.");
     } else if ( state() == PlayerState.WIN ) {
       out.println("\nYou win! You got the treasure! You live happily ever after!");
     }
