@@ -101,4 +101,16 @@ public class Player {
     return sb.toString();
   }
 
+  public void processText(PrintStream out, String line) {
+    String[] commands = line.split("\\s+");
+
+    if ( commands.length != 2 ) {
+      help(out);
+      return;
+    }
+
+    runCommand(out, commands[0], commands[1]);
+  }
+
+
 }

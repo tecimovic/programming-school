@@ -73,15 +73,7 @@ public class Lesson6Adventure {
       out.println("You can go to: " + player.place().directions());
       out.println("\nWhat would you like to do?\n>");
       String text = in.nextLine();
-
-      String[] commands = text.split("\\s+");
-
-      if ( commands.length != 2 ) {
-        player.help(out);
-        continue;
-      }
-
-      player.runCommand(out, commands[0], commands[1]);
+      player.processText(out, text);
       evaluateState(out);
     }
 
