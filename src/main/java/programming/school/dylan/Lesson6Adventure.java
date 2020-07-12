@@ -16,15 +16,25 @@ public class Lesson6Adventure {
   private final Player player;
   // Create places
   private final Place forest = new Place("You are in a beautiful forest. There are trees all around.");
-  private final Place castle = new Place("You are inside the walls of a medieval castle. It has a lot of tall towers and is very beautiful.");
+  private final Place castle = new Place(
+      "You are inside the walls of a medieval castle. It has a lot of tall towers and is very beautiful.");
   private final Place armory = new Place("Armory is where the weapons are. There is all kind of weapons here.");
-  private final Place treasureRoom = new Place("Treasure room is shining with treasures. There are treasures of all kids in here.");
-  private final Place cave = new Place("You are in a dark dangerous cave. There is something dangerous lurking in the corner.");
+  private final Place treasureRoom = new Place(
+      "Treasure room is shining with treasures. There are treasures of sculptures made by kids in here.");
+  private final Place cave = new Place(
+      "You are in a dark dangerous cave. There is something dangerous lurking in the corner.");
+  private final Place wildwest = new Place(
+      "You are in the Wild West. Collect 5 saddles to get extra points at the end of the game. Don't get run over by a horse.");
+  private final Place wildwestsaloon = new Place(
+      "You are in the craziest place in Houston. Find a saddle on the floor. 1 saddle found.");
+  private final Place wildwesthorseparkinglot = new Place("This is the city's largest parking lot.");
+  private final Place wildwestpetstore = new Place("A pet store in the south of the city.");
 
   // Create things
   private final Thing sword = new Thing("sword");
   private final Thing key = new Thing("key");
   private final Thing treasure = new Thing("treasure");
+  private final Thing saloonsaddle = new Thing("saddle");
 
   public Lesson6Adventure() {
 
@@ -35,11 +45,10 @@ public class Lesson6Adventure {
     places.add(cave);
     places.add(armory);
 
-
-
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", cave);
+    forest.addDirection("west", wildwest);
 
     cave.addDirection("out", forest);
 
@@ -51,33 +60,49 @@ public class Lesson6Adventure {
 
     armory.addDirection("upstairs", castle);
 
+    wildwest.addDirection("east", forest);
+    wildwest.addDirection("saloon", wildwestsaloon);
+    wildwest.addDirection("pet_store", wildwestpetstore);
+
+    wildwestsaloon.addDirection("city_enterance", wildwest);
+    wildwestsaloon.addDirection("horse_parking_lot", wildwesthorseparkinglot);
+
     // Add objects
     armory.addThing(sword);
     cave.addThing(key);
     treasureRoom.addThing(treasure);
+    wildwestsaloon.addThing(saloonsaddle);
 
     // Initialize a player
-    player = new Player("knight Poldi", forest);
+    player = new Player("knight Guy", forest);
   }
 
   private void evaluateState(final PrintStream out) {
-    if ( player.carries(treasure) && !player.carries(key) ) {
+    if (player.carries(treasure) && !player.carries(key)) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
-    } else if ( player.carries(treasure) && player.carries(key)) {
+    } else if (player.carries(treasure) && player.carries(key)) {
       out.println("You got the treasure!!!");
+      if (player.carries(saloonsaddle))
+        out.println("You got the treasure!!! 1/5 bonus points collected");
       player.setState(PlayerState.WIN);
-    } else if ( player.isIn(cave) && !player.carries(sword) ) {
+    } else if (player.isIn(cave) && !player.carries(sword)) {
       out.println("You got attacked by a dragon. You have no weapons. Dragon eats you....");
       player.setState(PlayerState.DEAD);
-    } else if ( player.isIn(cave) && player.carries(sword) ) {
-      out.println("You got attached by a dragon, but you have a showrd, so you fight it off.");
+    } else if (player.isIn(cave) && player.carries(sword)) {
+      out.println("You got attached by a dragon, but you have a sword, so you fight it off.");
+    } else if (player.isIn(wildwesthorseparkinglot)) {
+      out.println("You see a saddle... But then you get run over by a horse! You died.");
+      player.setState(PlayerState.DEAD);
+    } else if (player.isIn(wildwestpetstore)) {
+      out.println("A horse in the pet store jumped on you. You died.");
+      player.setState(PlayerState.DEAD);
     }
   }
 
   public void play(final Scanner in, final PrintStream out) {
     out.println("Welcome, " + player.name() + "! You need to retrieve the treasure to win this game.\n\n");
-    while(player.state() == PlayerState.NORMAL) {
+    while (player.state() == PlayerState.NORMAL) {
       out.println(player.place().visit());
       out.println("You carry: " + player.inventoryDescription());
       out.println("You can go to: " + player.place().directions());
@@ -86,7 +111,7 @@ public class Lesson6Adventure {
 
       String[] commands = text.split("\\s+");
 
-      if ( commands.length != 2 ) {
+      if (commands.length != 2) {
         player.help(out);
         continue;
       }
@@ -95,9 +120,9 @@ public class Lesson6Adventure {
       evaluateState(out);
     }
 
-    if ( player.state() == PlayerState.DEAD ) {
+    if (player.state() == PlayerState.DEAD) {
       out.println("\nYou died. Game over.");
-    } else if ( player.state() == PlayerState.WIN ) {
+    } else if (player.state() == PlayerState.WIN) {
       out.println("\nYou win! You got the treasure! You live happily ever after!");
     }
   }
