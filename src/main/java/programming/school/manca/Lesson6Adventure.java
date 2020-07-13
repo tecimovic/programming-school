@@ -56,6 +56,17 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   @Override
+  public String introductionText() {
+    return "You need to retrieve the treasure to win this game.";
+  }
+
+  @Override
+  public String victoryText() {
+    return "You got the treasure! You live happily ever after!";
+  }
+
+
+  @Override
   public void evaluateState(final Player player, final PrintStream out) {
     if ( player.carries(treasure) && !player.carries(key) ) {
       out.println("You don't have the key to open the treasure!");

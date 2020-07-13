@@ -18,7 +18,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place cave = new Place("You are in a dark dangerous cave. There is something dangerous lurking in the corner.");
 
   // Create things
-  private final Thing sword = new Thing("sword");
+  private final Thing sword = new Thing("sword", "It's a very shiny and sharp sword.");
   private final Thing key = new Thing("key");
   private final Thing treasure = new Thing("treasure");
 
@@ -55,6 +55,16 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   @Override
+  public String introductionText() {
+    return "You need to retrieve the treasure to win this game.";
+  }
+
+  @Override
+  public String victoryText() {
+    return "You got the treasure! You live happily ever after!";
+  }
+
+  @Override
   public void evaluateState(final Player player, final PrintStream out) {
     if ( player.carries(treasure) && !player.carries(key) ) {
       out.println("You don't have the key to open the treasure!");
@@ -66,7 +76,7 @@ public class Lesson6Adventure implements IAdventureGame {
       out.println("You got attacked by a dragon. You have no weapons. Dragon eats you....");
       player.setState(PlayerState.DEAD);
     } else if ( player.isIn(cave) && player.carries(sword) ) {
-      out.println("You got attached by a dragon, but you have a sword, so you fight it off.");
+      out.println("You got attacked by a dragon, but you have a sword, so you fight it off.");
     }
   }
 

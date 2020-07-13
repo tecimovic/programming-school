@@ -8,4 +8,6 @@ public interface IAdventureGame {
   public void evaluateState(Player player, PrintStream out);
   public Place startingPlace();
   public String playerName();
+  public String introductionText();
+  public String victoryText();
 }

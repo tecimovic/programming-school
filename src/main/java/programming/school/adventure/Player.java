@@ -9,31 +9,41 @@ import java.util.Set;
 
 public class Player {
 
+  private final PrintStream out;
+  private final Scanner in;
+
   private final String name;
   private Place place;
   private final List<Thing> inventory = new ArrayList<>();
   private PlayerState state = PlayerState.NORMAL;
 
-  public Player(final String name,
-                final Place startingPlace) {
+  public Player(final PrintStream out, final Scanner in, final String name, final Place startingPlace) {
+    this.out = out;
+    this.in = in;
     this.name = name;
     this.place = startingPlace;
   }
 
-  public PlayerState state() { return state; }
+  public PlayerState state() {
+    return state;
+  }
 
-  public Place place() { return place; }
+  public Place place() {
+    return place;
+  }
 
-  public String name() { return name; }
+  public String name() {
+    return name;
+  }
 
-  // Makes player go to a destination with a given name. Returns true if succesful.
-  public boolean go(final String name) {
+  // Makes player go to a destination with a given name. Returns true if
+  // succesful.
+  public void go(final String name) {
     Place newPlace = place.findDirection(name);
-    if ( newPlace == null )
-      return false;
-    else {
+    if (newPlace == null) {
+      out.println("Unknown destination. Valid destinations are: " + place().directions());
+    } else {
       this.place = newPlace;
-      return true;
     }
   }
 
@@ -54,88 +64,100 @@ public class Player {
     place.addThing(t);
   }
 
+  private Thing findInInventoryOrRoom(final String name) {
+    Thing t = place.findThing(name);
+    if (t == null) {
+      t = findInInventory(name);
+    }
+    return t;
+  }
+
   private Thing findInInventory(final String name) {
-    for ( Thing t: inventory ) {
-      if ( t.name().equals(name) )
+    for (Thing t : inventory) {
+      if (t.name().equals(name))
         return t;
     }
     return null;
   }
 
-  public boolean drop(final String name) {
+  public void drop(final String name) {
     Thing thing = findInInventory(name);
-    if ( thing == null ) return false;
-    inventory.remove(thing);
-    place.addThing(thing);
-    return true;
+    if (thing == null) {
+      out.println("You can't drop this.");
+
+    } else {
+      inventory.remove(thing);
+      place.addThing(thing);
+    }
   }
 
   // Takes an object from a room. Returns true if succesful.
-  public boolean take(final String name) {
+  public void take(final String name) {
     Thing thing = place.findThing(name);
-    if ( thing == null ) return false;
-    inventory.add(thing);
-    place.removeThing(thing);
-    return true;
+    if (thing == null) {
+      out.println("You can't take this. Valid things to take are: " + place().things());
+    } else {
+      inventory.add(thing);
+      place.removeThing(thing);
+    }
   }
 
-  public void help(final PrintStream out) {
-    out.println("Valid commands are 'go' and 'take'\n");
+  public void die() {
+    out.println("You kill yourself!");
+    setState(PlayerState.DEAD);
   }
 
-  public void runCommand(final PrintStream out, final String cmd, final String rest) {
-    switch(cmd) {
+  public void inventory() {
+    out.println("You carry: " + inventoryDescription(inventory));
+  }
 
-    case "go":
-      if ( !go(rest) ) {
-        out.println("Unknown destination. Valid destinations are: " + place().directions());
+  public void examine(final String argument) {
+    Thing t = findInInventoryOrRoom(argument);
+    if (t == null) {
+      out.println("I can't see " + argument + " here.");
+    } else {
+      String desc = t.description();
+      if (desc == null) {
+        out.println("There is nothing special about the " + argument);
+      } else {
+        out.println(desc);
       }
-      return;
+    }
+  }
 
-    case "take":
-      if ( !take(rest) ) {
-        out.println("You can't take this. Valid things to take are: " + place().things());
-      }
-      return;
+  public void help() {
+    out.println("Valid commands are 'go', 'take', 'examine', 'drop', 'die', 'inventory'\n");
+  }
 
-    case "die":
-      out.println("You kill yourself!");
-      setState(PlayerState.DEAD);
-      return;
-
-    case "inventory":
-      out.println("You carry: " + inventoryDescription(inventory));
-      return;
-
-    case "drop":
-      if (!drop(rest) ) {
-        out.println("You can't drop this.");
-      }
-      return;
-    default:
-      help(out);
-      return;
+  public void runCommand(final String cmd, final String argument) {
+    switch (cmd) {
+    case "go": go(argument); break;
+    case "take": take(argument); break;
+    case "examine": examine(argument); break;
+    case "drop": drop(argument); break;
+    case "die": die(); break;
+    case "inventory": inventory(); break;
+    default: help(); break;
     }
   }
 
   public static String directionDescription(final Set<String> directions) {
     StringBuilder sb = new StringBuilder();
     String prefix = "";
-    for ( String d: directions ) {
+    for (String d : directions) {
       sb.append(prefix).append(d);
       prefix = ", ";
     }
     return sb.toString();
   }
 
-
   private static String inventoryDescription(final List<Thing> list) {
-    if ( list.size() == 0 )
+    if (list.size() == 0)
       return "nothing.";
 
     StringBuilder sb = new StringBuilder();
     String prefix = "";
-    for ( Thing t: list ) {
+    for (Thing t : list) {
       sb.append(prefix).append(t.name());
       prefix = ", ";
     }
@@ -144,53 +166,54 @@ public class Player {
     return sb.toString();
   }
 
-  public void processText(final PrintStream out, final String line) {
+  public void processText(final String line) {
     String l = line.trim();
 
     int space = l.indexOf(' ');
     String cmd;
     String rest;
-    if ( space == -1 ) {
+    if (space == -1) {
       cmd = l;
       rest = "";
     } else {
       cmd = l.substring(0, space).trim();
-      rest = l.substring(space+1).trim();
+      rest = l.substring(space + 1).trim();
     }
-    runCommand(out, cmd, rest);
+    runCommand(cmd, rest);
   }
 
-  private void separate(final PrintStream out) {
-    out.println("-----------------------------------------------------------------");
+  private void separate() {
+    out.println("\n-----------------------------------------------------------------");
   }
 
-  public void play(final IAdventureGame game, final Scanner in, final PrintStream out) {
-    out.println("Welcome, " + name() + "! You need to retrieve the treasure to win this game.");
-    while(state() == PlayerState.NORMAL) {
-      separate(out);
+  public void play(final IAdventureGame game) {
+    out.println("Welcome, " + name() + "!\n");
+    out.println(game.introductionText());
+
+    while (state() == PlayerState.NORMAL) {
+      separate();
       out.println(place().description());
       out.println();
       out.println("You see: " + inventoryDescription(place().inventory()));
-      out.println("You can go to: " + directionDescription(place().directions()));
+      out.println("You can go: " + directionDescription(place().directions()));
       out.print("\nWhat would you like to do?\n> ");
       String text = in.nextLine();
-      processText(out, text);
+      processText(text);
       game.evaluateState(this, out);
     }
 
-    if ( state() == PlayerState.DEAD ) {
-      out.println("\nYou are dead. Game over.");
-    } else if ( state() == PlayerState.WIN ) {
-      out.println("\nYou win! You got the treasure! You live happily ever after!");
+    if (state() == PlayerState.DEAD) {
+      out.println("You are dead. Game over.");
+    } else if (state() == PlayerState.WIN) {
+      out.println(game.victoryText());
     }
   }
 
   public static void start(final IAdventureGame game, final InputStream input, final PrintStream out) {
-    Player player = new Player(game.playerName(), game.startingPlace());
     try (Scanner in = new Scanner(input)) {
-      player.play(game, in, out);
+      Player player = new Player(out, in, game.playerName(), game.startingPlace());
+      player.play(game);
     }
   }
-
 
 }
