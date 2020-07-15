@@ -16,6 +16,7 @@ public class Player {
   private Place place;
   private final List<Thing> inventory = new ArrayList<>();
   private PlayerState state = PlayerState.NORMAL;
+  private List<String> attributes = new ArrayList<>();
 
   public Player(final PrintStream out, final Scanner in, final String name, final Place startingPlace) {
     this.out = out;
@@ -45,6 +46,19 @@ public class Player {
     } else {
       this.place = newPlace;
     }
+  }
+
+  public void setAttribute(String att) {
+    if ( !attributes.contains(att) )
+      attributes.add(att);
+  }
+
+  public boolean hasAttribute(String att) {
+    return attributes.contains(att);
+  }
+
+  public void clearAttribute(String att) {
+    attributes.remove(att);
   }
 
   public boolean isIn(final Place p) {
@@ -80,25 +94,26 @@ public class Player {
     return null;
   }
 
-  public void drop(final String name) {
+  public void drop(IAdventureGame game, final String name) {
     Thing thing = findInInventory(name);
     if (thing == null) {
       out.println("You can't drop this.");
-
     } else {
       inventory.remove(thing);
       place.addThing(thing);
+      game.thingRemoved(thing);
     }
   }
 
   // Takes an object from a room. Returns true if succesful.
-  public void take(final String name) {
+  public void take(IAdventureGame game, String name) {
     Thing thing = place.findThing(name);
     if (thing == null) {
       out.println("You can't take this. Valid things to take are: " + place().things());
     } else {
       inventory.add(thing);
       place.removeThing(thing);
+      game.thingRemoved(thing);
     }
   }
 
@@ -129,12 +144,12 @@ public class Player {
     out.println("Valid commands are 'go', 'take', 'examine', 'drop', 'die', 'inventory'\n");
   }
 
-  public void runCommand(final String cmd, final String argument) {
+  public void runCommand(IAdventureGame game, final String cmd, final String argument) {
     switch (cmd) {
     case "go": go(argument); break;
-    case "take": take(argument); break;
+    case "take": take(game, argument); break;
     case "examine": examine(argument); break;
-    case "drop": drop(argument); break;
+    case "drop": drop(game, argument); break;
     case "die": die(); break;
     case "inventory": inventory(); break;
     default: help(); break;
@@ -166,7 +181,7 @@ public class Player {
     return sb.toString();
   }
 
-  public void processText(final String line) {
+  public void processText(IAdventureGame game, String line) {
     String l = line.trim();
 
     int space = l.indexOf(' ');
@@ -179,7 +194,7 @@ public class Player {
       cmd = l.substring(0, space).trim();
       rest = l.substring(space + 1).trim();
     }
-    runCommand(cmd, rest);
+    runCommand(game, cmd, rest);
   }
 
   private void separate() {
@@ -198,7 +213,7 @@ public class Player {
       out.println("You can go: " + directionDescription(place().directions()));
       out.print("\nWhat would you like to do?\n> ");
       String text = in.nextLine();
-      processText(text);
+      processText(game, text);
       game.evaluateState(this, out);
     }
 
