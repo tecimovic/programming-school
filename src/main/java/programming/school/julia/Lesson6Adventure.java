@@ -21,12 +21,14 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place nosehole = new Place(
       "You are in a dark dangerous nosehole. There is something dangerous lurking in the corner.");
   private final Place eyeball = new Place("you are walking through daddys eyeball. eww.");
+  private final Place wishing_well = new Place("the wishing well is full of coins. maybe you can drop one in");
 
   // Create things
   private final Thing sword = new Thing("sword");
   private final Thing key = new Thing("key");
   private final Thing treasure = new Thing("treasure");
   private final Thing eyelash = new Thing("eyelash");
+  private final Thing coin = new Thing("coin");
 
   public Lesson6Adventure() {
 
@@ -34,6 +36,7 @@ public class Lesson6Adventure implements IAdventureGame {
     forest.addDirection("north", castle);
     forest.addDirection("south", nosehole);
     forest.addDirection("east", eyeball);
+    forest.addDirection("west", wishing_well);
 
     nosehole.addDirection("out", forest);
 
@@ -47,11 +50,14 @@ public class Lesson6Adventure implements IAdventureGame {
 
     eyeball.addDirection("west", forest);
 
+    wishing_well.addDirection("east", forest);
+
     // Add objects
     armory.addThing(sword);
     nosehole.addThing(key);
     forehead.addThing(treasure);
     eyeball.addThing(eyelash);
+    forest.addThing(coin);
 
   }
 
@@ -82,6 +88,7 @@ public class Lesson6Adventure implements IAdventureGame {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
     } else if (player.carries(treasure) && player.carries(key)) {
+      if (player.hasAttribute("lucky")) {
       if (player.carries(eyelash)) {
         out.println("You got the treasure!!!");
         player.setState(PlayerState.WIN);
@@ -90,12 +97,23 @@ public class Lesson6Adventure implements IAdventureGame {
         out.println("the treasure turns into an eyeball and you die");
         player.setState(PlayerState.DEAD);
       }
+      } else {
+        out.println("the treasure turns into an eye booger and eats you");
+        player.setState(PlayerState.DEAD);
+      }
     } else if (player.isIn(nosehole) && !player.carries(sword)) {
       out.println("You got attacked by a booger. You have no weapons. booger eats you....");
       player.setState(PlayerState.DEAD);
     } else if (player.isIn(nosehole) && player.carries(sword)) {
       out.println("You got attacked by a booger, but you have a sword, so you fight it off.");
+      
+    }
+  }
 
+  @Override
+  public void thingRemoved(Player player, Thing t) {
+    if (t == coin && player.isIn(wishing_well)){
+      player.setAttribute("lucky");
     }
   }
 
