@@ -101,7 +101,7 @@ public class Player {
     } else {
       inventory.remove(thing);
       place.addThing(thing);
-      game.thingRemoved(thing);
+      game.thingRemoved(this, thing);
     }
   }
 
@@ -113,7 +113,7 @@ public class Player {
     } else {
       inventory.add(thing);
       place.removeThing(thing);
-      game.thingRemoved(thing);
+      game.thingRemoved(this, thing);
     }
   }
 
