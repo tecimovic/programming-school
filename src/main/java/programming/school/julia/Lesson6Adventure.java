@@ -2,6 +2,7 @@ package programming.school.julia;
 
 import java.io.PrintStream;
 
+import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
@@ -18,7 +19,7 @@ public class Lesson6Adventure implements IAdventureGame {
       Place("Armory is where the weapons are. There is all kind of weapons here.");
   private final Place forehead = new Place(
       "daddys forhead is shining with treasures. There are treasures of all the 5 senses in here.");
-  private final Place nosehole = new Place(
+  private final Place nostril = new Place(
       "You are in a dark dangerous nosehole. There is something dangerous lurking in the corner.");
   private final Place eyeball = new Place("you are walking through daddys eyeball. eww.");
   private final Place wishing_well = new Place("the wishing well is full of coins. maybe you can drop one in");
@@ -30,15 +31,17 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing eyelash = new Thing("eyelash");
   private final Thing coin = new Thing("coin");
 
+  //create creatures
+  private final Creature baby_booger = new Creature("baby booger", "the booger in the cave had a baby and he walks around and kills");
   public Lesson6Adventure() {
 
     // Link places
     forest.addDirection("north", castle);
-    forest.addDirection("south", nosehole);
+    forest.addDirection("south", nostril);
     forest.addDirection("east", eyeball);
     forest.addDirection("west", wishing_well);
 
-    nosehole.addDirection("out", forest);
+    nostril.addDirection("out", forest);
 
     castle.addDirection("south", forest);
     castle.addDirection("upstairs", forehead);
@@ -54,10 +57,13 @@ public class Lesson6Adventure implements IAdventureGame {
 
     // Add objects
     armory.addThing(sword);
-    nosehole.addThing(key);
+    nostril.addThing(key);
     forehead.addThing(treasure);
     eyeball.addThing(eyelash);
     forest.addThing(coin);
+
+    //add creatures
+    nostril.addCreature(baby_booger);
 
   }
 
@@ -101,10 +107,10 @@ public class Lesson6Adventure implements IAdventureGame {
         out.println("the treasure turns into an eye booger and eats you");
         player.setState(PlayerState.DEAD);
       }
-    } else if (player.isIn(nosehole) && !player.carries(sword)) {
+    } else if (player.isIn(nostril) && !player.carries(sword)) {
       out.println("You got attacked by a booger. You have no weapons. booger eats you....");
       player.setState(PlayerState.DEAD);
-    } else if (player.isIn(nosehole) && player.carries(sword)) {
+    } else if (player.isIn(nostril) && player.carries(sword)) {
       out.println("You got attacked by a booger, but you have a sword, so you fight it off.");
       
     }
