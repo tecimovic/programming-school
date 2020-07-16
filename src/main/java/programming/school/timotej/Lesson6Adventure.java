@@ -53,6 +53,16 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   @Override
+  public void creatureAction(Player player,
+                             Creature creature,
+                             Place place,
+                             PrintStream out) {
+    if ( creature == mouse ) {
+      place.moveCreatureRandomly(creature);
+    }
+  }
+  
+  @Override
   public String playerName() {
     return "knight Poldi";
   }

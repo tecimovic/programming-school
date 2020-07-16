@@ -171,20 +171,20 @@ public class Player {
 
   private static String creatureInventory(Place place) {
     StringBuilder sb = new StringBuilder();
-    List<Creature> creaturesHere = place.creatures();
-    if ( creaturesHere.size() == 0 ) {
+    Creature[] creaturesHere = place.creatures();
+    if ( creaturesHere.length == 0 ) {
       sb.append("There is nobody else here.");
-    } else if ( creaturesHere.size() == 1 ) {
-      sb.append("There is " + creaturesHere.get(0).name() + " here.");
+    } else if ( creaturesHere.length == 1 ) {
+      sb.append("There is " + creaturesHere[0].name() + " here.");
     } else {
       sb.append("There are ");
-      for ( int i=0; i<creaturesHere.size(); i++ ) {
-        if ( i == creaturesHere.size()-1 ) {
+      for ( int i=0; i<creaturesHere.length; i++ ) {
+        if ( i == creaturesHere.length-1 ) {
           sb.append(" and ");
         } else if ( i > 0 ) {
           sb.append(", ");
         }
-        sb.append(creaturesHere.get(i).name());
+        sb.append(creaturesHere[i].name());
       }
       sb.append(" here.");
     }
@@ -242,10 +242,14 @@ public class Player {
       String text = in.nextLine();
       processText(game, text);
       game.evaluateState(this, out);
+      List<Object[]> placeCreaturePairs = new ArrayList<>();
       for ( Place place: Place.allPlaces() ) {
         for  ( Creature c: place.creatures() ) {
-          game.creatureAction(this, c, place, out);
+          placeCreaturePairs.add(new Object[] {place, c});
         }
+      }
+      for ( Object[] o: placeCreaturePairs) {
+        game.creatureAction(this, (Creature)o[1], (Place)o[0], out);
       }
     }
 

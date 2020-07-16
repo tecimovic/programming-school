@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 public class Place {
 
+  private Random rnd = new Random();
+  
   private static List<Place> allPlaces = new ArrayList<>();
 
   private final String description;
@@ -32,6 +35,16 @@ public class Place {
     return sb.toString();
   }
 
+  public void moveCreatureRandomly(Creature c) {
+    if  ( creatures.contains(c) ) {
+      creatures.remove(c);
+      String[] directions = directionsMap.keySet().toArray(new String[0]);
+      String chosenDirection = directions[rnd.nextInt(directions.length)];
+      Place newPlace = directionsMap.get(chosenDirection);
+      newPlace.addCreature(c);
+    }
+  }
+  
   public static List<Place> allPlaces() {
     return allPlaces;
   }
@@ -61,8 +74,8 @@ public class Place {
     creatures.remove(c);
   }
 
-  public List<Creature> creatures() {
-    return creatures;
+  public Creature[] creatures() {
+    return creatures.toArray(new Creature[creatures.size()]);
   }
 
   public boolean hasCreature(Creature c) {
