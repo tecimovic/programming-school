@@ -82,6 +82,7 @@ public class Lesson6Adventure implements IAdventureGame {
     }
   }
 
+
   public static void main(final String[] args) {
     Player.start(new Lesson6Adventure(), System.in, System.out);
   }
