@@ -78,10 +78,13 @@ public class Player {
     place.addThing(t);
   }
 
-  private Thing findInInventoryOrRoom(final String name) {
-    Thing t = place.findThing(name);
+  private IExaminable findInInventoryOrRoom(final String name) {
+    IExaminable t = place.findThing(name);
     if (t == null) {
       t = findInInventory(name);
+    }
+    if ( t == null ) {
+      t = place.findCreature(name);
     }
     return t;
   }
@@ -127,7 +130,7 @@ public class Player {
   }
 
   public void examine(final String argument) {
-    Thing t = findInInventoryOrRoom(argument);
+    IExaminable t = findInInventoryOrRoom(argument);
     if (t == null) {
       out.println("I can't see " + argument + " here.");
     } else {
@@ -171,12 +174,17 @@ public class Player {
     List<Creature> creaturesHere = place.creatures();
     if ( creaturesHere.size() == 0 ) {
       sb.append("There is nobody else here.");
+    } else if ( creaturesHere.size() == 1 ) {
+      sb.append("There is " + creaturesHere.get(0).name() + " here.");
     } else {
       sb.append("There are ");
-      String prefix = "";
-      for ( Creature c: creaturesHere ) {
-        sb.append(prefix).append(c.name());
-        prefix = ", ";
+      for ( int i=0; i<creaturesHere.size(); i++ ) {
+        if ( i == creaturesHere.size()-1 ) {
+          sb.append(" and ");
+        } else if ( i > 0 ) {
+          sb.append(", ");
+        }
+        sb.append(creaturesHere.get(i).name());
       }
       sb.append(" here.");
     }

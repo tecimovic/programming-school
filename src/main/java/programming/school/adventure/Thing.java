@@ -1,6 +1,6 @@
 package programming.school.adventure;
 
-public class Thing {
+public class Thing implements IExaminable {
 
   private final String name, description;
 
@@ -13,7 +13,11 @@ public class Thing {
     this(name, null);
   }
 
-  public String name() { return name; }
+  public String name() {
+    return name;
+  }
 
-  public String description() { return description; }
+  public String description() {
+    return description;
+  }
 }

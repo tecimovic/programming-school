@@ -57,12 +57,24 @@ public class Place {
   public List<Creature> creatures() {
     return creatures;
   }
+  
+  public boolean hasCreature(Creature c) {
+    return creatures.contains(c);
+  }
 
   public void addCreature(final Creature c) {
     if (!creatures.contains(c))
       creatures.add(c);
   }
 
+  public Creature findCreature(String creatureName) {
+    for ( Creature c: creatures ) {
+      if ( c.name().equals(creatureName))
+        return c;
+    }
+    return null;
+  }
+  
   public Thing findThing(final String thingName) {
     for (Thing t : things) {
       if (t.name().equals(thingName)) {
