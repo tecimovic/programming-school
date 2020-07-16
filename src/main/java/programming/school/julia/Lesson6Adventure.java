@@ -87,6 +87,11 @@ public class Lesson6Adventure implements IAdventureGame {
     return "You got the treasure! You live happily ever after!";
   }
 
+  @Override
+  public void creatureAction(Player player, Creature creature, Place place, PrintStream out) {
+    if ( creature == baby_booger ) {
+      place.moveCreatureRandomly(creature);}
+  }
 
   @Override
   public void evaluateState(final Player player, final PrintStream out) {
