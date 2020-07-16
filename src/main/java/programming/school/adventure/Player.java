@@ -166,6 +166,23 @@ public class Player {
     return sb.toString();
   }
 
+  private static String creatureInventory(Place place) {
+    StringBuilder sb = new StringBuilder();
+    List<Creature> creaturesHere = place.creatures();
+    if ( creaturesHere.size() == 0 ) {
+      sb.append("There is nobody else here.");
+    } else {
+      sb.append("There are ");
+      String prefix = "";
+      for ( Creature c: creaturesHere ) {
+        sb.append(prefix).append(c.name());
+        prefix = ", ";
+      }
+      sb.append(" here.");
+    }
+    return sb.toString();
+  }
+  
   private static String inventoryDescription(final List<Thing> list) {
     if (list.size() == 0)
       return "nothing.";
@@ -208,6 +225,8 @@ public class Player {
     while (state() == PlayerState.NORMAL) {
       separate();
       out.println(place().description());
+      out.println();
+      out.println(creatureInventory(place()));
       out.println();
       out.println("You see: " + inventoryDescription(place().inventory()));
       out.println("You can go: " + directionDescription(place().directions()));
