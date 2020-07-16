@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class Place {
 
+  private static List<Place> allPlaces = new ArrayList<>();
+
   private final String description;
 
   private final Map<String, Place> directionsMap = new LinkedHashMap<>();
@@ -17,6 +19,7 @@ public class Place {
 
   public Place(final String longDescription) {
     this.description = longDescription;
+    allPlaces.add(this);
   }
 
   public String things() {
@@ -27,6 +30,10 @@ public class Place {
       prefix = ", ";
     }
     return sb.toString();
+  }
+
+  public static List<Place> allPlaces() {
+    return allPlaces;
   }
 
   public Set<String> directions() {
@@ -57,7 +64,7 @@ public class Place {
   public List<Creature> creatures() {
     return creatures;
   }
-  
+
   public boolean hasCreature(Creature c) {
     return creatures.contains(c);
   }
@@ -68,13 +75,13 @@ public class Place {
   }
 
   public Creature findCreature(String creatureName) {
-    for ( Creature c: creatures ) {
-      if ( c.name().equals(creatureName))
+    for (Creature c : creatures) {
+      if (c.name().equals(creatureName))
         return c;
     }
     return null;
   }
-  
+
   public Thing findThing(final String thingName) {
     for (Thing t : things) {
       if (t.name().equals(thingName)) {

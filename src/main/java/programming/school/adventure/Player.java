@@ -242,6 +242,11 @@ public class Player {
       String text = in.nextLine();
       processText(game, text);
       game.evaluateState(this, out);
+      for ( Place place: Place.allPlaces() ) {
+        for  ( Creature c: place.creatures() ) {
+          game.creatureAction(this, c, place, out);
+        }
+      }
     }
 
     if (state() == PlayerState.DEAD) {
