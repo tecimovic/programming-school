@@ -1,6 +1,7 @@
 package programming.school.dylan;
 
 import java.io.PrintStream;
+import java.util.Random;
 
 import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.Place;
@@ -30,7 +31,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place wildwestharbour = new Place("Boats, big big big big big huge big gigantic boats. And a saddle. 1 saddle found.");
   private final Place wildwestbathroom = new Place("Nothing here. Except it smells bad.");
   private final Place wildwestmuseum = new Place("Horse museum");
-  private final Place wishing_well = new Place("you can drop a coin");
+  private final Place wishing_well = new Place("You see a wishing well. Maybe drop a coin?");
   
 
   // Create things
@@ -45,8 +46,11 @@ public class Lesson6Adventure implements IAdventureGame {
   // Create Variables
   private int saddlebonuspoints = 0;
 
-  public Lesson6Adventure() {
+  private Random rnd = new Random(); 
 
+  private int x = 0;
+
+  public Lesson6Adventure()  {
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", cave);
@@ -80,7 +84,8 @@ public class Lesson6Adventure implements IAdventureGame {
 
     wildwestbathroom.addDirection("harbour", wildwestharbour);
     wildwestbathroom.addDirection("museum", wildwestmuseum);
-
+  
+  
     // Add objects
     armory.addThing(sword);
     cave.addThing(key);
@@ -88,8 +93,8 @@ public class Lesson6Adventure implements IAdventureGame {
     wildwestsaloon.addThing(saloonsaddle);
     wildwesthorsegraveyard.addThing(horsegraveyardsaddle);
     wildwestharbour.addThing(harboursaddle);
-    forest.addThing(coin);
-  }
+    forest.addThing(coin); }
+  
 
   @Override
   public String playerName() {
@@ -125,7 +130,8 @@ public class Lesson6Adventure implements IAdventureGame {
     if(t == horsegraveyardsaddle) saddlebonuspoints --;
     if(t == harboursaddle) saddlebonuspoints --;
     if (t == coin && player.isIn(wishing_well)){
-      player.setAttribute("lucky");}
+      int x = rnd.nextInt(4);
+    }
   }
 
 
