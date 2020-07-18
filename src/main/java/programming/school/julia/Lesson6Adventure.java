@@ -20,7 +20,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place forehead = new Place(
       "daddys forhead is shining with treasures. There are treasures of all the 5 senses in here.");
   private final Place nostril = new Place(
-      "You are in a dark dangerous nosehole. There is something dangerous lurking in the corner.");
+      "You are in a dark dangerous nostril. There is something dangerous lurking in the corner.there is also a sleeping booger.");
   private final Place eyeball = new Place("you are walking through daddys eyeball. eww.");
   private final Place wishing_well = new Place("the wishing well is full of coins. maybe you can drop one in");
 
@@ -30,6 +30,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing treasure = new Thing("treasure");
   private final Thing eyelash = new Thing("eyelash");
   private final Thing coin = new Thing("coin");
+  private final Thing doorhandle = new Thing("doorhandle");
 
   //create creatures
   private final Creature baby_booger = new Creature("baby booger", "the booger in the cave had a baby and he walks around and kills");
@@ -61,6 +62,7 @@ public class Lesson6Adventure implements IAdventureGame {
     forehead.addThing(treasure);
     eyeball.addThing(eyelash);
     forest.addThing(coin);
+    wishing_well.addThing(doorhandle);
 
     //add creatures
     nostril.addCreature(baby_booger);
@@ -112,11 +114,11 @@ public class Lesson6Adventure implements IAdventureGame {
         out.println("the treasure turns into an eye booger and eats you");
         player.setState(PlayerState.DEAD);
       }
-    } else if (player.isIn(nostril) && !player.carries(sword)) {
-      out.println("You got attacked by a booger. You have no weapons. booger eats you....");
+    } else if (player.place().hasCreature(baby_booger) && !player.carries(sword)) {
+      out.println("You got attacked by a baby booger. You have no weapons. baby booger eats you....");
       player.setState(PlayerState.DEAD);
-    } else if (player.isIn(nostril) && player.carries(sword)) {
-      out.println("You got attacked by a booger, but you have a sword, so you fight it off.");
+    } else if (player.place().hasCreature(baby_booger) && player.carries(sword)) {
+      out.println("You got attacked by a baby booger, but you have a sword, so you fight it off.");
       
     }
   }
