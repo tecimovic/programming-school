@@ -124,7 +124,7 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   @Override
-  public void thingRemoved(Player player, Thing t) {
+  public void thingRemoved(Player player, Thing t, PrintStream out) {
     if (t == coin && player.isIn(wishing_well)){
       player.setAttribute("lucky");
     }

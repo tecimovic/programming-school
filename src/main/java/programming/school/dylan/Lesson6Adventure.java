@@ -117,14 +117,14 @@ public class Lesson6Adventure implements IAdventureGame {
 
   //Saddle bonus points ++
   @Override
-  public void thingAdded(Player player, Thing t) {
+  public void thingAdded(Player player, Thing t, PrintStream out) {
     if(t == saloonsaddle) saddlebonuspoints ++;
     if(t == horsegraveyardsaddle) saddlebonuspoints ++;
     if(t == harboursaddle) saddlebonuspoints ++;
   }
   //Saddle bonus points --
   @Override
-  public void thingRemoved(Player player, Thing t) {
+  public void thingRemoved(Player player, Thing t, PrintStream out) {
     if(t == saloonsaddle) saddlebonuspoints --;
     if(t == horsegraveyardsaddle) saddlebonuspoints --;
     if(t == harboursaddle) saddlebonuspoints --;

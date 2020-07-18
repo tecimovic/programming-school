@@ -39,12 +39,14 @@ public class Player {
 
   // Makes player go to a destination with a given name. Returns true if
   // succesful.
-  public void go(final String name) {
+  public void go(IAdventureGame game, final String name) {
     Place newPlace = place.findDirection(name);
     if (newPlace == null) {
       out.println("Unknown destination. Valid destinations are: " + place().directions());
     } else {
-      this.place = newPlace;
+      if ( game.canPlayerMove(this, place, newPlace, out)) {
+        this.place = newPlace;
+      }
     }
   }
 
@@ -104,7 +106,7 @@ public class Player {
     } else {
       inventory.remove(thing);
       place.addThing(thing);
-      game.thingRemoved(this, thing);
+      game.thingRemoved(this, thing, out);
     }
   }
 
@@ -116,7 +118,7 @@ public class Player {
     } else {
       inventory.add(thing);
       place.removeThing(thing);
-      game.thingAdded(this, thing);
+      game.thingAdded(this, thing, out);
     }
   }
 
@@ -149,7 +151,7 @@ public class Player {
 
   public void runCommand(IAdventureGame game, final String cmd, final String argument) {
     switch (cmd) {
-    case "go": go(argument); break;
+    case "go": go(game, argument); break;
     case "take": take(game, argument); break;
     case "examine": examine(argument); break;
     case "drop": drop(game, argument); break;
