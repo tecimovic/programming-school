@@ -35,13 +35,13 @@ public class Lesson6Adventure implements IAdventureGame {
   
 
   // Create things
-  private final Thing sword = new Thing("sword");
-  private final Thing key = new Thing("key");
-  private final Thing treasure = new Thing("treasure");
-  private final Thing saloonsaddle = new Thing("saddle");
-  private final Thing horsegraveyardsaddle = new Thing("saddle");
-  private final Thing harboursaddle = new Thing("saddle");
-  private final Thing coin = new Thing("coin");
+  private final Thing sword = new Thing("sword", "A decently good sword.");
+  private final Thing key = new Thing("key", "Unlocks the treasure.");
+  private final Thing treasure = new Thing("treasure", "Pretty large for a treasure chest...");
+  private final Thing saloonsaddle = new Thing("saddle", "One of the three saddles that you are supposed to bring to the castle. Found in the saloon.");
+  private final Thing horsegraveyardsaddle = new Thing("saddle", "One of the three saddles that you are supposed to bring to the castle. Found in the horse graveyard.");
+  private final Thing harboursaddle = new Thing("saddle", "One of the three saddles that you are supposed to bring to the castle. Found in the harbour.");
+  private final Thing coin = new Thing("coin", "A normal coin. Worth 25 cents.");
 
   // Create Variables
   private int saddlebonuspoints = 0;
@@ -81,7 +81,6 @@ public class Lesson6Adventure implements IAdventureGame {
 
     wildwestharbour.addDirection("city_entrance", wildwest);
     wildwestharbour.addDirection("bathroom", wildwestbathroom);
-
     wildwestbathroom.addDirection("harbour", wildwestharbour);
     wildwestbathroom.addDirection("museum", wildwestmuseum);
   
