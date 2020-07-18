@@ -136,12 +136,15 @@ public class Lesson6Adventure implements IAdventureGame {
       switch(x){
         case 0:
         player.setAttribute("lucky");
+        out.println("You have become the luckiest person in the world");
         break;
         case 1:
         player.setAttribute("nothing");
+        out.println("Nothing happened. Better luck next time...");
         break;
         case 2:
         player.setAttribute("unlucky");
+        out.println("YOU HAVE BECOME UNLUCKY. YOU MAY NOT ESCAPE...");
         break;
       }
     }
