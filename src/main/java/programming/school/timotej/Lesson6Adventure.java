@@ -1,9 +1,8 @@
 package programming.school.timotej;
 
-import java.io.PrintStream;
-
 import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;
+import programming.school.adventure.Output;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.PlayerState;
@@ -56,7 +55,7 @@ public class Lesson6Adventure implements IAdventureGame {
   public void creatureAction(Player player,
                              Creature creature,
                              Place place,
-                             PrintStream out) {
+                             Output out) {
     if ( creature == mouse ) {
       place.moveCreatureRandomly(creature);
     }
@@ -83,7 +82,7 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   @Override
-  public void evaluateState(final Player player, final PrintStream out) {
+  public void evaluateState(final Player player, final Output out) {
     if ( player.carries(treasure) && !player.carries(key) ) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);

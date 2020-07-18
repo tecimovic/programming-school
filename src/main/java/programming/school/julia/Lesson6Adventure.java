@@ -1,9 +1,8 @@
 package programming.school.julia;
 
-import java.io.PrintStream;
-
 import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;
+import programming.school.adventure.Output;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.PlayerState;
@@ -90,13 +89,13 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   @Override
-  public void creatureAction(Player player, Creature creature, Place place, PrintStream out) {
+  public void creatureAction(Player player, Creature creature, Place place, Output out) {
     if ( creature == baby_booger ) {
       place.moveCreatureRandomly(creature);}
   }
 
   @Override
-  public void evaluateState(final Player player, final PrintStream out) {
+  public void evaluateState(final Player player, final Output out) {
     if (player.carries(treasure) && !player.carries(key)) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
@@ -123,7 +122,7 @@ public class Lesson6Adventure implements IAdventureGame {
     }
   }
 @Override
-public boolean canPlayerMove(Player player, Place from, Place to, PrintStream out) {
+public boolean canPlayerMove(Player player, Place from, Place to, Output out) {
   if (from==forest&&to==castle) {
     if(player.carries(doorhandle)) {
       out.println("the door has no doorhandle but you have a doorhandle so you put it on");
@@ -136,7 +135,7 @@ public boolean canPlayerMove(Player player, Place from, Place to, PrintStream ou
   return true;
 }
   @Override
-  public void thingRemoved(Player player, Thing t, PrintStream out) {
+  public void thingRemoved(Player player, Thing t, Output out) {
     if (t == coin && player.isIn(wishing_well)){
       player.setAttribute("lucky");
     }

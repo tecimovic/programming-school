@@ -4,14 +4,16 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Player {
 
-  private final PrintStream out;
+  private final Output out;
   private final Scanner in;
-
+  private final Random rnd = new Random();
+  
   private final String name;
   private Place place;
   private final List<Thing> inventory = new ArrayList<>();
@@ -19,7 +21,7 @@ public class Player {
   private List<String> attributes = new ArrayList<>();
 
   public Player(final PrintStream out, final Scanner in, final String name, final Place startingPlace) {
-    this.out = out;
+    this.out = new Output(out);
     this.in = in;
     this.name = name;
     this.place = startingPlace;
@@ -37,6 +39,10 @@ public class Player {
     return name;
   }
 
+  public int random(int n) {
+    return rnd.nextInt(n);
+  }
+  
   // Makes player go to a destination with a given name. Returns true if
   // succesful.
   public void go(IAdventureGame game, final String name) {
@@ -224,23 +230,19 @@ public class Player {
     runCommand(game, cmd, rest);
   }
 
-  private void separate() {
-    out.println("\n-----------------------------------------------------------------");
-  }
-
   public void play(final IAdventureGame game) {
     out.println("Welcome, " + name() + "!\n");
     out.println(game.introductionText());
 
     while (state() == PlayerState.NORMAL) {
-      separate();
+      out.separate();
       out.println(place().description());
       out.println();
       out.println(creatureInventory(place()));
       out.println();
       out.println("You see: " + inventoryDescription(place().inventory()));
       out.println("You can go: " + directionDescription(place().directions()));
-      out.print("\nWhat would you like to do?\n> ");
+      out.prompt();
       String text = in.nextLine();
       processText(game, text);
       game.evaluateState(this, out);

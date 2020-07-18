@@ -1,9 +1,9 @@
 package programming.school.dylan;
 
-import java.io.PrintStream;
 import java.util.Random;
 
 import programming.school.adventure.IAdventureGame;
+import programming.school.adventure.Output;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.PlayerState;
@@ -117,14 +117,14 @@ public class Lesson6Adventure implements IAdventureGame {
 
   //Saddle bonus points ++
   @Override
-  public void thingAdded(Player player, Thing t, PrintStream out) {
+  public void thingAdded(Player player, Thing t, Output out) {
     if(t == saloonsaddle) saddlebonuspoints ++;
     if(t == horsegraveyardsaddle) saddlebonuspoints ++;
     if(t == harboursaddle) saddlebonuspoints ++;
   }
   //Saddle bonus points --
   @Override
-  public void thingRemoved(Player player, Thing t, PrintStream out) {
+  public void thingRemoved(Player player, Thing t, Output out) {
     if(t == saloonsaddle) saddlebonuspoints --;
     if(t == horsegraveyardsaddle) saddlebonuspoints --;
     if(t == harboursaddle) saddlebonuspoints --;
@@ -152,7 +152,7 @@ public class Lesson6Adventure implements IAdventureGame {
 
      //Be CAREFUL with my computer
   @Override
-  public void evaluateState(final Player player, final PrintStream out) {
+  public void evaluateState(final Player player, final Output out) {
     if (player.carries(treasure) && !player.carries(key)) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
