@@ -1,6 +1,7 @@
 package programming.school.dylan;
 
 import java.io.PrintStream;
+import java.util.Random;
 
 import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.Place;
@@ -20,30 +21,41 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place cave = new Place(
       "You are in a dark dangerous cave. There is something dangerous lurking in the corner.");
   private final Place wildwest = new Place(
-      "You are in the Wild West. Collect 5 saddles to get extra points at the end of the game. Don't get run over by a horse.");
+      "You are in the Wild West. Collect 3 saddles to get extra points at the end of the game. Don't get run over by a horse.");
   private final Place wildwestsaloon = new Place(
       "You are in the craziest place in Houston. Find a saddle on the floor. 1 saddle found.");
   private final Place wildwesthorseparkinglot = new Place("This is the city's largest parking lot.");
   private final Place wildwestpetstore = new Place("A pet store in the south of the city.");
   private final Place wildwesthorsegraveyard = new Place("This city has a graveyard for horses. Find one saddle on the floor. 1 saddle found.");
   private final Place wildwestresearchbase = new Place("Research base.");
+  private final Place wildwestharbour = new Place("Boats, big big big big big huge big gigantic boats. And a saddle. 1 saddle found.");
+  private final Place wildwestbathroom = new Place("Nothing here. Except it smells bad.");
+  private final Place wildwestmuseum = new Place("Horse museum");
+  private final Place wishing_well = new Place("You see a wishing well. Maybe drop a coin?");
+  
 
   // Create things
-  private final Thing sword = new Thing("sword");
-  private final Thing key = new Thing("key");
-  private final Thing treasure = new Thing("treasure");
-  private final Thing saloonsaddle = new Thing("saddle");
-  private final Thing horsegraveyardsaddle = new Thing("saddle");
+  private final Thing sword = new Thing("sword", "A decently good sword.");
+  private final Thing key = new Thing("key", "Unlocks the treasure.");
+  private final Thing treasure = new Thing("treasure", "Pretty large for a treasure chest...");
+  private final Thing saloonsaddle = new Thing("saddle", "One of the three saddles that you are supposed to bring to the castle. Found in the saloon.");
+  private final Thing horsegraveyardsaddle = new Thing("saddle", "One of the three saddles that you are supposed to bring to the castle. Found in the horse graveyard.");
+  private final Thing harboursaddle = new Thing("saddle", "One of the three saddles that you are supposed to bring to the castle. Found in the harbour.");
+  private final Thing coin = new Thing("coin", "A normal coin. Worth 25 cents.");
 
   // Create Variables
   private int saddlebonuspoints = 0;
 
-  public Lesson6Adventure() {
+  private Random rnd = new Random(); 
 
+  private int x = 0;
+
+  public Lesson6Adventure()  {
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", cave);
     forest.addDirection("west", wildwest);
+    forest.addDirection("wishing_well", wishing_well);
 
     cave.addDirection("out", forest);
 
@@ -60,19 +72,28 @@ public class Lesson6Adventure implements IAdventureGame {
     wildwest.addDirection("pet_store", wildwestpetstore);
     wildwest.addDirection("horse_graveyard", wildwesthorsegraveyard);
     wildwest.addDirection("research_base", wildwestresearchbase);
+    wildwest.addDirection("harbour", wildwestharbour);
 
-    wildwestsaloon.addDirection("city_enterance", wildwest);
+    wildwestsaloon.addDirection("city_entrance", wildwest);
     wildwestsaloon.addDirection("horse_parking_lot", wildwesthorseparkinglot);
 
-    wildwesthorsegraveyard.addDirection("city_enterance", wildwest);
+    wildwesthorsegraveyard.addDirection("city_entrance", wildwest);
 
+    wildwestharbour.addDirection("city_entrance", wildwest);
+    wildwestharbour.addDirection("bathroom", wildwestbathroom);
+    wildwestbathroom.addDirection("harbour", wildwestharbour);
+    wildwestbathroom.addDirection("museum", wildwestmuseum);
+  
+  
     // Add objects
     armory.addThing(sword);
     cave.addThing(key);
     treasureRoom.addThing(treasure);
     wildwestsaloon.addThing(saloonsaddle);
     wildwesthorsegraveyard.addThing(horsegraveyardsaddle);
-  }
+    wildwestharbour.addThing(harboursaddle);
+    forest.addThing(coin); }
+  
 
   @Override
   public String playerName() {
@@ -91,19 +112,25 @@ public class Lesson6Adventure implements IAdventureGame {
 
   @Override
   public String victoryText() {
-    return "You got the treasure! You live happily ever after! You have collected " + saddlebonuspoints + "/5 saddles.";
+    return "You got the treasure! You live happily ever after! You have collected " + saddlebonuspoints + "/3 saddles.";
   }
 
+  //Saddle bonus points ++
   @Override
   public void thingAdded(Player player, Thing t) {
     if(t == saloonsaddle) saddlebonuspoints ++;
     if(t == horsegraveyardsaddle) saddlebonuspoints ++;
+    if(t == harboursaddle) saddlebonuspoints ++;
   }
-
+  //Saddle bonus points --
   @Override
   public void thingRemoved(Player player, Thing t) {
     if(t == saloonsaddle) saddlebonuspoints --;
     if(t == horsegraveyardsaddle) saddlebonuspoints --;
+    if(t == harboursaddle) saddlebonuspoints --;
+    if (t == coin && player.isIn(wishing_well)){
+      int x = rnd.nextInt(4);
+    }
   }
 
 
@@ -119,7 +146,7 @@ public class Lesson6Adventure implements IAdventureGame {
       out.println("You got attacked by a dragon. You have no weapons. Dragon eats you....");
       player.setState(PlayerState.DEAD);
     } else if (player.isIn(cave) && player.carries(sword)) {
-      out.println("You got attached by a dragon, but you have a sword, so you fight it off.");
+      out.println("You got attacked by a dragon, but you have a sword, so you fight it off.");
     } else if (player.isIn(wildwesthorseparkinglot)) {
       out.println("You see a saddle... But then you get run over by a horse! You died.");
       player.setState(PlayerState.DEAD);
@@ -129,7 +156,12 @@ public class Lesson6Adventure implements IAdventureGame {
     } else if (player.isIn(wildwestresearchbase)) {
       out.println("Who knew that the wild west had research bases? You see a beaker that says Horsevirus. The Horsevirus jumps on you. You die.");
       player.setState(PlayerState.DEAD);
+    } else if (player.isIn(wildwestmuseum)) {
+      out.println("It turns out that it was a HORSE museum. A horse ran over you. You died.");
+      player.setState(PlayerState.DEAD);
     }
+    
+  
   }
 
   public static void main(final String[] args) {
