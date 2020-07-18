@@ -129,11 +129,25 @@ public class Lesson6Adventure implements IAdventureGame {
     if(t == horsegraveyardsaddle) saddlebonuspoints --;
     if(t == harboursaddle) saddlebonuspoints --;
     if (t == coin && player.isIn(wishing_well)){
-      int x = rnd.nextInt(4);
+      
+      //Int x = rnd.nextInt(4);
+      int x = rnd.nextInt(3);
+
+      switch(x){
+        case 0:
+        player.setAttribute("lucky");
+        break;
+        case 1:
+        player.setAttribute("nothing");
+        break;
+        case 2:
+        player.setAttribute("unlucky");
+        break;
+      }
     }
   }
 
-
+     //Be CAREFUL with my computer
   @Override
   public void evaluateState(final Player player, final PrintStream out) {
     if (player.carries(treasure) && !player.carries(key)) {
