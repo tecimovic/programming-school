@@ -122,7 +122,19 @@ public class Lesson6Adventure implements IAdventureGame {
       
     }
   }
-
+@Override
+public boolean canPlayerMove(Player player, Place from, Place to, PrintStream out) {
+  if (from==forest&&to==castle) {
+    if(player.carries(doorhandle)) {
+      out.println("the door has no doorhandle but you have a doorhandle so you put it on");
+      return true;
+    } else {
+      out.println("oh no! the castle door has no doorhandle!you need to find one now.");
+      return false;
+    }
+  }
+  return true;
+}
   @Override
   public void thingRemoved(Player player, Thing t, PrintStream out) {
     if (t == coin && player.isIn(wishing_well)){
