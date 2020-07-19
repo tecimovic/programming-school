@@ -1,4 +1,4 @@
-package programming.school.timotej;
+package programming.school.student.timotej;
 
 import java.awt.*;
 

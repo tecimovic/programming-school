@@ -1,4 +1,4 @@
-package programming.school.timotej;
+package programming.school.student.julia;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -10,7 +10,7 @@ import programming.school.framework.IKeyboardAction;
 
 public class Lesson4ScreenSaver implements IDrawingInstructions, IKeyboardAction {
 
-    private int speed = 3;
+    private int speed = 5;
     private final Random rnd = new Random();
 
     private int x = rnd.nextInt(DrawingContainer.MAX_X);
@@ -43,11 +43,12 @@ public class Lesson4ScreenSaver implements IDrawingInstructions, IKeyboardAction
 	public void draw(final Graphics2D g) {
         reset();
         switch(rnd.nextInt(3)) {
-            case 0: g.setColor(Color.BLUE); break;
-            case 1: g.setColor(Color.RED); break;
-            case 2: g.setColor(Color.GREEN); break;
+            
+            case 0: g.setColor(Color.LIGHT_GRAY); break;
+            case 1: g.setColor(Color.MAGENTA); break;
+            case 2: g.setColor(Color.CYAN); break;
         }
-        g.drawOval(x, y, 20, 20);
+        g.drawOval(x, y, 10+rnd.nextInt(40), 10+rnd.nextInt(40));
 	}
 
     @Override

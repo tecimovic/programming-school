@@ -1,4 +1,4 @@
-package programming.school.manca;
+package programming.school.student.manca;
 
 import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;

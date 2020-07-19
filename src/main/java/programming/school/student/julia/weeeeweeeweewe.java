@@ -1,13 +1,14 @@
-package programming.school.manca;
+package programming.school.student.julia;
 
 import java.awt.*;
+import java.lang.ProcessBuilder.Redirect;
 
 import programming.school.framework.DrawingContainer;
 import programming.school.framework.IDrawingInstructions;
 import programming.school.framework.IKeyboardAction;
 import programming.school.framework.Utilities;
 
-public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
+public class weeeeweeeweewe implements IDrawingInstructions, IKeyboardAction {
 
     private int x = 500;
     private int y = 500;
@@ -20,43 +21,46 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 	@Override
 	public void draw(Graphics2D g) {
         plotDot(g);
+        g.drawString("Julia's Donut Shop", 600, 800);
 	}
-    private void setRandomColor(Graphics2D g) {
-		g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
-	}
-
 
     @Override
     public void keyPressed(Graphics2D g, char ch) {
         switch(ch) {
             case 'a': 
-                x-=3;
-                size++;
+                x-=100;
                 break;
             case 'd':
-                x+=3;
-                size++;
+                x+=100;
+ 
                 break;
-            case 's':
-                y+=3;
-                size++;
+            case 's' :
+                size--;
                 break;
             case 'w':
-                y-=3;
                 size++;
                 break;
             case 'n':
-                size =10;
-                break;   
-            case 'c' :
-                setRandomColor(g);
+                y-=100;
+                break;
+            case 'f':
+                y+=100;
+                    break;
+            case 'm' :   
+                g.setColor(Color.RED);
+                size++;
+                break;
         }
         plotDot(g);
     }
+	private void setRandomColor(Graphics2D g) {
+		g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
+	}
 
 	public static void main(String[] args) {
-        Lesson3Drawing l = new Lesson3Drawing();
+        weeeeweeeweewe l = new weeeeweeeweewe();
         new DrawingContainer(l,l).runContainer(args);
+  
 	}
 
 }

@@ -1,4 +1,4 @@
-package programming.school.dylan;
+package programming.school.student.dylan;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

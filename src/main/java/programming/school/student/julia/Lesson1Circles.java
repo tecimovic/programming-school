@@ -1,9 +1,8 @@
 /*
  * What is this?
  */
-package programming.school.dylan;
+package programming.school.student.julia;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 import programming.school.framework.DrawingContainer;
@@ -14,11 +13,9 @@ public class Lesson1Circles implements IDrawingInstructions {
 	@Override
 	public void draw(Graphics2D g) {
 		g.fillOval(480, 480, 40, 40);
-		g.setColor(Color.MAGENTA);
-		g.drawOval(280, 280, 100, 100);
-		g.drawOval(600, 280, 100, 100);
-		g.drawLine(200, 800, 600, 800);
-		g.drawString("LOL", 300,600 );
+		g.drawOval (400, 400, 30, 30);
+		g.drawOval (500, 400, 30, 30);
+		g.drawString("white herobrine badger",400, 800);
 	}
 
 	public static void main(String[] args) {

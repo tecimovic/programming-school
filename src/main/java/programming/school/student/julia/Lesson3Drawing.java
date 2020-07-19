@@ -1,4 +1,4 @@
-package programming.school.julia;
+package programming.school.student.julia;
 
 import java.awt.*;
 

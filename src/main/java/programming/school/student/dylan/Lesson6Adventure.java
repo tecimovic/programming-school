@@ -1,4 +1,4 @@
-package programming.school.dylan;
+package programming.school.student.dylan;
 
 import java.util.Random;
 

@@ -1,14 +1,13 @@
-package programming.school.julia;
+package programming.school.student.dylan;
 
 import java.awt.*;
-import java.lang.ProcessBuilder.Redirect;
 
 import programming.school.framework.DrawingContainer;
 import programming.school.framework.IDrawingInstructions;
 import programming.school.framework.IKeyboardAction;
 import programming.school.framework.Utilities;
 
-public class weeeeweeeweewe implements IDrawingInstructions, IKeyboardAction {
+public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 
     private int x = 500;
     private int y = 500;
@@ -21,7 +20,7 @@ public class weeeeweeeweewe implements IDrawingInstructions, IKeyboardAction {
 	@Override
 	public void draw(Graphics2D g) {
         plotDot(g);
-        g.drawString("Julia's Donut Shop", 600, 800);
+        g.drawString("Dylan's Donut Shop", 600, 800);
 	}
 
     @Override
@@ -29,27 +28,27 @@ public class weeeeweeeweewe implements IDrawingInstructions, IKeyboardAction {
         switch(ch) {
             case 'a': 
                 x-=100;
+                size++;
                 break;
             case 'd':
                 x+=100;
- 
+                size++;
                 break;
-            case 's' :
-                size--;
+            case 's':
+                y+=100;
+                size++;
                 break;
             case 'w':
+                y-=100;
                 size++;
                 break;
             case 'n':
-                y-=100;
+                size = 10;
                 break;
             case 'f':
-                y+=100;
+                setRandomColor(g);
                     break;
-            case 'm' :   
-                g.setColor(Color.RED);
-                size++;
-                break;
+                
         }
         plotDot(g);
     }
@@ -58,7 +57,7 @@ public class weeeeweeeweewe implements IDrawingInstructions, IKeyboardAction {
 	}
 
 	public static void main(String[] args) {
-        weeeeweeeweewe l = new weeeeweeeweewe();
+        Lesson3Drawing l = new Lesson3Drawing();
         new DrawingContainer(l,l).runContainer(args);
   
 	}

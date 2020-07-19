@@ -1,4 +1,4 @@
-package programming.school.timotej;
+package programming.school.student.timotej;
 
 import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;

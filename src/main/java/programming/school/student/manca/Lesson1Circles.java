@@ -1,7 +1,7 @@
 /*
  * What is this?
  */
-package programming.school.manca;
+package programming.school.student.manca;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

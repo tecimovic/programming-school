@@ -1,4 +1,4 @@
-package programming.school.dylan;
+package programming.school.student.manca;
 
 import java.awt.*;
 
@@ -20,46 +20,43 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 	@Override
 	public void draw(Graphics2D g) {
         plotDot(g);
-        g.drawString("Dylan's Donut Shop", 600, 800);
 	}
+    private void setRandomColor(Graphics2D g) {
+		g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
+	}
+
 
     @Override
     public void keyPressed(Graphics2D g, char ch) {
         switch(ch) {
             case 'a': 
-                x-=100;
+                x-=3;
                 size++;
                 break;
             case 'd':
-                x+=100;
+                x+=3;
                 size++;
                 break;
             case 's':
-                y+=100;
+                y+=3;
                 size++;
                 break;
             case 'w':
-                y-=100;
+                y-=3;
                 size++;
                 break;
             case 'n':
-                size = 10;
-                break;
-            case 'f':
+                size =10;
+                break;   
+            case 'c' :
                 setRandomColor(g);
-                    break;
-                
         }
         plotDot(g);
     }
-	private void setRandomColor(Graphics2D g) {
-		g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
-	}
 
 	public static void main(String[] args) {
         Lesson3Drawing l = new Lesson3Drawing();
         new DrawingContainer(l,l).runContainer(args);
-  
 	}
 
 }

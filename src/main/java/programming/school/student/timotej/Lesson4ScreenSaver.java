@@ -1,4 +1,4 @@
-package programming.school.manca;
+package programming.school.student.timotej;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
