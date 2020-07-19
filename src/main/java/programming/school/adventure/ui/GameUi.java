@@ -1,0 +1,130 @@
+package programming.school.adventure.ui;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.net.URL;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+
+import programming.school.adventure.IAdventureGame;
+import programming.school.adventure.IOutput;
+import programming.school.adventure.Player;
+
+public class GameUi extends JFrame implements IOutput {
+
+  private JTextPane pane;
+  private JScrollPane scrollPane;
+  private JTextField field;
+  private StyledDocument doc;
+  private Player player;
+  private SimpleAttributeSet uiStyle;
+  private SimpleAttributeSet gameStyle;
+  
+  public GameUi(IAdventureGame game) {
+    super("Adventure game");
+    
+    this.player = new Player(this, game);
+
+    initComponents();
+
+    setSize(1000, 900);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  }
+
+
+  private void appendText(String txt, AttributeSet as) {
+    try {
+      doc.insertString(doc.getLength(), txt, as);
+      pane.setCaretPosition(doc.getLength());
+    }catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  @Override
+  public void println() {
+    println("");
+  }
+  
+  @Override
+  public void println(String message) {
+    appendText(message + "\n", gameStyle);
+  }
+  
+  public void uiPrintln(String message) {
+    appendText(message+ "\n", uiStyle);
+  }
+  
+  @Override
+  public boolean supportsImages() {
+    return true;
+  }
+  
+  @Override
+  public void image(URL resource) {
+    ImageIcon icon = new ImageIcon(resource);
+    Style s = doc.addStyle("pic", null);
+    StyleConstants.setIcon(s, icon);
+    appendText("image placeholder", s);
+  }
+  
+  private void initComponents() {
+    pane = new JTextPane();
+    scrollPane = new JScrollPane(pane);
+    doc = pane.getStyledDocument();
+    field = new JTextField();
+    
+    uiStyle = new SimpleAttributeSet();
+    StyleConstants.setForeground(uiStyle, Color.BLUE);
+    StyleConstants.setBold(uiStyle, true);
+    
+    gameStyle = new SimpleAttributeSet();
+    StyleConstants.setForeground(gameStyle, Color.BLACK);
+    StyleConstants.setBold(gameStyle, false);
+    
+    setLayout(new BorderLayout());
+    add(scrollPane, BorderLayout.CENTER);
+    add(field, BorderLayout.SOUTH);
+    pane.setFocusable(false);
+    field.requestFocus();
+    
+    field.addKeyListener(new KeyAdapter() {
+      @Override
+      public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( c == '\n' ) {
+          String text = field.getText();
+          field.setText("");
+          if ( text != null && text.trim().length() > 0 ) {
+            uiPrintln("\n> " + text);
+            if ( !player.isGameOver()) 
+              player.newCommand(text);
+            if ( player.isGameOver() ) {
+              player.gameOver();
+            } else {
+              player.describeCurrentPlace();
+            }
+          }
+        }
+      }
+    });
+    
+    player.intro();
+    player.describeCurrentPlace();
+  }
+
+  public void start() {
+    setVisible(true);
+  }
+}

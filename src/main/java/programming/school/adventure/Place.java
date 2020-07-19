@@ -1,5 +1,6 @@
 package programming.school.adventure;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Set;
 public class Place {
 
   private Random rnd = new Random();
-  
+
   private static List<Place> allPlaces = new ArrayList<>();
 
   private final String description;
@@ -19,6 +20,8 @@ public class Place {
 
   private final List<Thing> things = new ArrayList<>();
   private final List<Creature> creatures = new ArrayList<>();
+
+  private URL picture = null;
 
   public Place(final String longDescription) {
     this.description = longDescription;
@@ -36,7 +39,7 @@ public class Place {
   }
 
   public void moveCreatureRandomly(Creature c) {
-    if  ( creatures.contains(c) ) {
+    if (creatures.contains(c)) {
       creatures.remove(c);
       String[] directions = directionsMap.keySet().toArray(new String[0]);
       String chosenDirection = directions[rnd.nextInt(directions.length)];
@@ -44,7 +47,19 @@ public class Place {
       newPlace.addCreature(c);
     }
   }
-  
+
+  public void setPicture(URL url) {
+    this.picture = url;
+  }
+
+  public boolean hasPicture() {
+    return picture != null;
+  }
+
+  public URL picture() {
+    return picture;
+  }
+
   public static List<Place> allPlaces() {
     return allPlaces;
   }

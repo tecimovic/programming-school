@@ -1,16 +1,13 @@
 package programming.school.adventure;
 
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Player {
 
-  private final Output out;
-  private final Scanner in;
+  private final IOutput out;
   private final Random rnd = new Random();
   
   private final String name;
@@ -18,12 +15,13 @@ public class Player {
   private final List<Thing> inventory = new ArrayList<>();
   private PlayerState state = PlayerState.NORMAL;
   private List<String> attributes = new ArrayList<>();
-
-  public Player(final PrintStream out, final Scanner in, final String name, final Place startingPlace) {
-    this.out = new Output(out);
-    this.in = in;
-    this.name = name;
-    this.place = startingPlace;
+  private IAdventureGame game;
+  
+  public Player(final IOutput out, IAdventureGame game) {
+    this.out = out;
+    this.name = game.playerName();
+    this.place = game.startingPlace();
+    this.game = game;
   }
 
   public PlayerState state() {
@@ -44,7 +42,7 @@ public class Player {
   
   // Makes player go to a destination with a given name. Returns true if
   // succesful.
-  public void go(IAdventureGame game, final String name) {
+  public void go(final String name) {
     Place newPlace = place.findDirection(name);
     if (newPlace == null) {
       out.println("Unknown destination. Valid destinations are: " + place().directions());
@@ -104,7 +102,7 @@ public class Player {
     return null;
   }
 
-  public void drop(IAdventureGame game, final String name) {
+  public void drop(final String name) {
     Thing thing = findInInventory(name);
     if (thing == null) {
       out.println("You can't drop this.");
@@ -116,7 +114,7 @@ public class Player {
   }
 
   // Takes an object from a room. Returns true if succesful.
-  public void take(IAdventureGame game, String name) {
+  public void take(String name) {
     Thing thing = place.findThing(name);
     if (thing == null) {
       out.println("You can't take this. Valid things to take are: " + place().things());
@@ -133,7 +131,7 @@ public class Player {
   }
 
   public void inventory() {
-    out.println("You carry: " + Output.inventoryDescription(inventory));
+    out.println("You carry: " + OutUtil.inventoryDescription(inventory));
   }
 
   public void examine(final String argument) {
@@ -154,12 +152,12 @@ public class Player {
     out.println("Valid commands are 'go', 'take', 'examine', 'drop', 'die', 'inventory'\n");
   }
 
-  public void runCommand(IAdventureGame game, final String cmd, final String argument) {
+  public void runCommand(final String cmd, final String argument) {
     switch (cmd) {
-    case "go": go(game, argument); break;
-    case "take": take(game, argument); break;
+    case "go": go(argument); break;
+    case "take": take(argument); break;
     case "examine": examine(argument); break;
-    case "drop": drop(game, argument); break;
+    case "drop": drop(argument); break;
     case "die": die(); break;
     case "inventory": inventory(); break;
     default: help(); break;
@@ -179,43 +177,50 @@ public class Player {
       cmd = l.substring(0, space).trim();
       rest = l.substring(space + 1).trim();
     }
-    runCommand(game, cmd, rest);
+    runCommand(cmd, rest);
   }
 
-  public void play(final IAdventureGame game) {
+  public void intro() {
     out.println("Welcome, " + name() + "!\n");
-    out.println(game.introductionText());
-
-    while (state() == PlayerState.NORMAL) {
-      out.separate();
-      out.describePlace(place());
-      out.prompt();
-      String text = in.nextLine();
-      processText(game, text);
-      game.evaluateState(this, out);
-      List<Object[]> placeCreaturePairs = new ArrayList<>();
-      for ( Place place: Place.allPlaces() ) {
-        for  ( Creature c: place.creatures() ) {
-          placeCreaturePairs.add(new Object[] {place, c});
-        }
-      }
-      for ( Object[] o: placeCreaturePairs) {
-        game.creatureAction(this, (Creature)o[1], (Place)o[0], out);
+    out.println(game.introductionText());    
+  }
+  
+  public void describeCurrentPlace() {
+    OutUtil.separate(out);
+    if ( out.supportsImages() ) {
+      URL resource = place.picture();
+      if ( resource != null ) {
+        out.image(resource);
       }
     }
-
+    OutUtil.describePlace(out, place);
+  }
+  
+  public boolean isGameOver() {
+    return state != PlayerState.NORMAL;
+  }
+  
+  public void gameOver() {
     if (state() == PlayerState.DEAD) {
       out.println("You are dead. Game over.");
     } else if (state() == PlayerState.WIN) {
       out.println(game.victoryText());
     }
   }
-
-  public static void start(final IAdventureGame game, final InputStream input, final PrintStream out) {
-    try (Scanner in = new Scanner(input)) {
-      Player player = new Player(out, in, game.playerName(), game.startingPlace());
-      player.play(game);
+  
+  public void newCommand(String text) {
+    processText(game, text);
+    game.evaluateState(this, out);
+    List<Object[]> placeCreaturePairs = new ArrayList<>();
+    for ( Place place: Place.allPlaces() ) {
+      for  ( Creature c: place.creatures() ) {
+        placeCreaturePairs.add(new Object[] {place, c});
+      }
     }
+    for ( Object[] o: placeCreaturePairs) {
+      game.creatureAction(this, (Creature)o[1], (Place)o[0], out);
+    }    
   }
+  
 
 }

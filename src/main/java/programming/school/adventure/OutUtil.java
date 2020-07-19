@@ -1,33 +1,14 @@
 package programming.school.adventure;
 
-import java.io.PrintStream;
 import java.util.List;
 import java.util.Set;
 
-public class Output {
-  private PrintStream out;
-  
-  Output(PrintStream out) {
-    this.out = out;
-  }
-  
-  public void println(String message) {
-    out.println(message);
-  }
-  
-  public void println() {
-    out.println();
-  }
-  
-  public void prompt() {
-    out.print("\nWhat would you  like to do?\n>");
-  }
-  
-  public void separate() {
+public class OutUtil {
+  public static void separate(IOutput out) {
     out.println("\n-----------------------------------------------------------------");
   }
 
-  public void describePlace(Place place) {
+  public static void describePlace(IOutput out, Place place) {
     out.println(place.description());
     out.println();
     out.println(creatureInventory(place));

@@ -2,11 +2,12 @@ package programming.school.julia;
 
 import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;
-import programming.school.adventure.Output;
+import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.PlayerState;
 import programming.school.adventure.Thing;
+import programming.school.adventure.ui.GameUi;
 
 public class Lesson6Adventure implements IAdventureGame {
 
@@ -89,13 +90,13 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   @Override
-  public void creatureAction(Player player, Creature creature, Place place, Output out) {
+  public void creatureAction(Player player, Creature creature, Place place, IOutput out) {
     if ( creature == baby_booger ) {
       place.moveCreatureRandomly(creature);}
   }
 
   @Override
-  public void evaluateState(final Player player, final Output out) {
+  public void evaluateState(final Player player, final IOutput out) {
     if (player.carries(treasure) && !player.carries(key)) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
@@ -122,7 +123,7 @@ public class Lesson6Adventure implements IAdventureGame {
     }
   }
 @Override
-public boolean canPlayerMove(Player player, Place from, Place to, Output out) {
+public boolean canPlayerMove(Player player, Place from, Place to, IOutput out) {
   if (from==forest&&to==castle) {
     if(player.carries(doorhandle)) {
       out.println("the door has no doorhandle but you have a doorhandle so you put it on");
@@ -135,14 +136,14 @@ public boolean canPlayerMove(Player player, Place from, Place to, Output out) {
   return true;
 }
   @Override
-  public void thingRemoved(Player player, Thing t, Output out) {
+  public void thingRemoved(Player player, Thing t, IOutput out) {
     if (t == coin && player.isIn(wishing_well)){
       player.setAttribute("lucky");
     }
   }
 
   public static void main(final String[] args) {
-    Player.start(new Lesson6Adventure(), System.in, System.out);
+    new GameUi(new Lesson6Adventure()).start();
   }
 
 }

@@ -1,11 +1,12 @@
 package programming.school.reference;
 
 import programming.school.adventure.IAdventureGame;
-import programming.school.adventure.Output;
+import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.PlayerState;
 import programming.school.adventure.Thing;
+import programming.school.adventure.ui.GameUi;
 
 public class Lesson6Adventure implements IAdventureGame {
 
@@ -22,7 +23,8 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing treasure = new Thing("treasure");
 
   public Lesson6Adventure() {
-
+    forest.setPicture(getClass().getResource("forest.jpg"));
+    
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", cave);
@@ -66,7 +68,7 @@ public class Lesson6Adventure implements IAdventureGame {
 
 
   @Override
-  public void evaluateState(final Player player, final Output out) {
+  public void evaluateState(final Player player, final IOutput out) {
     if ( player.carries(treasure) && !player.carries(key) ) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
@@ -82,7 +84,7 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   public static void main(final String[] args) {
-    Player.start(new Lesson6Adventure(), System.in, System.out);
+    new GameUi(new Lesson6Adventure()).start();
   }
 
 }

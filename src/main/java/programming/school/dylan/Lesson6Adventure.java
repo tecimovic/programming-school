@@ -3,11 +3,13 @@ package programming.school.dylan;
 import java.util.Random;
 
 import programming.school.adventure.IAdventureGame;
-import programming.school.adventure.Output;
+import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.PlayerState;
 import programming.school.adventure.Thing;
+import programming.school.adventure.ui.GameCli;
+import programming.school.adventure.ui.GameUi;
 
 public class Lesson6Adventure implements IAdventureGame {
 
@@ -117,14 +119,14 @@ public class Lesson6Adventure implements IAdventureGame {
 
   //Saddle bonus points ++
   @Override
-  public void thingAdded(Player player, Thing t, Output out) {
+  public void thingAdded(Player player, Thing t, IOutput out) {
     if(t == saloonsaddle) saddlebonuspoints ++;
     if(t == horsegraveyardsaddle) saddlebonuspoints ++;
     if(t == harboursaddle) saddlebonuspoints ++;
   }
   //Saddle bonus points --
   @Override
-  public void thingRemoved(Player player, Thing t, Output out) {
+  public void thingRemoved(Player player, Thing t, IOutput out) {
     if(t == saloonsaddle) saddlebonuspoints --;
     if(t == horsegraveyardsaddle) saddlebonuspoints --;
     if(t == harboursaddle) saddlebonuspoints --;
@@ -152,7 +154,7 @@ public class Lesson6Adventure implements IAdventureGame {
 
      //Be CAREFUL with my computer
   @Override
-  public void evaluateState(final Player player, final Output out) {
+  public void evaluateState(final Player player, final IOutput out) {
     if (player.carries(treasure) && !player.carries(key)) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
@@ -182,7 +184,7 @@ public class Lesson6Adventure implements IAdventureGame {
   }
 
   public static void main(final String[] args) {
-    Player.start(new Lesson6Adventure(), System.in, System.out);
+    new GameUi(new Lesson6Adventure()).start();
   }
 
 }
