@@ -14,7 +14,7 @@ import programming.school.adventure.ui.GameUi;
 public class Lesson6Adventure implements IAdventureGame {
 
   // Create places
-  private final Place forest = new Place("You are in a beautiful forest. There are trees all around.");
+  private final Place forest = new Place("You are in a scary forest. There are creepy trees all around.");
   private final Place castle = new Place(
       "You are inside the walls of a medieval castle. It has a lot of tall towers and is very beautiful.");
   private final Place armory = new Place("Armory is where the weapons are. There is all kind of weapons here.");
@@ -53,6 +53,16 @@ public class Lesson6Adventure implements IAdventureGame {
   private int x = 0;
 
   public Lesson6Adventure()  {
+
+    //Pictures are more important than words
+
+  forest.setPicture(getClass().getResource("forest.jpg"));
+  castle.setPicture(getClass().getResource("castle.jpg"));
+  armory.setPicture(getClass().getResource("armory.jpg"));
+  treasureRoom.setPicture(getClass().getResource("treasure.jpg"));
+  cave.setPicture(getClass().getResource("cave.jpg"));
+  wishing_well.setPicture(getClass().getResource("wishingwell.jpg"));
+
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", cave);
