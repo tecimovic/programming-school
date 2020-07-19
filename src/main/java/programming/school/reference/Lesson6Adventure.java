@@ -24,6 +24,7 @@ public class Lesson6Adventure implements IAdventureGame {
 
   public Lesson6Adventure() {
     forest.setPicture(getClass().getResource("forest.jpg"));
+    forest.setSound(getClass().getResource("owl.wav"));
     
     // Link places
     forest.addDirection("north", castle);

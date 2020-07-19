@@ -6,6 +6,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -73,6 +78,16 @@ public class GameUi extends JFrame implements IOutput {
   }
 
   @Override
+  public boolean supportsSound() {
+    return true;
+  }
+
+  @Override
+  public void sound(URL resource) {
+    Sounds.play(resource);
+  }
+
+  @Override
   public void image(URL resource) {
     String key = resource.toString();
     Style s = doc.getStyle(key);
@@ -95,7 +110,7 @@ public class GameUi extends JFrame implements IOutput {
     player.intro();
     player.describeCurrentPlace();
   }
-  
+
   private void initComponents() {
     pane = new JTextPane();
     scrollPane = new JScrollPane(pane);
@@ -125,29 +140,34 @@ public class GameUi extends JFrame implements IOutput {
           field.setText("");
           if (text != null && text.trim().length() > 0) {
             uiPrintln("\n> " + text);
-            if (!player.isGameOver()) {
-              player.newCommand(text);
-            } else {
-              if ( "restart".equals(text) ) {
-                restart();
-                return;
-              } else {
-                uiPrintln("You can type 'restart' to start a new game.");
-              }
-            }
-            
-            if (player.isGameOver()) {
-              player.gameOver();
-            } else {
-              player.describeCurrentPlace();
-            }
+            newCommandTyped(text);
           }
         }
       }
     });
-    
+
     player.intro();
     player.describeCurrentPlace();
+  }
+  
+  private void newCommandTyped(String text) {
+    Sounds.clear();
+    if (!player.isGameOver()) {
+      player.newCommand(text);
+    } else {
+      if ("restart".equals(text)) {
+        restart();
+        return;
+      } else {
+        uiPrintln("You can type 'restart' to start a new game.");
+      }
+    }
+
+    if (player.isGameOver()) {
+      player.gameOver();
+    } else {
+      player.describeCurrentPlace();
+    }    
   }
 
   public void start() {

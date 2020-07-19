@@ -8,5 +8,6 @@ public interface IOutput {
   public void println(String message);
   public boolean supportsImages();
   public void image(URL resource);
-  
+  public boolean supportsSound();
+  public void sound(URL resource);
 }

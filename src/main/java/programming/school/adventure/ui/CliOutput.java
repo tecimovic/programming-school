@@ -29,4 +29,14 @@ class CliOutput implements IOutput {
   public void image(URL resource) {
     // Do  nothing. We don't support that in CLI mode.
   }
+  
+  @Override
+  public boolean supportsSound() {
+    return false;
+  }
+  
+  @Override
+  public void sound(URL resource) {
+    // Do nothing. We don't support that in CLI mode.
+  }
 }
