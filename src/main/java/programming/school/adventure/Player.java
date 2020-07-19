@@ -187,11 +187,13 @@ public class Player {
   
   public void describeCurrentPlace() {
     OutUtil.separate(out);
-    if ( out.supportsImages() ) {
+    if ( out.supportsImages() && place.hasPicture() ) {
       URL resource = place.picture();
-      if ( resource != null ) {
-        out.image(resource);
-      }
+      out.image(resource);
+    }
+    if ( out.supportsSound() && place.hasSound() ) {
+      URL resource = place.sound();
+      out.sound(resource);
     }
     OutUtil.describePlace(out, place);
   }

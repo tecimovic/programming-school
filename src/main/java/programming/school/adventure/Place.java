@@ -22,6 +22,7 @@ public class Place {
   private final List<Creature> creatures = new ArrayList<>();
 
   private URL picture = null;
+  private URL sound = null;
 
   public Place(final String longDescription) {
     this.description = longDescription;
@@ -58,6 +59,18 @@ public class Place {
 
   public URL picture() {
     return picture;
+  }
+
+  public void setSound(URL url) {
+    this.sound = url;
+  }
+
+  public boolean hasSound() {
+    return sound != null;
+  }
+
+  public URL sound() {
+    return sound;
   }
 
   public static List<Place> allPlaces() {
