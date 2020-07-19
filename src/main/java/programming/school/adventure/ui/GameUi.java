@@ -30,10 +30,12 @@ public class GameUi extends JFrame implements IOutput {
   private Player player;
   private SimpleAttributeSet uiStyle;
   private SimpleAttributeSet gameStyle;
-  
+  private IAdventureGame game;
+
   public GameUi(IAdventureGame game) {
     super("Adventure game");
-    
+
+    this.game = game;
     this.player = new Player(this, game);
 
     initComponents();
@@ -42,41 +44,56 @@ public class GameUi extends JFrame implements IOutput {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
-
   private void appendText(String txt, AttributeSet as) {
     try {
       doc.insertString(doc.getLength(), txt, as);
       pane.setCaretPosition(doc.getLength());
-    }catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
-  
+
   @Override
   public void println() {
     println("");
   }
-  
+
   @Override
   public void println(String message) {
     appendText(message + "\n", gameStyle);
   }
-  
+
   public void uiPrintln(String message) {
-    appendText(message+ "\n", uiStyle);
+    appendText(message + "\n", uiStyle);
   }
-  
+
   @Override
   public boolean supportsImages() {
     return true;
   }
-  
+
   @Override
   public void image(URL resource) {
-    ImageIcon icon = new ImageIcon(resource);
-    Style s = doc.addStyle("pic", null);
-    StyleConstants.setIcon(s, icon);
+    String key = resource.toString();
+    Style s = doc.getStyle(key);
+    if (s == null) {
+      s = doc.addStyle(key, null);
+      ImageIcon icon = new ImageIcon(resource);
+      StyleConstants.setIcon(s, icon);
+    }
     appendText("image placeholder", s);
+    appendText("\n", uiStyle);
+  }
+
+  private void restart() {
+    try {
+      doc.remove(0, doc.getLength());
+    } catch (Exception e) {
+      // never mind
+    }
+    this.player = new Player(this, game);
+    player.intro();
+    player.describeCurrentPlace();
   }
   
   private void initComponents() {
@@ -84,33 +101,42 @@ public class GameUi extends JFrame implements IOutput {
     scrollPane = new JScrollPane(pane);
     doc = pane.getStyledDocument();
     field = new JTextField();
-    
+
     uiStyle = new SimpleAttributeSet();
     StyleConstants.setForeground(uiStyle, Color.BLUE);
     StyleConstants.setBold(uiStyle, true);
-    
+
     gameStyle = new SimpleAttributeSet();
     StyleConstants.setForeground(gameStyle, Color.BLACK);
     StyleConstants.setBold(gameStyle, false);
-    
+
     setLayout(new BorderLayout());
     add(scrollPane, BorderLayout.CENTER);
     add(field, BorderLayout.SOUTH);
     pane.setFocusable(false);
     field.requestFocus();
-    
+
     field.addKeyListener(new KeyAdapter() {
       @Override
       public void keyTyped(KeyEvent e) {
         char c = e.getKeyChar();
-        if ( c == '\n' ) {
+        if (c == '\n') {
           String text = field.getText();
           field.setText("");
-          if ( text != null && text.trim().length() > 0 ) {
+          if (text != null && text.trim().length() > 0) {
             uiPrintln("\n> " + text);
-            if ( !player.isGameOver()) 
+            if (!player.isGameOver()) {
               player.newCommand(text);
-            if ( player.isGameOver() ) {
+            } else {
+              if ( "restart".equals(text) ) {
+                restart();
+                return;
+              } else {
+                uiPrintln("You can type 'restart' to start a new game.");
+              }
+            }
+            
+            if (player.isGameOver()) {
               player.gameOver();
             } else {
               player.describeCurrentPlace();
