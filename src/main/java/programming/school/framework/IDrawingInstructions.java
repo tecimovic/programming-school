@@ -1,4 +1,4 @@
-package programming.school;
+package programming.school.framework;
 
 import java.awt.Graphics2D;
 

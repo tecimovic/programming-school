@@ -2,9 +2,9 @@ package programming.school.reference;
 
 import java.awt.Graphics2D;
 
-import programming.school.DrawingContainer;
-import programming.school.IDrawingInstructions;
-import programming.school.IKeyboardAction;
+import programming.school.framework.DrawingContainer;
+import programming.school.framework.IDrawingInstructions;
+import programming.school.framework.IKeyboardAction;
 
 public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
 

@@ -6,8 +6,8 @@ package programming.school.timotej;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import programming.school.DrawingContainer;
-import programming.school.IDrawingInstructions;
+import programming.school.framework.DrawingContainer;
+import programming.school.framework.IDrawingInstructions;
 
 public class Lesson1Circles implements IDrawingInstructions {
 

@@ -3,10 +3,10 @@ package programming.school.julia;
 import java.awt.*;
 import java.lang.ProcessBuilder.Redirect;
 
-import programming.school.DrawingContainer;
-import programming.school.IDrawingInstructions;
-import programming.school.IKeyboardAction;
-import programming.school.Utilities;
+import programming.school.framework.DrawingContainer;
+import programming.school.framework.IDrawingInstructions;
+import programming.school.framework.IKeyboardAction;
+import programming.school.framework.Utilities;
 
 public class weeeeweeeweewe implements IDrawingInstructions, IKeyboardAction {
 

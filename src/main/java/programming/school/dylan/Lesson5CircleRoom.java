@@ -2,9 +2,9 @@ package programming.school.dylan;
 
 import java.awt.*;
 
-import programming.school.DrawingContainer;
-import programming.school.IDrawingInstructions;
-import programming.school.IKeyboardAction;
+import programming.school.framework.DrawingContainer;
+import programming.school.framework.IDrawingInstructions;
+import programming.school.framework.IKeyboardAction;
 
 public class Lesson5CircleRoom implements IDrawingInstructions, IKeyboardAction {
 

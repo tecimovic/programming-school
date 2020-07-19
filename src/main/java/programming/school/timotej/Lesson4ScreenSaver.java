@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
 
-import programming.school.DrawingContainer;
-import programming.school.IDrawingInstructions;
-import programming.school.IKeyboardAction;
+import programming.school.framework.DrawingContainer;
+import programming.school.framework.IDrawingInstructions;
+import programming.school.framework.IKeyboardAction;
 
 public class Lesson4ScreenSaver implements IDrawingInstructions, IKeyboardAction {
 
