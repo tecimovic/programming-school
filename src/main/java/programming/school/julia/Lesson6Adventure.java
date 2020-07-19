@@ -36,6 +36,14 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Creature baby_booger = new Creature("baby booger", "the booger in the cave had a baby and he walks around and kills");
   public Lesson6Adventure() {
 
+    // put pictures
+    forest.setPicture(getClass().getResource("forest.jpg"));
+    nostril.setPicture(getClass().getResource("cave.jpg"));
+    eyeball.setPicture(getClass().getResource("daddyseyeball.jpg"));
+    castle.setPicture(getClass().getResource("castle.jpg"));
+    forehead.setPicture(getClass().getResource("treasure.jpg"));
+    armory.setPicture(getClass().getResource("armory.jpg"));
+    wishing_well.setPicture(getClass().getResource("wishingwell.jpg"));
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", nostril);
