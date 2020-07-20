@@ -28,6 +28,9 @@ import programming.school.adventure.Player;
 
 public class GameUi extends JFrame implements IOutput {
 
+  private static final int WIDTH = 1000;
+  private static final int HEIGHT = 900;
+  
   private JTextPane pane;
   private JScrollPane scrollPane;
   private JTextField field;
@@ -45,7 +48,8 @@ public class GameUi extends JFrame implements IOutput {
 
     initComponents();
 
-    setSize(1000, 900);
+    setSize(WIDTH, HEIGHT);
+    setLocation(100, 100);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
