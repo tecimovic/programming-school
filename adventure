@@ -1,3 +1,0 @@
-WHO=julia
-
-/usr/local/opt/openjdk/bin/java -cp build/classes/java/main/ programming.school.${WHO}.Lesson6Adventure
