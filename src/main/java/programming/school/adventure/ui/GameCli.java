@@ -23,8 +23,7 @@ public class GameCli {
       while (!player.isGameOver()) {
         player.describeCurrentPlace();
         out.print("\nWhat would you  like to do?\n>");
-        String text = in.nextLine();
-        player.newCommand(text);
+        player.newCommand(in.nextLine());
       }
       player.gameOver();
     }
