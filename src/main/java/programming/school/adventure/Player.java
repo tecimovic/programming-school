@@ -132,6 +132,7 @@ public class Player {
       inventory.remove(thing);
       place.addThing(thing);
       game.thingRemoved(this, thing, out);
+      out.println("You dropped " + thing.name() + ".");
     }
   }
 
@@ -145,6 +146,7 @@ public class Player {
       inventory.add(thing);
       place.removeThing(thing);
       game.thingAdded(this, thing, out);
+      out.println("You took " + thing.name() + ".");
     }
   }
 
