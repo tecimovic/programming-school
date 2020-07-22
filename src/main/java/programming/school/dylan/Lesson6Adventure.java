@@ -1,4 +1,4 @@
-package programming.school.student.dylan;
+package programming.school.dylan;
 
 import java.util.Random;
 
@@ -45,7 +45,6 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing harboursaddle = new Thing("saddle", "One of the three saddles that you are supposed to bring to the castle. Found in the harbour.");
   private final Thing coin = new Thing("coin", "A normal coin. Worth 25 cents.");
 
-
   // Create Variables
   private int saddlebonuspoints = 0;
 
@@ -63,13 +62,13 @@ public class Lesson6Adventure implements IAdventureGame {
   treasureRoom.setPicture(getClass().getResource("treasure.jpg"));
   cave.setPicture(getClass().getResource("cave.jpg"));
   wishing_well.setPicture(getClass().getResource("wishingwell.jpg"));
-  forest.setSound(getClass().getResource("thunder.wav"));
+  
 
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", cave);
     forest.addDirection("west", wildwest);
-    forest.addDirection("east", wishing_well);
+    forest.addDirection("wishing_well", wishing_well);
 
     cave.addDirection("out", forest);
 
@@ -97,16 +96,6 @@ public class Lesson6Adventure implements IAdventureGame {
     wildwestharbour.addDirection("bathroom", wildwestbathroom);
     wildwestbathroom.addDirection("harbour", wildwestharbour);
     wildwestbathroom.addDirection("museum", wildwestmuseum);
-
-    wishing_well.addDirection("west", forest);
-
-    wildwesthorseparkinglot.addDirection("saloon", wildwestsaloon);
-
-    wildwestpetstore.addDirection("city_entrance", wildwest);
-
-    wildwestresearchbase.addDirection("city_entrance", wildwest);
-
-    wildwestmuseum.addDirection("bathroom", wildwestbathroom);
   
   
     // Add objects
@@ -154,8 +143,8 @@ public class Lesson6Adventure implements IAdventureGame {
     if(t == harboursaddle) saddlebonuspoints --;
     if (t == coin && player.isIn(wishing_well)){
       
-      //Int x = rnd.nextInt(5);
-      int x = rnd.nextInt(5);
+      //Int x = rnd.nextInt(4);
+      int x = rnd.nextInt(3);
 
       switch(x){
         case 0:
@@ -167,14 +156,6 @@ public class Lesson6Adventure implements IAdventureGame {
         out.println("Nothing happened. Better luck next time...");
         break;
         case 2:
-        player.setAttribute("unlucky");
-        out.println("YOU HAVE BECOME UNLUCKY. YOU MAY NOT ESCAPE...");
-        break;
-        case 3:
-        player.setAttribute("lucky");
-        out.println("You have become the luckiest person in the world");
-        break;
-        case 4:
         player.setAttribute("unlucky");
         out.println("YOU HAVE BECOME UNLUCKY. YOU MAY NOT ESCAPE...");
         break;
@@ -196,16 +177,16 @@ public class Lesson6Adventure implements IAdventureGame {
       player.setState(PlayerState.DEAD);
     } else if (player.isIn(cave) && player.carries(sword)) {
       out.println("You got attacked by a dragon, but you have a sword, so you fight it off.");
-    } else if (player.isIn(wildwesthorseparkinglot) && !player.hasAttribute("lucky")) {
+    } else if (player.isIn(wildwesthorseparkinglot)) {
       out.println("You see a saddle... But then you get run over by a horse! You died.");
       player.setState(PlayerState.DEAD);
-    } else if (player.isIn(wildwestpetstore) && !player.hasAttribute("lucky")) {
+    } else if (player.isIn(wildwestpetstore)) {
       out.println("A horse in the pet store jumped on you. You died.");
       player.setState(PlayerState.DEAD);
-    } else if (player.isIn(wildwestresearchbase) && !player.hasAttribute("lucky")) {
+    } else if (player.isIn(wildwestresearchbase)) {
       out.println("Who knew that the wild west had research bases? You see a beaker that says Horsevirus. The Horsevirus jumps on you. You die.");
       player.setState(PlayerState.DEAD);
-    } else if (player.isIn(wildwestmuseum) && !player.hasAttribute("lucky")) {
+    } else if (player.isIn(wildwestmuseum)) {
       out.println("It turns out that it was a HORSE museum. A horse ran over you. You died.");
       player.setState(PlayerState.DEAD);
     }
