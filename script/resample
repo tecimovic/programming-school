@@ -1,1 +1,4 @@
-sox thunder.wav -r 5000 out.wav rate
+IN=$1
+
+sox $1 -r 5000 _tmp.wav rate
+mv _tmp.wav $1
