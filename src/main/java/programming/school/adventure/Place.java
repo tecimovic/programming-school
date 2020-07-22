@@ -14,6 +14,8 @@ public class Place {
 
   private static List<Place> allPlaces = new ArrayList<>();
 
+  private List<IPlaceExtension> extensions = new ArrayList<>();
+  
   private final String description;
 
   private final Map<String, Place> directionsMap = new LinkedHashMap<>();
@@ -85,6 +87,29 @@ public class Place {
     directionsMap.put(direction, place);
   }
 
+  public Thing findInExtensions(String name) {
+    for ( IPlaceExtension ext: extensions ) {
+      Thing t = ext.findThing(name);
+      if ( t !=  null ) 
+        return t;
+    }
+    return null;    
+  }
+  
+  public boolean runExtensionCommand(Player player, String cmd, String arg) {
+    for ( IPlaceExtension ext: extensions ) {
+      if ( ext.runCommand(player, cmd, arg))
+        return true;
+    }
+    return false;
+  }
+  
+  public void describeExtensions(IOutput out) {
+    for ( IPlaceExtension ext: extensions ) {
+      out.println(ext.description());
+    }   
+  }
+  
   public Place findDirection(final String direction) {
     return directionsMap.get(direction);
   }
@@ -98,6 +123,11 @@ public class Place {
       things.add(t);
   }
 
+  public void addExtension(IPlaceExtension ext) {
+    if (!extensions.contains(ext))
+      extensions.add(ext);
+  }
+  
   public void removeCreature(final Creature c) {
     creatures.remove(c);
   }

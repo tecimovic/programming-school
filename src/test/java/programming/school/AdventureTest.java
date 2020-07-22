@@ -40,13 +40,13 @@ public class AdventureTest {
     test.command("go downstairs");
     assertFalse(test.lastOutput().contains("sword"));
     test.command("take sword");
-    test.player().inventory();
+    test.player().inventoryDescription();
     assertTrue(test.lastOutput().contains("sword"));
     test.command("go upstairs");
     test.command("go south");
     test.command("go south");
     test.command("take key");
-    test.player().inventory();
+    test.player().inventoryDescription();
     assertTrue(test.lastOutput().contains("key"));
     test.command("go out");
     test.command("go north");

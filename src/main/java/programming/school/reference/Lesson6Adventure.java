@@ -5,6 +5,7 @@ import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.PlayerState;
+import programming.school.adventure.Store;
 import programming.school.adventure.Thing;
 import programming.school.adventure.ui.GameUi;
 
@@ -16,7 +17,8 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place armory = new Place("Armory is where the weapons are. There is all kind of weapons here.");
   private final Place treasureRoom = new Place("Treasure room is shining with treasures. There are treasures of all kids in here.");
   private final Place cave = new Place("You are in a dark dangerous cave. There is something dangerous lurking in the corner.");
-
+  private final Place store = new Place("You are in a store. You can buy and sell stuff here.");
+  
   // Create things
   private final Thing sword = new Thing("sword");
   private final Thing key = new Thing("key");
@@ -27,10 +29,20 @@ public class Lesson6Adventure implements IAdventureGame {
     forest.setPicture(getClass().getResource("forest.jpg"));
     forest.setSound(getClass().getResource("owl.wav"));
     
+    Store storeExtension = new Store();
+    Thing ring = new Thing("ring", "Beautiful ring with large blueish gem.");
+    ring.setCost(34);
+    storeExtension.addThing(ring);
+    
+    // Add place extensions
+    store.addExtension(storeExtension);
+    
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", cave);
-
+    forest.addDirection("shop", store);
+    
+    store.addDirection("out", forest);
     cave.addDirection("out", forest);
 
     castle.addDirection("south", forest);
@@ -41,9 +53,11 @@ public class Lesson6Adventure implements IAdventureGame {
 
     armory.addDirection("upstairs", castle);
 
-    // Configura objects
+    // Configure objects
     dollar.setAutoConvertible(true);
     dollar.setCost(100);
+    
+    sword.setCost(10000);
     
     // Add objects
     armory.addThing(sword);
