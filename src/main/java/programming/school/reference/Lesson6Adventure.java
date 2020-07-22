@@ -21,6 +21,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing sword = new Thing("sword");
   private final Thing key = new Thing("key");
   private final Thing treasure = new Thing("treasure");
+  private final Thing dollar = new Thing("dollar bill");
 
   public Lesson6Adventure() {
     forest.setPicture(getClass().getResource("forest.jpg"));
@@ -40,11 +41,15 @@ public class Lesson6Adventure implements IAdventureGame {
 
     armory.addDirection("upstairs", castle);
 
+    // Configura objects
+    dollar.setAutoConvertible(true);
+    dollar.setCost(100);
+    
     // Add objects
     armory.addThing(sword);
     cave.addThing(key);
     treasureRoom.addThing(treasure);
-
+    forest.addThing(dollar);
   }
 
   @Override

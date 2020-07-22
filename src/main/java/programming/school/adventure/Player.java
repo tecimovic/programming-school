@@ -2,6 +2,7 @@ package programming.school.adventure;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -10,6 +11,7 @@ public class Player {
   private final IOutput out;
   private final Random rnd = new Random();
   
+  private int money = 0;
   private final String name;
   private Place place;
   private final List<Thing> inventory = new ArrayList<>();
@@ -78,6 +80,14 @@ public class Player {
     this.state = s;
   }
 
+  public void pay(int cost) {
+    money -= cost;
+  }
+  
+  public void earn(int cost) {
+    money += cost;
+  }
+  
   public void drop(final Thing t) {
     inventory.remove(t);
     place.addThing(t);
@@ -132,6 +142,7 @@ public class Player {
 
   public void inventory() {
     out.println("You carry: " + OutUtil.inventoryDescription(inventory));
+    out.println("You have " + game.currencyDescription(money));
   }
 
   public void examine(final String argument) {
@@ -210,8 +221,20 @@ public class Player {
     }
   }
   
+  private void evaluateEngineState(IOutput out) {
+    Iterator<Thing> it = inventory.iterator();
+    while ( it.hasNext() ) {
+      Thing t = it.next();
+      if ( t.isAutoConvertible() ) {
+        this.money += t.cost();
+        it.remove();
+      }
+    }
+  }
+  
   public void newCommand(String text) {
     processText(game, text);
+    evaluateEngineState(out);
     game.evaluateState(this, out);
     List<Object[]> placeCreaturePairs = new ArrayList<>();
     for ( Place place: Place.allPlaces() ) {
