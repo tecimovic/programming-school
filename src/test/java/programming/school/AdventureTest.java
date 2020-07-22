@@ -39,10 +39,12 @@ public class AdventureTest {
     test.command("go north");
     test.command("go downstairs");
     test.command("take sword");
+    assertNotNull(test.player().findInInventory("sword"));
     test.command("go upstairs");
     test.command("go south");
     test.command("go south");
     test.command("take key");
+    assertNotNull(test.player().findInInventory("key"));
     test.command("go out");
     test.command("go north");
     test.command("go upstairs");
