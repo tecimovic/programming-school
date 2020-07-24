@@ -34,6 +34,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place wildwestbathroom = new Place("Nothing here. Except it smells bad.");
   private final Place wildwestmuseum = new Place("Horse museum");
   private final Place wishing_well = new Place("You see a wishing well. Maybe drop a coin?");
+  private final Place hiddenroom = new Place("So... you did not die in the Horse Parking lot. 1 bonus point 4 U");
   
 
   // Create things
@@ -101,6 +102,7 @@ public class Lesson6Adventure implements IAdventureGame {
     wishing_well.addDirection("west", forest);
 
     wildwesthorseparkinglot.addDirection("saloon", wildwestsaloon);
+    wildwesthorseparkinglot.addDirection("hidden_room", hiddenroom );
 
     wildwestpetstore.addDirection("city_entrance", wildwest);
 
