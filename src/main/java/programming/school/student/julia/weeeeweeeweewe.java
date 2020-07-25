@@ -1,7 +1,7 @@
 package programming.school.student.julia;
 
-import java.awt.*;
-import java.lang.ProcessBuilder.Redirect;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 import programming.school.framework.DrawingContainer;
 import programming.school.framework.IDrawingInstructions;

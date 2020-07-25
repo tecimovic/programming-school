@@ -1,6 +1,7 @@
 package programming.school.student.dylan;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 import programming.school.framework.DrawingContainer;
 import programming.school.framework.IDrawingInstructions;
