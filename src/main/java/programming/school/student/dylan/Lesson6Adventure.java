@@ -64,6 +64,7 @@ public class Lesson6Adventure implements IAdventureGame {
   treasureRoom.setPicture(getClass().getResource("treasure.jpg"));
   cave.setPicture(getClass().getResource("cave.jpg"));
   wishing_well.setPicture(getClass().getResource("wishingwell.jpg"));
+  wildwest.setPicture(getClass().getResource("wildwest.jpg"));
   forest.setSound(getClass().getResource("thunder.wav"));
 
     // Link places
@@ -109,6 +110,8 @@ public class Lesson6Adventure implements IAdventureGame {
     wildwestresearchbase.addDirection("city_entrance", wildwest);
 
     wildwestmuseum.addDirection("bathroom", wildwestbathroom);
+
+    hiddenroom.addDirection("horse_parking_lot", wildwesthorseparkinglot);
   
   
     // Add objects
