@@ -1,4 +1,11 @@
+#!/bin/bash
+RATE=5000
 IN=$1
 
-sox $1 -r 5000 _tmp.wav rate
+if [ -z "$IN" ]; then
+  echo "Usage: $0 <file.wav>"
+  exit
+fi
+
+sox $1 -r $RATE _tmp.wav rate
 mv _tmp.wav $1
