@@ -66,6 +66,7 @@ public class Lesson6Adventure implements IAdventureGame {
   wishing_well.setPicture(getClass().getResource("wishingwell.jpg"));
   wildwest.setPicture(getClass().getResource("wildwest.jpg"));
   forest.setSound(getClass().getResource("thunder.wav"));
+  wildwest.setSound(getClass().getResource("western.wav"));
 
     // Link places
     forest.addDirection("north", castle);
