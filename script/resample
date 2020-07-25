@@ -3,9 +3,23 @@ RATE=5000
 IN=$1
 
 if [ -z "$IN" ]; then
-  echo "Usage: $0 <file.wav>"
+  echo "Usage: $0 <file.wav|mp3>"
   exit
 fi
 
-sox $1 -r $RATE _tmp.wav rate
-mv _tmp.wav $1
+MP3=`file $IN | grep -c MPEG`
+WAV=`file $IN | grep -c WAVE`
+
+if [ "1" == $MP3 ]; then
+  echo "Converting and resampling MP3 file."
+  ffmpeg -i $IN $IN.wav
+  sox $IN.wav -r $RATE _tmp.wav rate
+  mv _tmp.wav $IN.wav
+elif [ "1" == $WAV ]; then
+  echo "Resampling .wav file."
+  sox $IN -r $RATE _tmp.wav rate
+  mv _tmp.wav $IN
+else
+  echo "Unknown file format!"
+fi
+
