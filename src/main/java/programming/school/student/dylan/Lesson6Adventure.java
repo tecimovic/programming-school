@@ -138,9 +138,8 @@ public class Lesson6Adventure implements IAdventureGame {
     roman_coin.setCost(2000);
      Thing  map = new Thing("map", "Map of the world.");
      map.setCost(2000);
-    roman_coin.setCost(2000);
     Thing  bread = new Thing("bread", "A loaf of bread.");
-    roman_coin.setCost(2000);
+    bread.setCost(2000);
     storeExtension.addThing(fruit);
     storeExtension.addThing(dylan);
     storeExtension.addThing(roman_coin);
