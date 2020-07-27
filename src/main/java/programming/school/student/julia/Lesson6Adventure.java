@@ -23,6 +23,7 @@ public class Lesson6Adventure implements IAdventureGame {
       "You are in a dark dangerous nostril. There is something dangerous lurking in the corner.there is also a sleeping booger.");
   private final Place eyeball = new Place("you are walking through daddys eyeball. eww.");
   private final Place wishing_well = new Place("the wishing well is full of coins. maybe you can drop one in");
+  private final Place nothingness_hole = new Place("you are in a white cube ant there is a never ending hole");
 
   // Create things
   private final Thing sword = new Thing("sword");
@@ -44,6 +45,10 @@ public class Lesson6Adventure implements IAdventureGame {
     forehead.setPicture(getClass().getResource("treasure.jpg"));
     armory.setPicture(getClass().getResource("armory.jpg"));
     wishing_well.setPicture(getClass().getResource("wishingwell.jpg"));
+
+    //put sounds
+    forest.setSound(getClass().getResource("birds.wav"));
+
     // Link places
     forest.addDirection("north", castle);
     forest.addDirection("south", nostril);
@@ -63,6 +68,8 @@ public class Lesson6Adventure implements IAdventureGame {
     eyeball.addDirection("west", forest);
 
     wishing_well.addDirection("east", forest);
+
+    eyeball.addDirection("east", nothingness_hole);
 
     // Add objects
     armory.addThing(sword);
