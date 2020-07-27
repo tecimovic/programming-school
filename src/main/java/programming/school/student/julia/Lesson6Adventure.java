@@ -82,6 +82,8 @@ public class Lesson6Adventure implements IAdventureGame {
     forest.addDirection("west", wishing_well);
     forest.addDirection("to store", store);
 
+    store.addDirection("out", forest);
+
     nostril.addDirection("out", forest);
 
     castle.addDirection("south", forest);
