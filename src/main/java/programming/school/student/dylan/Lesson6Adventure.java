@@ -137,7 +137,7 @@ public class Lesson6Adventure implements IAdventureGame {
     Thing  roman_coin = new Thing("roman_coin", "Worth a lot...");
     roman_coin.setCost(2000);
      Thing  map = new Thing("map", "Map of the world.");
-     map.setCost(2000);
+     map.setCost(200000);
     Thing  bread = new Thing("bread", "A loaf of bread.");
     bread.setCost(2000);
     storeExtension.addThing(fruit);
@@ -234,7 +234,7 @@ public class Lesson6Adventure implements IAdventureGame {
     if (player.carries(treasure) && !player.carries(key)) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
-    } else if (player.carries(treasure) && player.carries(key)) {
+    } else if (player.carries(treasure) && player.carries(key)) { 
       out.println("You got the treasure!!!");
       player.setState(PlayerState.WIN);
     } else if (player.isIn(cave) && !player.carries(sword)) {
