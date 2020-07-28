@@ -50,6 +50,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing harboursaddle = new Thing("saddle",
       "One of the three saddles that you are supposed to bring to the castle. Found in the harbour.");
   private final Thing coin = new Thing("coin", "A normal coin. Worth 25 cents.");
+  Thing  roman_coin = new Thing("roman_coin", "Worth a lot...");
 
   // Create Variables
   private int saddlebonuspoints = 0;
@@ -69,6 +70,11 @@ public class Lesson6Adventure implements IAdventureGame {
     wildwest.setPicture(getClass().getResource("wildwest.jpg"));
     forest.setSound(getClass().getResource("thunder.wav"));
     wildwest.setSound(getClass().getResource("western.wav"));
+    wildwestsaloon.setPicture(getClass().getResource("saloon.jpg"));
+    wildwesthorseparkinglot.setPicture(getClass().getResource("horseparkinglot.jpg"));
+    wildwesthorsegraveyard.setPicture(getClass().getResource("horsegraveyard.jpg"));
+    wildwestharbour.setPicture(getClass().getResource("harbour.jpg"));
+    wildwestbathroom.setPicture(getClass().getResource("bathroom.jpg"));
 
     // Link places
     forest.addDirection("north", castle);
@@ -134,7 +140,6 @@ public class Lesson6Adventure implements IAdventureGame {
     fruit.setCost(2000);
     Thing  dylan = new Thing("dylan", "It's an extremely rare Dylan Action Figure!");
     dylan.setCost(2000);
-    Thing  roman_coin = new Thing("roman_coin", "Worth a lot...");
     roman_coin.setCost(2000);
      Thing  map = new Thing("map", "Map of the world.");
      map.setCost(200000);
@@ -235,7 +240,7 @@ public class Lesson6Adventure implements IAdventureGame {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
     } else if (player.carries(treasure) && player.carries(key)) { 
-      out.println("You got the treasure!!!");
+      if (player.carries(roman_coin)) out.println("You got the treasure!!!");
       player.setState(PlayerState.WIN);
     } else if (player.isIn(cave) && !player.carries(sword)) {
       out.println("You got attacked by a dragon. You have no weapons. Dragon eats you....");
@@ -255,7 +260,7 @@ public class Lesson6Adventure implements IAdventureGame {
     } else if (player.isIn(wildwestmuseum) && !player.hasAttribute("lucky")) {
       out.println("It turns out that it was a HORSE museum. A horse ran over you. You died.");
       player.setState(PlayerState.DEAD);
-    }
+    } 
 
   }
 
