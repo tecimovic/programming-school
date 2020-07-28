@@ -25,7 +25,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place eyeball = new Place("you are walking through daddys eyeball. eww.");
   private final Place wishing_well = new Place("the wishing well is full of coins. maybe you can drop one in");
   private final Place nothingness_hole = new Place("you are in a white cube ant there is a never ending hole");
-  private final Place store = new Place("You are in a store. You can buy and sell stuff here.");
+  private final Place store = new Place("You are in a store. You can buy stuff here.");
   
   
   // Create things
@@ -67,10 +67,11 @@ public class Lesson6Adventure implements IAdventureGame {
     storeExtension.addThing(scab_collection);
     storeExtension.addThing(yugoslavia_stamp);
     Thing stuffed_frog = new Thing("stuffed_frog", "Beautiful stamp with a yugoslavia flag.");
-    stuffed_frog.setCost(3678);
+    stuffed_frog.setCost(1000);
     storeExtension.addThing(stuffed_frog);
-
-
+    storeExtension.addThing(sword);
+    storeExtension.addThing(eyelash);
+    eyelash.setCost(200);
 
     // Add place extensions
     store.addExtension(storeExtension);
@@ -101,10 +102,8 @@ public class Lesson6Adventure implements IAdventureGame {
     eyeball.addDirection("east", nothingness_hole);
 
     // Add objects
-    armory.addThing(sword);
     nostril.addThing(key);
     forehead.addThing(treasure);
-    eyeball.addThing(eyelash);
     forest.addThing(coin);
     wishing_well.addThing(doorhandle);
     forest.addThing(ten_dollar_bill);
