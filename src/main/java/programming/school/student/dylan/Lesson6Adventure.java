@@ -51,10 +51,12 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing harboursaddle = new Thing("saddle",
       "One of the three saddles that you are supposed to bring to the castle. Found in the harbour.");
   private final Thing coin = new Thing("coin", "A normal coin. Worth 25 cents.");
-  Thing  roman_coin = new Thing("roman coin", "Worth a lot...");
+  Thing roman_coin = new Thing("roman coin", "Worth a lot...");
+  Thing fruit = new Thing("fruit", "Supafruit. Kills the walking tree.");
 
-  //Create Creatures
-  private final Creature WalkingTree = new Creature("Walking Tree", "It's a huge, walking tree that chases you wherever you go. If you travel 5 rooms with the tree, he will kill you.");
+  // Create Creatures
+  private final Creature WalkingTree = new Creature("Walking Tree",
+      "It's a huge, walking tree that chases you wherever you go. If you travel 5 rooms with the tree, he will kill you.");
 
   // Create Variables
   private int saddlebonuspoints = 0;
@@ -140,15 +142,14 @@ public class Lesson6Adventure implements IAdventureGame {
     forest.addThing(coin);
 
     Store storeExtension = new Store();
-    Thing fruit = new Thing("fruit", "Supafruit");
-    fruit.setCost(2000);
-    Thing  dylan = new Thing("dylan", "It's an extremely rare Dylan Action Figure!");
-    dylan.setCost(2000);
-    roman_coin.setCost(2000);
-     Thing  map = new Thing("map", "Map of the world.");
-     map.setCost(200000);
-    Thing  bread = new Thing("bread", "A loaf of bread.");
-    bread.setCost(2000);
+    fruit.setCost(50000);
+    Thing dylan = new Thing("dylan", "It's an extremely rare Dylan Action Figure!");
+    dylan.setCost(20000);
+    roman_coin.setCost(20000);
+    Thing map = new Thing("map", "Map of the world.");
+    map.setCost(200000);
+    Thing bread = new Thing("bread", "A loaf of bread.");
+    bread.setCost(20000);
     storeExtension.addThing(fruit);
     storeExtension.addThing(dylan);
     storeExtension.addThing(roman_coin);
@@ -160,7 +161,7 @@ public class Lesson6Adventure implements IAdventureGame {
     store.addExtension(storeExtension);
     forest.addThing(dollar);
 
-forest.addCreature(WalkingTree);
+    forest.addCreature(WalkingTree);
     // Turn objects into money
     dollar.setAutoConvertible(true);
     dollar.setCost(100000);
@@ -237,27 +238,31 @@ forest.addCreature(WalkingTree);
     }
   }
 
-@Override
-public void creatureAction(Player player, Creature creature, Place place, IOutput out) {
-  if(creature == WalkingTree){
-    place.removeCreature(WalkingTree);
-    player.place().addCreature(WalkingTree);
-    player.changeCounterBy("stuff", 1);
-    if(player.counter("stuff") == 5){
-      player.setState(PlayerState.DEAD);
-      out.println("The walking tree killed you. Game over.");
+  @Override
+  public void creatureAction(Player player, Creature creature, Place place, IOutput out) {
+    if (creature == WalkingTree) {
+      place.removeCreature(WalkingTree);
+      player.place().addCreature(WalkingTree);
+      player.changeCounterBy("stuff", 1);
+      if (player.counter("stuff") == 5) {
+        player.setState(PlayerState.DEAD);
+        out.println("The walking tree killed you. Game over.");
+      } else if (player.place().hasCreature(WalkingTree) && player.carries(fruit)) {
+        out.println("The walking tree tried to kill you, but he died because he ate the poisonous Supafruit.");
+        player.place().removeCreature(WalkingTree);
+      }
     }
-
   }
-}
+
   // Be CAREFUL with my computer
   @Override
   public void evaluateState(final Player player, final IOutput out) {
     if (player.carries(treasure) && !player.carries(key)) {
       out.println("You don't have the key to open the treasure!");
       player.drop(treasure);
-    } else if (player.carries(treasure) && player.carries(key)) { 
-      if (player.carries(roman_coin)) out.println("You got the treasure!!!");
+    } else if (player.carries(treasure) && player.carries(key)) {
+      if (player.carries(roman_coin))
+        out.println("You got the treasure!!!");
       player.setState(PlayerState.WIN);
     } else if (player.isIn(cave) && !player.carries(sword)) {
       out.println("You got attacked by a dragon. You have no weapons. Dragon eats you....");
@@ -277,7 +282,7 @@ public void creatureAction(Player player, Creature creature, Place place, IOutpu
     } else if (player.isIn(wildwestmuseum) && !player.hasAttribute("lucky")) {
       out.println("It turns out that it was a HORSE museum. A horse ran over you. You died.");
       player.setState(PlayerState.DEAD);
-    } 
+    }
 
   }
 
