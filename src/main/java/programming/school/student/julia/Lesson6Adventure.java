@@ -39,6 +39,8 @@ public class Lesson6Adventure implements IAdventureGame {
 
   //create creatures
   private final Creature baby_booger = new Creature("baby booger", "the booger in the cave had a baby and he walks around and kills");
+  private final Creature Guinea_pig = new Creature("guinea pig","your pet guinea pig who follows you around"); 
+  
   public Lesson6Adventure() {
 
     // put pictures
@@ -52,6 +54,7 @@ public class Lesson6Adventure implements IAdventureGame {
 
     //put sounds
     forest.setSound(getClass().getResource("birds.wav"));
+    nostril.setSound(getClass().getResource("cave.wav"));
 
     Store storeExtension = new Store();
     Thing ring = new Thing("ring", "Beautiful ring with large blueish gem.");
@@ -72,6 +75,7 @@ public class Lesson6Adventure implements IAdventureGame {
     storeExtension.addThing(sword);
     storeExtension.addThing(eyelash);
     eyelash.setCost(200);
+    sword.setCost(300);
 
     // Add place extensions
     store.addExtension(storeExtension);
@@ -116,7 +120,7 @@ public class Lesson6Adventure implements IAdventureGame {
 
     //add creatures
     nostril.addCreature(baby_booger);
-
+    forest.addCreature(Guinea_pig);
   }
 
   @Override
