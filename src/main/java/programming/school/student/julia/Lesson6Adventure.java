@@ -36,6 +36,7 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing coin = new Thing("coin");
   private final Thing doorhandle = new Thing("doorhandle");
   private final Thing ten_dollar_bill = new Thing("ten dollar bill");
+  private final Thing eyeball_shield = new Thing("eyeball shield");
 
   //create creatures
   private final Creature baby_booger = new Creature("baby booger", "the booger in the cave had a baby and he walks around and kills");
@@ -111,6 +112,7 @@ public class Lesson6Adventure implements IAdventureGame {
     forest.addThing(coin);
     wishing_well.addThing(doorhandle);
     forest.addThing(ten_dollar_bill);
+    eyeball.addThing(eyeball_shield);
 
 
 
@@ -146,7 +148,21 @@ public class Lesson6Adventure implements IAdventureGame {
   @Override
   public void creatureAction(Player player, Creature creature, Place place, IOutput out) {
     if ( creature == baby_booger ) {
-      place.moveCreatureRandomly(creature);}
+      place.moveCreatureRandomly(creature);
+    }
+    if ( creature == Guinea_pig ) {
+      place.removeCreature(Guinea_pig);
+    player.place().addCreature(Guinea_pig);
+      if (player.place().hasCreature(baby_booger)){
+      if (player.carries(eyeball_shield)){
+        out.println("the baby booger attacked your guinea pig but you protect him with your eyeball shield");
+      }else{
+        out.println("the baby booger ate your guinea pig because you dont have a shield");
+        player.place().removeCreature(Guinea_pig);
+
+      }
+      }
+    }
   }
 
   @Override
