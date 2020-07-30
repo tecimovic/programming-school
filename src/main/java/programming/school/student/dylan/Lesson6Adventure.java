@@ -2,6 +2,7 @@ package programming.school.student.dylan;
 
 import java.util.Random;
 
+import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
@@ -50,7 +51,10 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing harboursaddle = new Thing("saddle",
       "One of the three saddles that you are supposed to bring to the castle. Found in the harbour.");
   private final Thing coin = new Thing("coin", "A normal coin. Worth 25 cents.");
-  Thing  roman_coin = new Thing("roman_coin", "Worth a lot...");
+  Thing  roman_coin = new Thing("roman coin", "Worth a lot...");
+
+  //Create Creatures
+  private final Creature WalkingTree = new Creature("Walking Tree", "It's a huge, walking tree that chases you wherever you go. If you travel 5 rooms with the tree, he will kill you.");
 
   // Create Variables
   private int saddlebonuspoints = 0;
@@ -156,7 +160,7 @@ public class Lesson6Adventure implements IAdventureGame {
     store.addExtension(storeExtension);
     forest.addThing(dollar);
 
-
+forest.addCreature(WalkingTree);
     // Turn objects into money
     dollar.setAutoConvertible(true);
     dollar.setCost(100000);
@@ -233,6 +237,19 @@ public class Lesson6Adventure implements IAdventureGame {
     }
   }
 
+@Override
+public void creatureAction(Player player, Creature creature, Place place, IOutput out) {
+  if(creature == WalkingTree){
+    place.removeCreature(WalkingTree);
+    player.place().addCreature(WalkingTree);
+    player.changeCounterBy("stuff", 1);
+    if(player.counter("stuff") == 5){
+      player.setState(PlayerState.DEAD);
+      out.println("The walking tree killed you. Game over.");
+    }
+
+  }
+}
   // Be CAREFUL with my computer
   @Override
   public void evaluateState(final Player player, final IOutput out) {
