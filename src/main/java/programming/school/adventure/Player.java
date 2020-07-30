@@ -2,8 +2,10 @@ package programming.school.adventure;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Player {
@@ -17,6 +19,8 @@ public class Player {
   private final List<Thing> inventory = new ArrayList<>();
   private PlayerState state = PlayerState.NORMAL;
   private List<String> attributes = new ArrayList<>();
+  private Map<String, Integer> counters = new HashMap<>();
+  
   private IAdventureGame game;
 
   public Player(final IOutput out, IAdventureGame game) {
@@ -97,6 +101,22 @@ public class Player {
     return money;
   }
 
+  public void setCounter(String x, int value) {
+    counters.put(x, value);
+  }
+  
+  public void changeCounterBy(String x, int howMuch) {
+    int currentValue = counter(x);
+    setCounter(x, currentValue + howMuch);
+  }
+  
+  public int counter(String x) {
+    if ( counters.containsKey(x))
+      return counters.get(x);
+    else
+      return 0;
+  }
+  
   public void drop(final Thing t) {
     inventory.remove(t);
     place.addThing(t);
