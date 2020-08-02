@@ -61,6 +61,8 @@ public class OutUtil {
       sb.append(prefix).append(d);
       prefix = ", ";
     }
+    if (sb.length() == 0 )
+    	sb.append("nowhere");
     return sb.toString();
   }
 
