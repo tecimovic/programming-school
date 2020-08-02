@@ -89,10 +89,10 @@ public class Lesson6Adventure implements IAdventureGame {
       player.drop(treasure);
     } else if ( player.carries(treasure) && player.carries(key)) {
       out.println("You got the treasure!!!");
-      player.setState(PlayerState.WIN);
+      player.win();
     } else if ( player.place().hasCreature(dragon) && !player.carries(sword) ) {
       out.println("You got attacked by a dragon. You have no weapons. Dragon eats you....");
-      player.setState(PlayerState.DEAD);
+      player.die();
     } else if ( player.place().hasCreature(dragon) && player.carries(sword) ) {
       out.println("You got attacked by a dragon, but you have a sword, so you fight it off.");
     }

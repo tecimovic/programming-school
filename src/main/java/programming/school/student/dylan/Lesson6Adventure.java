@@ -245,7 +245,7 @@ public class Lesson6Adventure implements IAdventureGame {
       player.place().addCreature(WalkingTree);
       player.changeCounterBy("stuff", 1);
       if (player.counter("stuff") == 5) {
-        player.setState(PlayerState.DEAD);
+        player.die();
         out.println("The walking tree killed you. Game over.");
       } else if (player.place().hasCreature(WalkingTree) && player.carries(fruit)) {
         out.println("The walking tree tried to kill you, but he died because he ate the poisonous Supafruit.");
@@ -263,25 +263,25 @@ public class Lesson6Adventure implements IAdventureGame {
     } else if (player.carries(treasure) && player.carries(key)) {
       if (player.carries(roman_coin))
         out.println("You got the treasure!!!");
-      player.setState(PlayerState.WIN);
+      player.win();
     } else if (player.isIn(cave) && !player.carries(sword)) {
       out.println("You got attacked by a dragon. You have no weapons. Dragon eats you....");
-      player.setState(PlayerState.DEAD);
+      player.die();
     } else if (player.isIn(cave) && player.carries(sword)) {
       out.println("You got attacked by a dragon, but you have a sword, so you fight it off.");
     } else if (player.isIn(wildwesthorseparkinglot) && !player.hasAttribute("lucky")) {
       out.println("You see a saddle... But then you get run over by a horse! You died.");
-      player.setState(PlayerState.DEAD);
+      player.die();
     } else if (player.isIn(wildwestpetstore) && !player.hasAttribute("lucky")) {
       out.println("A horse in the pet store jumped on you. You died.");
-      player.setState(PlayerState.DEAD);
+      player.die();
     } else if (player.isIn(wildwestresearchbase) && !player.hasAttribute("lucky")) {
       out.println(
           "Who knew that the wild west had research bases? You see a beaker that says Horsevirus. The Horsevirus jumps on you. You die.");
-      player.setState(PlayerState.DEAD);
+      player.die();
     } else if (player.isIn(wildwestmuseum) && !player.hasAttribute("lucky")) {
       out.println("It turns out that it was a HORSE museum. A horse ran over you. You died.");
-      player.setState(PlayerState.DEAD);
+      player.die();
     }
 
   }

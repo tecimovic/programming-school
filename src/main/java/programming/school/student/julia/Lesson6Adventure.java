@@ -174,19 +174,19 @@ public class Lesson6Adventure implements IAdventureGame {
       if (player.hasAttribute("lucky")) {
       if (player.carries(eyelash)) {
         out.println("You got the treasure!!!");
-        player.setState(PlayerState.WIN);
+        player.win();
       } else {
 
         out.println("the treasure turns into an eyeball and you die");
-        player.setState(PlayerState.DEAD);
+        player.die();
       }
       } else {
         out.println("the treasure turns into an eye booger and eats you");
-        player.setState(PlayerState.DEAD);
+        player.die();
       }
     } else if (player.place().hasCreature(baby_booger) && !player.carries(sword)) {
       out.println("You got attacked by a baby booger. You have no weapons. baby booger eats you....");
-      player.setState(PlayerState.DEAD);
+      player.die();
     } else if (player.place().hasCreature(baby_booger) && player.carries(sword)) {
       out.println("You got attacked by a baby booger, but you have a sword, so you fight it off.");
       

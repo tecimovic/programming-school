@@ -85,7 +85,15 @@ public class Player {
     return inventory.contains(t);
   }
 
-  public void setState(final PlayerState s) {
+  public void die() { 
+    setState(PlayerState.DEAD);
+  }
+  
+  public void win() {
+    setState(PlayerState.WIN);
+  }
+  
+  void setState(final PlayerState s) {
     this.state = s;
   }
 
@@ -170,9 +178,9 @@ public class Player {
     }
   }
 
-  public void die() {
+  public void dieCommand() {
     out.println("You kill yourself!");
-    setState(PlayerState.DEAD);
+    die();
   }
 
   public void inventoryDescription() {
@@ -220,7 +228,7 @@ public class Player {
       drop(argument);
       break;
     case "die":
-      die();
+      dieCommand();
       break;
     case "inventory":
       inventoryDescription();
