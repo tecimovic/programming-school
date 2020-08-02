@@ -8,6 +8,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,6 +32,26 @@ import programming.school.adventure.Player;
 
 public class GameUi extends JFrame implements IOutput {
 
+  private static enum MenuMeta {
+    FILE_QUIT("File", "Quit", (jframe) -> {
+      jframe.dispatchEvent(new WindowEvent(jframe, WindowEvent.WINDOW_CLOSING)); 
+    });
+    
+    private String topMenu;
+    private String subMenu;
+    private Consumer<JFrame> consumer;
+    
+    MenuMeta(String top, String submenu, Consumer<JFrame> consumer)  {
+      this.topMenu = top;
+      this.subMenu = submenu;
+      this.consumer = consumer;
+    }
+    
+    public String topMenu() { return topMenu; }
+    public String subMenu() { return subMenu; }
+    public Consumer<JFrame> consumer() { return consumer;  }
+  }
+  
   private static final long serialVersionUID = -5593908552783820409L;
  
   private static final int WIDTH = 1000;
@@ -60,20 +83,26 @@ public class GameUi extends JFrame implements IOutput {
 
   private JMenuBar createMenuBar() {
     JMenuBar bar = new JMenuBar();
+    Map<String, JMenu> topMenus = new HashMap<>();
     
-    JMenu file = new JMenu("File");
-    
-    JMenuItem quit = new JMenuItem("Quit");
-    quit.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        GameUi.this.dispatchEvent(new WindowEvent(GameUi.this, WindowEvent.WINDOW_CLOSING));
+    for ( MenuMeta m: MenuMeta.values() )  {
+      JMenu jm = topMenus.get(m.topMenu());
+      if ( jm == null ) {
+        jm = new JMenu(m.topMenu());
+        topMenus.put(m.topMenu(), jm);
+        bar.add(jm);
       }
-    });
-    file.add(quit);
-    
-    bar.add(file);
-    
+      
+      JMenuItem mi = new JMenuItem(m.subMenu());
+      mi.addActionListener(new ActionListener() {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          m.consumer().accept(GameUi.this);
+        }
+      });
+      jm.add(mi);
+    }
     return bar;
   }
   
