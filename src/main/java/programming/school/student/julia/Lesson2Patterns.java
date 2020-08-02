@@ -31,7 +31,8 @@ public class Lesson2Patterns implements IDrawingInstructions {
 		}
 	}
 
-	private void setColorblue(Graphics2D g) {
+	@SuppressWarnings("unused")
+  private void setColorblue(Graphics2D g) {
 	}
 
 	public static void main(String[] args) {

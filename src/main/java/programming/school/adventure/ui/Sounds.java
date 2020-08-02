@@ -10,10 +10,6 @@ import javax.sound.sampled.DataLine;
 
 public class Sounds {
 
-  private static class SoundClip {
-    
-  }
-  
   // Clears out resources for any clips that are done playing.
   public static void clear() {
     

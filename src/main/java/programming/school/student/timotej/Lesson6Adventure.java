@@ -5,7 +5,6 @@ import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
-import programming.school.adventure.PlayerState;
 import programming.school.adventure.Thing;
 import programming.school.adventure.ui.GameUi;
 

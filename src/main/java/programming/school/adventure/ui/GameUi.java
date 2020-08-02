@@ -23,6 +23,8 @@ import programming.school.adventure.Player;
 
 public class GameUi extends JFrame implements IOutput {
 
+  private static final long serialVersionUID = -5593908552783820409L;
+ 
   private static final int WIDTH = 1000;
   private static final int HEIGHT = 900;
   
