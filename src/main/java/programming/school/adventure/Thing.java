@@ -4,7 +4,9 @@ public class Thing implements IExaminable {
 
   private final String name, description;
   private int cost = 0;
+  private int energy = 0;
   private boolean autoConvertible = false; // If this is true,  then picking this object results in increasing money.
+  private boolean isFood = false;
   
   public Thing(final String name, final String description) {
     this.name = name;
@@ -27,6 +29,11 @@ public class Thing implements IExaminable {
     this.cost = value;
   }
 
+  public void setFood(int energy) {
+    this.isFood = true;
+    this.energy = energy;
+  }
+  
   public int cost() {
     return cost;
   }
@@ -37,5 +44,13 @@ public class Thing implements IExaminable {
   
   public boolean isAutoConvertible() { 
     return autoConvertible;
+  }
+  
+  public int energy() {
+    return energy;
+  }
+  
+  public boolean isFood() { 
+    return isFood;
   }
 }
