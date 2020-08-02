@@ -11,6 +11,7 @@ import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.PlayerState;
 import programming.school.adventure.ui.GameTest;
 import programming.school.reference.Lesson6Adventure;
+import programming.school.reference.Lesson7NewAdventure;
 
 public class AdventureTest {
 
@@ -50,6 +51,16 @@ public class AdventureTest {
     test.command("go upstairs");
     test.command("take treasure");
     assertEquals(PlayerState.WIN, test.player().state());
+  }
+  
+  @Test
+  public void testReferenceAdventureBlank() {
+    IAdventureGame game = new Lesson7NewAdventure();
+    GameTest test = new GameTest(game);
+    test.start();
     
+    test.command("die");
+    
+    assertEquals(PlayerState.DEAD,  test.player().state());
   }
 }
