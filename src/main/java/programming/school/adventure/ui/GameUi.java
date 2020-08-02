@@ -2,12 +2,18 @@ package programming.school.adventure.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -45,11 +51,32 @@ public class GameUi extends JFrame implements IOutput {
 
     initComponents();
 
+    setJMenuBar(createMenuBar());
+    
     setSize(WIDTH, HEIGHT);
     setLocation(100, 100);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
+  private JMenuBar createMenuBar() {
+    JMenuBar bar = new JMenuBar();
+    
+    JMenu file = new JMenu("File");
+    
+    JMenuItem quit = new JMenuItem("Quit");
+    quit.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        GameUi.this.dispatchEvent(new WindowEvent(GameUi.this, WindowEvent.WINDOW_CLOSING));
+      }
+    });
+    file.add(quit);
+    
+    bar.add(file);
+    
+    return bar;
+  }
+  
   private void appendText(String txt, AttributeSet as) {
     try {
       doc.insertString(doc.getLength(), txt, as);
