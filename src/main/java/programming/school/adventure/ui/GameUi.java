@@ -33,30 +33,42 @@ import programming.school.adventure.Player;
 public class GameUi extends JFrame implements IOutput {
 
   private static enum MenuMeta {
-    FILE_QUIT("File", "Quit", (jframe) -> {
-      jframe.dispatchEvent(new WindowEvent(jframe, WindowEvent.WINDOW_CLOSING)); 
+    FILE_QUIT("File", "Quit", (gameUi) -> {
+      gameUi.dispatchEvent(new WindowEvent(gameUi, WindowEvent.WINDOW_CLOSING));
+    }),
+
+    GAME_RESTART("Game", "Restart", (gameUi) -> {
+      gameUi.startGame(true);
     });
-    
+
     private String topMenu;
     private String subMenu;
-    private Consumer<JFrame> consumer;
-    
-    MenuMeta(String top, String submenu, Consumer<JFrame> consumer)  {
+    private Consumer<GameUi> consumer;
+
+    MenuMeta(String top, String submenu, Consumer<GameUi> consumer) {
       this.topMenu = top;
       this.subMenu = submenu;
       this.consumer = consumer;
     }
-    
-    public String topMenu() { return topMenu; }
-    public String subMenu() { return subMenu; }
-    public Consumer<JFrame> consumer() { return consumer;  }
+
+    public String topMenu() {
+      return topMenu;
+    }
+
+    public String subMenu() {
+      return subMenu;
+    }
+
+    public Consumer<GameUi> consumer() {
+      return consumer;
+    }
   }
-  
+
   private static final long serialVersionUID = -5593908552783820409L;
- 
+
   private static final int WIDTH = 1000;
   private static final int HEIGHT = 900;
-  
+
   private JTextPane pane;
   private JScrollPane scrollPane;
   private JTextField field;
@@ -70,32 +82,41 @@ public class GameUi extends JFrame implements IOutput {
     super("Adventure game");
 
     this.game = game;
-    this.player = new Player(this, game);
 
     initComponents();
 
     setJMenuBar(createMenuBar());
-    
+
     setSize(WIDTH, HEIGHT);
     setLocation(100, 100);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    startGame(false);
+  }
+
+  private void startGame(boolean isRestart) {
+    this.player = new Player(this, game);
+    if (isRestart)
+      this.player.out().println("--- Game has been restarted ---");
+    player.intro();
+    player.describeCurrentPlace();
   }
 
   private JMenuBar createMenuBar() {
     JMenuBar bar = new JMenuBar();
     Map<String, JMenu> topMenus = new HashMap<>();
-    
-    for ( MenuMeta m: MenuMeta.values() )  {
+
+    for (MenuMeta m : MenuMeta.values()) {
       JMenu jm = topMenus.get(m.topMenu());
-      if ( jm == null ) {
+      if (jm == null) {
         jm = new JMenu(m.topMenu());
         topMenus.put(m.topMenu(), jm);
         bar.add(jm);
       }
-      
+
       JMenuItem mi = new JMenuItem(m.subMenu());
       mi.addActionListener(new ActionListener() {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
           m.consumer().accept(GameUi.this);
@@ -105,7 +126,7 @@ public class GameUi extends JFrame implements IOutput {
     }
     return bar;
   }
-  
+
   private void appendText(String txt, AttributeSet as) {
     try {
       doc.insertString(doc.getLength(), txt, as);
@@ -202,11 +223,8 @@ public class GameUi extends JFrame implements IOutput {
         }
       }
     });
-
-    player.intro();
-    player.describeCurrentPlace();
   }
-  
+
   private void newCommandTyped(String text) {
     Sounds.clear();
     if (!player.isGameOver()) {
@@ -224,7 +242,7 @@ public class GameUi extends JFrame implements IOutput {
       player.gameOver();
     } else {
       player.describeCurrentPlace();
-    }    
+    }
   }
 
   public void start() {
