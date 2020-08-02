@@ -15,6 +15,8 @@ public class Player {
 
   private int money = 0;
   private int energy = 100;
+  private int energyDecrease =  1;
+  
   private final String name;
   private Place place;
   private final List<Thing> inventory = new ArrayList<>();
@@ -343,13 +345,18 @@ public class Player {
         it.remove();
       }
     }
-    energy--;
+    energy-=energyDecrease;
     if ( energy() <= 0 ) {
       out.println("You ran out of energy. You died.");
       die();
     }
   }
 
+  public void setEnergyMechanics(int energyLevel, int energyDecrease) {
+    this.energy = energyDecrease;
+    this.energyDecrease = energyDecrease;
+  }
+  
   public void newCommand(String text) {
     processText(game, text);
     evaluateEngineState(out);
