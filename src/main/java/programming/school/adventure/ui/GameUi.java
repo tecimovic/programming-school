@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -34,11 +35,18 @@ public class GameUi extends JFrame implements IOutput {
 
   private static enum MenuMeta {
     FILE_QUIT("File", "Quit", (gameUi) -> {
-      gameUi.dispatchEvent(new WindowEvent(gameUi, WindowEvent.WINDOW_CLOSING));
+      if (gameUi
+          .yesOrNo("Confirm restart",
+                   "This will end the current game.\n\nAre you sure you wish to quit?"))
+        gameUi
+            .dispatchEvent(new WindowEvent(gameUi, WindowEvent.WINDOW_CLOSING));
     }),
 
     GAME_RESTART("Game", "Restart", (gameUi) -> {
-      gameUi.startGame(true);
+      if (gameUi
+          .yesOrNo("Confirm restart",
+                   "This will end the current game.\n\nAre you sure you wish to do this?"))
+        gameUi.startGame(true);
     });
 
     private String topMenu;
@@ -76,12 +84,10 @@ public class GameUi extends JFrame implements IOutput {
   private Player player;
   private SimpleAttributeSet uiStyle;
   private SimpleAttributeSet gameStyle;
-  private IAdventureGame game;
+  private Class<? extends IAdventureGame> gameClass;
 
   public GameUi(IAdventureGame game) {
     super("Adventure game");
-
-    this.game = game;
 
     initComponents();
 
@@ -90,14 +96,36 @@ public class GameUi extends JFrame implements IOutput {
     setSize(WIDTH, HEIGHT);
     setLocation(100, 100);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    this.gameClass = game.getClass();
     startGame(false);
   }
 
+  public boolean yesOrNo(String title, String text) {
+    int result = JOptionPane.showConfirmDialog(this,
+                                               text,
+                                               title,
+                                               JOptionPane.YES_NO_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE);
+    return (result == JOptionPane.YES_OPTION);
+  }
+
   private void startGame(boolean isRestart) {
+    IAdventureGame game;
+    try {
+      game = gameClass.getDeclaredConstructor().newInstance();
+    } catch (Exception e) {
+      throw new IllegalStateException("Could not create game: "
+                                      + gameClass.getName());
+    }
     this.player = new Player(this, game);
-    if (isRestart)
+    if (isRestart) {
+      try {
+        doc.remove(0, doc.getLength());
+      } catch (Exception e) {
+        // never mind
+      }
       this.player.out().println("--- Game has been restarted ---");
+    }
     player.intro();
     player.describeCurrentPlace();
   }
@@ -178,17 +206,6 @@ public class GameUi extends JFrame implements IOutput {
     appendText("\n", uiStyle);
   }
 
-  private void restart() {
-    try {
-      doc.remove(0, doc.getLength());
-    } catch (Exception e) {
-      // never mind
-    }
-    this.player = new Player(this, game);
-    player.intro();
-    player.describeCurrentPlace();
-  }
-
   private void initComponents() {
     pane = new JTextPane();
     scrollPane = new JScrollPane(pane);
@@ -231,7 +248,7 @@ public class GameUi extends JFrame implements IOutput {
       player.newCommand(text);
     } else {
       if ("restart".equals(text)) {
-        restart();
+        startGame(true);
         return;
       } else {
         uiPrintln("You can type 'restart' to start a new game.");
