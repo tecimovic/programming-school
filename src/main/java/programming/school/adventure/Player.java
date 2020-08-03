@@ -14,6 +14,9 @@ public class Player {
   private final Random rnd = new Random();
 
   private int money = 0;
+  private int energy = 100;
+  private int energyDecrease =  1;
+  
   private final String name;
   private Place place;
   private final List<Thing> inventory = new ArrayList<>();
@@ -109,6 +112,15 @@ public class Player {
     return money;
   }
 
+  public int energy() { 
+    return energy;
+  }
+  
+  public void changeEnergy(int diff) {
+    energy += diff;
+    if ( energy > 100 )
+      energy = 100;
+  }
   public void setCounter(String x, int value) {
     counters.put(x, value);
   }
@@ -164,6 +176,19 @@ public class Player {
     }
   }
 
+  public void eat(String name) {
+    Thing thing = place.findThing(name);
+    if ( thing == null )  {
+      out.println("I can't see " + name + " here.");
+    } else if ( !thing.isFood() ) {
+      out.println("You can't eat " + name + ". It's not a food.");
+    } else {
+      place.removeThing(thing);
+      changeEnergy(thing.energy());
+      out.println("You ate " + name + ". Your energy level is " + energy + "%.");
+    }
+  }
+  
   // Takes an object from a room. Returns true if succesful.
   public void take(String name) {
     Thing thing = place.findThing(name);
@@ -186,6 +211,7 @@ public class Player {
   public void inventoryDescription() {
     out.println("You carry: " + OutUtil.inventoryDescription(inventory));
     out.println("You have " + game.currencyDescription(money));
+    out.println("Your energy level is " + energy + "%.");
   }
 
   public void examine(final String argument) {
@@ -210,7 +236,7 @@ public class Player {
   }
 
   public void help() {
-    out.println("Valid commands are 'go', 'take', 'examine', 'drop', 'die', 'inventory'\n");
+    out.println("Valid commands are 'go', 'take', 'examine', 'drop', 'die', 'eat', 'inventory'\n");
   }
 
   public void runCommand(final String cmd, final String argument) {
@@ -232,6 +258,9 @@ public class Player {
       break;
     case "inventory":
       inventoryDescription();
+      break;
+    case "eat":
+      eat(argument);
       break;
     default:
       if (!place.runExtensionCommand(this, cmd, argument)) {
@@ -316,11 +345,23 @@ public class Player {
         it.remove();
       }
     }
+    energy-=energyDecrease;
+    if ( energy() <= 0 ) {
+      out.println("You ran out of energy. You died.");
+      die();
+    }
   }
 
+  public void setEnergyMechanics(int energyLevel, int energyDecrease) {
+    this.energy = energyDecrease;
+    this.energyDecrease = energyDecrease;
+  }
+  
   public void newCommand(String text) {
     processText(game, text);
     evaluateEngineState(out);
+    if ( state() == PlayerState.DEAD )
+      return;
     game.evaluateState(this, out);
     List<Object[]> placeCreaturePairs = new ArrayList<>();
     for (Place place : Place.allPlaces()) {
