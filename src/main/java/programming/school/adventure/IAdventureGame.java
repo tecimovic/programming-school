@@ -32,5 +32,10 @@ public interface IAdventureGame {
       ret.append("s");
     return ret.toString();
   }
+  /**
+   * Initialization of the player. Called right at the beginning.
+   * @param player
+   */
+  public default void initializePlayer(Player player) {}
 }
 

@@ -25,6 +25,8 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing sword = new Thing("sword", "It's a very shiny and sharp sword.");
   private final Thing key = new Thing("key");
   private final Thing treasure = new Thing("treasure");
+  
+  private final Thing cookie = new Thing("cookie");
 
   public Lesson6Adventure() {
 
@@ -45,10 +47,14 @@ public class Lesson6Adventure implements IAdventureGame {
 
     armory.addDirection("upstairs", castle);
 
+    forest.addThing(cookie);
+    cookie.setFood(10);
+    
     // Add objects
     armory.addThing(sword);
     cave.addThing(key);
     treasureRoom.addThing(treasure);
+ 
   }
 
   @Override
