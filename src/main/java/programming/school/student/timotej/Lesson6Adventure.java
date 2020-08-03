@@ -54,6 +54,7 @@ public class Lesson6Adventure implements IAdventureGame {
     armory.addThing(sword);
     cave.addThing(key);
     treasureRoom.addThing(treasure);
+ 
   }
 
   @Override

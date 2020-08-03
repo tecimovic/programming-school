@@ -299,6 +299,7 @@ public class Player {
   }
 
   public void intro() {
+    game.initializePlayer(this);
     out.println("Welcome, " + name() + "!\n");
     out.println(game.introductionText());
   }
