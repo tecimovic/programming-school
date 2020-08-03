@@ -9,24 +9,28 @@ import programming.school.adventure.ui.GameUi;
 public class Lesson7NewAdventure implements IAdventureGame {
 
   // Create places
-  private final Place emptyness = new Place("You are in a void. There is nothing.");
+  private final Place train_station = new Place("You are in a train station. There is a dunkin' donuts.");
+  private final Place train = new Place("it is a train from boston to ancorage");
+  private final Place highway = new Place("it is a highway from hull to boston");
+  private final Place vautrinot_avenue = new Place("the street you live on that has alot of potholes");
+  private final Place home = new Place("the house you live in that is on vautriot ave");
 
   public Lesson7NewAdventure() {
   }
 
   @Override
   public String playerName() {
-    return "Nowhere Man";
+    return "mr. qazwax";
   }
 
   @Override
   public Place startingPlace() {
-    return emptyness;
+    return train_station;
   }
 
   @Override
   public String introductionText() {
-    return "You need find purpose and meaning.";
+    return "welcome to train game. in this game you have to get .";
   }
 
   @Override
