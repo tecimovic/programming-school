@@ -9,24 +9,28 @@ import programming.school.adventure.ui.GameUi;
 public class Lesson7NewAdventure implements IAdventureGame {
 
   // Create places
-  private final Place your_room = new Place("You are in a cruise. You are in your room.");
+  private final Place your_room = new Place("You are in a cruise, and you are in your room.");
   private final Place hallway = new Place("You are in the main hallway of the cruise.");
-  private final Place pool = new Place("You see a pool. About 10ft deep.");
+  private final Place pool_room = new Place("You see a pool. About 10ft deep.");
   private final Place waterslides = new Place("You see 3 waterslides. They all lead into the pool.");
-  private final Place restaraunt = new Place("buy food here.");
+  private final Place restaraunt = new Place("Welcome to the restaraunt. Buy food here.");
+  private final Place pool = new Place("You are swimming in the pool. If you don't have a mask, you can't go more than 1ft deep.");
 
   public Lesson7NewAdventure() {
       //Link places
   your_room.addDirection("hallway", hallway);
 
   hallway.addDirection("Room 201", your_room);
-  hallway.addDirection("north", pool);
+  hallway.addDirection("north", pool_room);
   hallway.addDirection("south", restaraunt);
 
-  pool.addDirection("south", hallway);
-  pool.addDirection("upstairs", waterslides);
+  pool_room.addDirection("south", hallway);
+  pool_room.addDirection("upstairs", waterslides);
+  pool_room.addDirection("JUMP", pool);
 
-  waterslides.addDirection("downstairs", pool);
+  waterslides.addDirection("downstairs", pool_room);
+
+  pool.setSound(getClass().getResource("splash.wav"));
   }
 
   @Override
