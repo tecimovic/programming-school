@@ -95,7 +95,7 @@ public class GameUi extends JFrame implements IOutput {
 
     setSize(WIDTH, HEIGHT);
     setLocation(100, 100);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     this.gameClass = game.getClass();
     startGame(false);
   }

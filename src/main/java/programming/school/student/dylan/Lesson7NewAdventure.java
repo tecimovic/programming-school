@@ -17,7 +17,10 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place pool = new Place("You are swimming in the pool. If you don't have a mask, you can't go more than 1ft deep.");
   private final Place mildenterance = new Place("You are in a normal waterslide. It is dark in here...");
   private final Place mildending = new Place("You are still in the slide. You can see some light...");
-
+  private final Place wildenterance = new Place("You are in a VERY steep waterslide. Crazy, but fun.");
+  private final Place wildmiddle = new Place("This is the steepest part of this Wild waterslide.");
+  private final Place wildcontinued = new Place("This waterslide is not so steep anymore.");
+  private final Place wildending = new Place("You can see light!");
 
   public Lesson7NewAdventure() {
       //Link places
@@ -30,9 +33,11 @@ public class Lesson7NewAdventure implements IAdventureGame {
   pool_room.addDirection("south", hallway);
   pool_room.addDirection("upstairs", waterslides);
   pool_room.addDirection("JUMP", pool);
+  pool_room.setPicture(getClass().getResource("somenicename.jpg"));
 
   waterslides.addDirection("downstairs", pool_room);
   waterslides.addDirection("in mild slide", mildenterance);
+  waterslides.addDirection("in wild slide", wildenterance);
 
   pool.setSound(getClass().getResource("splash.wav"));
   pool.addDirection("out", pool_room);
@@ -40,6 +45,14 @@ public class Lesson7NewAdventure implements IAdventureGame {
   mildenterance.addDirection("continue slide", mildending);
 
   mildending.addDirection("continue", pool);
+
+  wildenterance.addDirection("continue slide", wildmiddle);
+
+  wildmiddle.addDirection("continue slide", wildcontinued);
+
+  wildcontinued.addDirection("continue slide", wildending);
+
+  wildending.addDirection("continue", pool);
   }
 
   @Override
