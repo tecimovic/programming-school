@@ -38,8 +38,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   @Override
   public String introductionText() {
-    return "welcome to train game. in this game you have to get the train ticket to go on the train to anchorage
-    .";
+    return "welcome to train game. in this game you are a professer at anchorage university and you have to get the train ticket to go on the train to anchorage.";
   }
 
   @Override
