@@ -52,7 +52,7 @@ public class DrawingContainer extends JPanel implements KeyListener {
         JFrame f = new JFrame("Test");
         f.add(this);
         f.addKeyListener(this);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(MAX_X, MAX_Y);
         f.setVisible(true);
         if (loopForever) {
