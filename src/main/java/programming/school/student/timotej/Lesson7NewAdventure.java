@@ -48,6 +48,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
   
   private final Creature daddylonglegs = new Creature("Daddy Longlegs", "Daddy long legs of an alien type.");
 
+  private final Creature daddy = new Creature("daddy", "Growling, always growling.");
+  private final Creature bilbo = new Creature("bilbo", "Bilbo, green amazon parrot.");
   
   public Lesson7NewAdventure() {
     attic.addDirection("down", guestbedroom);
@@ -130,11 +132,14 @@ public class Lesson7NewAdventure implements IAdventureGame {
     chickenland.addCreature(sirchirps);
     chickenland.addCreature(snowflake);
     chickenland.addCreature(syrup);
+    
+    office.addCreature(daddy);
+    office.addCreature(bilbo);
   }
 
   @Override
   public String playerName() {
-    return "Nowhere man.";
+    return "tortured child";
   }
 
   @Override
@@ -144,12 +149,12 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   @Override
   public String introductionText() {
-    return "You need find purpose and meaning.";
+    return "You need to survive a day not getting tortured by the growling daddy.";
   }
 
   @Override
   public String victoryText() {
-    return "You are happy!";
+    return "Yay, you survived!";
   }
 
 

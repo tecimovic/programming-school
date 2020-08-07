@@ -16,6 +16,7 @@ public class Player {
   private int money = 0;
   private int energy = 100;
   private int energyDecrease =  1;
+  private int stepCount = 0;
   
   private final String name;
   private Place place;
@@ -45,6 +46,10 @@ public class Player {
     return name;
   }
 
+  public int stepCount() {
+    return stepCount;
+  }
+  
   public int random(int n) {
     return rnd.nextInt(n);
   }
@@ -351,6 +356,7 @@ public class Player {
       out.println("You ran out of energy. You died.");
       die();
     }
+    stepCount++;
   }
 
   public void setEnergyMechanics(int energyLevel, int energyDecrease) {
