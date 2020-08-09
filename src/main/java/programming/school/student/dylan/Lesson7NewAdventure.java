@@ -29,6 +29,9 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place hospitalbed = new Place("You are in a bed in the cruise hospital. A nurse tells you that you were almost eaten by a bear.");
   private final Place ridiculousafterbearden = new Place("You are back in a super SCARY SLIDE. You don't see light.");
   private final Place ridiculousending = new Place("The slide is still crazy. You see light!");
+  private final Place gym = new Place("There are very gym-y things at the gym.");
+  private final Place tredmil = new Place("You are running the tredmil!");
+  private final Place weights = new Place("You are lifting the weights!");
 
   public Lesson7NewAdventure() {
       //Link places
@@ -43,6 +46,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   pool_room.addDirection("upstairs", waterslides);
   pool_room.addDirection("JUMP", pool);
   pool_room.setPicture(getClass().getResource("somenicename.jpg"));
+  pool_room.addDirection("west", gym);
 
   hospitalbed.addDirection("out of bed", hospital);
 
@@ -73,7 +77,6 @@ public class Lesson7NewAdventure implements IAdventureGame {
   ridiculousmiddle.addDirection("continue slide", ridiculousbearden);
 
   ridiculousbearden.addDirection("east bear den", beardeneast);
-
   ridiculousbearden.addDirection("west bear den", hospitalbed);
 
   beardeneast.addDirection("in slide", ridiculousafterbearden);
@@ -81,6 +84,14 @@ public class Lesson7NewAdventure implements IAdventureGame {
   ridiculousafterbearden.addDirection("continue slide", ridiculousending);
 
   ridiculousending.addDirection("continue", pool);
+
+  gym.addDirection("tredmils", tredmil);
+  gym.addDirection("weights", weights);
+  gym.setPicture(getClass().getResource("cruiseshipgym.jpg"));
+
+  tredmil.addDirection("gym", gym);
+
+  weights.addDirection("gym", gym);
 
 
 
