@@ -145,7 +145,7 @@ public class MainRunner extends JFrame {
       }
       String itemName = c.getName();
       if ( itemName.contains(".")) {
-        itemName = itemName.substring(itemName.lastIndexOf("."));
+        itemName = itemName.substring(itemName.lastIndexOf(".")+1);
       }
       JMenuItem mi = new JMenuItem(itemName);
       m.add(mi);
