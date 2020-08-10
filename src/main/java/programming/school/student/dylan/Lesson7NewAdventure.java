@@ -4,6 +4,8 @@ import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
+import programming.school.adventure.Store;
+import programming.school.adventure.Thing;
 import programming.school.adventure.ui.GameUi;
 
 public class Lesson7NewAdventure implements IAdventureGame {
@@ -15,7 +17,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place pool_room = new Place("You see a pool. About 10ft deep.");
   private final Place waterslides = new Place("You see 3 waterslides. They all lead into the pool. Number 1 is labled MILD. Number 2 is labled WILD. Number 3 is labled RIDICULOUS.");
   private final Place restaraunt = new Place("Welcome to the restaraunt. Buy food here.");
-  private final Place pool = new Place("You are swimming in the pool. If you don't have a mask, you can't go more than 1ft deep.");
+  private final Place pool = new Place("You are swimming in the pool.");
   private final Place mildenterance = new Place("You are in a normal waterslide. It is dark in here...");
   private final Place mildending = new Place("You are still in the slide. You can see some light...");
   private final Place wildenterance = new Place("You are in a VERY steep waterslide. Crazy, but fun.");
@@ -32,6 +34,10 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place gym = new Place("There are very gym-y things at the gym.");
   private final Place tredmil = new Place("You are running the tredmil!");
   private final Place weights = new Place("You are lifting the weights!");
+  private final Place underwater = new Place("You went 10 ft deep to the bottom of the pool.");
+
+    //Create things
+ private final Thing dollar = new Thing("1 dollar bill", "a 1 dollar bill.");
 
   public Lesson7NewAdventure() {
       //Link places
@@ -41,6 +47,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
   hallway.addDirection("north", pool_room);
   hallway.addDirection("south", restaraunt);
   hallway.addDirection("west", hospital);
+
+  restaraunt.addDirection("north", hallway);
 
   pool_room.addDirection("south", hallway);
   pool_room.addDirection("upstairs", waterslides);
@@ -57,6 +65,9 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   pool.setSound(getClass().getResource("splash.wav"));
   pool.addDirection("out", pool_room);
+  pool.addDirection("deep", underwater);
+
+  underwater.addDirection("up", pool);
 
   hospital.addDirection("east", hallway);
 
@@ -89,15 +100,34 @@ public class Lesson7NewAdventure implements IAdventureGame {
   gym.addDirection("weights", weights);
   gym.setPicture(getClass().getResource("cruiseshipgym.jpg"));
 
+  dollar.setCost(100);
+  dollar.setAutoConvertible(true);
+
+  underwater.addThing(dollar);
+
   tredmil.addDirection("gym", gym);
 
   weights.addDirection("gym", gym);
 
 
+  Store storeExtension = new Store();
+  Thing cake = new Thing("cake", "It's a chocolate cake.");
+  cake.setCost(100);
+  Thing water = new Thing("water", "So refreshing.");
+  water.setCost(100);
+  Thing fruit = new Thing("fruit", "an apple.");
+  fruit.setCost(100);
+  Thing bread = new Thing("bread", "A loaf of bread.");
+  bread.setCost(100);
+  storeExtension.addThing(cake);
+  storeExtension.addThing(water);
+  storeExtension.addThing(fruit);
+  storeExtension.addThing(bread);
 
-
+  restaraunt.addExtension(storeExtension);
   }
-
+ 
+ 
   @Override
   public String playerName() {
     return "qwertyhut";
