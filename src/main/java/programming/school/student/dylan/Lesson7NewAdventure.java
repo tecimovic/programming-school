@@ -35,6 +35,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place tredmil = new Place("You are running the tredmil!");
   private final Place weights = new Place("You are lifting the weights!");
   private final Place underwater = new Place("You went 10 ft deep to the bottom of the pool.");
+  private final Place captainsroom = new Place("You see the captain. He tells you that you can have driving lessons.");
 
     //Create things
  private final Thing dollar = new Thing("1 dollar bill", "a 1 dollar bill.");
@@ -99,6 +100,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   gym.addDirection("tredmils", tredmil);
   gym.addDirection("weights", weights);
   gym.setPicture(getClass().getResource("cruiseshipgym.jpg"));
+  gym.addDirection("south", captainsroom);
 
   dollar.setCost(100);
   dollar.setAutoConvertible(true);
