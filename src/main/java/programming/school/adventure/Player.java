@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class Player {
 
+  private boolean allowGoShortcut = false;
+  
   private final IOutput out;
   private final Random rnd = new Random();
 
@@ -34,6 +36,14 @@ public class Player {
     this.game = game;
   }
 
+  /**
+   * Turns on or off the ability to avoid having to type 'go'
+   * @param flag
+   */
+  public void setAllowGoShortcut(boolean flag) {
+    this.allowGoShortcut = flag;
+  }
+  
   public PlayerState state() {
     return state;
   }
@@ -268,7 +278,18 @@ public class Player {
       eat(argument);
       break;
     default:
-      if (!place.runExtensionCommand(this, cmd, argument)) {
+      boolean executed = place.runExtensionCommand(this, cmd, argument);
+      if ( !executed && allowGoShortcut  ) {
+        // Try to go shortcut directly
+        Place newPlace = place.findDirection(cmd);
+        if (newPlace != null) {
+          if (game.canPlayerMove(this, place, newPlace, out)) {
+            this.place = newPlace;
+          }
+          executed = true;
+        }
+      }
+      if (!executed) {
         help();
       }
       break;

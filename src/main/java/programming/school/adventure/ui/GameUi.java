@@ -118,6 +118,7 @@ public class GameUi extends JFrame implements IOutput {
                                       + gameClass.getName());
     }
     this.player = new Player(this, game);
+    this.player.setAllowGoShortcut(game.allowGoShortcut());
     if (isRestart) {
       try {
         doc.remove(0, doc.getLength());
