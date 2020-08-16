@@ -22,7 +22,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   
 
-
+    //link places
   public Lesson7NewAdventure() {
     train_station.addDirection("north", train);
     train_station.addDirection("south",  highway);
@@ -42,6 +42,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
     // Add place extensions
     dunkin_donuts.addExtension(storeExtension); }
 
+    //stuff
   @Override
   public String playerName() {
     return "proffesser. qwerty qazwax";
