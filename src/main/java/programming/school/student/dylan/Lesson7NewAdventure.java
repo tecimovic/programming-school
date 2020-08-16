@@ -36,6 +36,12 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place weights = new Place("You are lifting the weights!");
   private final Place underwater = new Place("You went 10 ft deep to the bottom of the pool.");
   private final Place captainsroom = new Place("You see the captain. He tells you that you can have driving lessons.");
+  private final Place drivinglessons = new Place("You are taking driving lessons. You notice a door leading to some kayaks. The captain tells you that they are only for emergencies.");
+  private final Place startdriving = new Place("You start driving. Nothing seems wrong.");
+  private final Place crazybadstuff = new Place("Oh no! You are about to crash into an iceberg!");
+  private final Place eek = new Place("AAAAH! SO CLOSE...");
+  private final Place CRASH = new Place("Oh no! You crashed into the iceberg. Run to the lifeboats!");
+
 
     //Create things
  private final Thing dollar = new Thing("1 dollar bill", "a 1 dollar bill.");
@@ -73,7 +79,6 @@ public class Lesson7NewAdventure implements IAdventureGame {
   hospital.addDirection("east", hallway);
 
   mildenterance.addDirection("continue slide", mildending);
-
   mildending.addDirection("continue", pool);
 
   wildenterance.addDirection("continue slide", wildmiddle);
@@ -111,6 +116,17 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   weights.addDirection("gym", gym);
 
+  captainsroom.addDirection("north", gym);
+  captainsroom.addDirection("lessons", drivinglessons);
+
+  drivinglessons.addDirection("start driving", startdriving);
+  drivinglessons.addDirection("quit", captainsroom);
+
+  startdriving.addDirection("continue lessons", crazybadstuff);
+
+  crazybadstuff.addDirection("continue lessons", eek);
+
+  eek.addDirection("continue", CRASH);
 
   Store storeExtension = new Store();
   Thing cake = new Thing("cake", "It's a chocolate cake.");
