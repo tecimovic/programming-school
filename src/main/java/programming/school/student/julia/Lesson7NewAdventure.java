@@ -35,6 +35,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
     vautrinot_avenue.addDirection("north",  highway);
     dunkin_donuts.addDirection("west", train_station);
     home.addDirection("out", vautrinot_avenue);
+    exit_27.addDirection("east",  highway);
      
     Store storeExtension = new Store();
     
