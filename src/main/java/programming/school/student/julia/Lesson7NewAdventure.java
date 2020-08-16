@@ -16,6 +16,10 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place home = new Place("the house you live in that is on vautriot ave");
   private final Place dunkin_donuts = new Place("a normal dunkin' donuts that is out of strawberry donuts");
   private final Place exit_27 = new Place("a normal highway exit");
+  private final Place train_tracks = new Place("a normal train track");
+  
+
+
   
 
 
@@ -23,6 +27,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
     train_station.addDirection("north", train);
     train_station.addDirection("south",  highway);
     train_station.addDirection("east",  dunkin_donuts);
+    train_station.addDirection("somewhere dumb",  train_tracks);
     highway.addDirection("north", train_station);
     highway.addDirection("south",  vautrinot_avenue);
     highway.addDirection("west",  exit_27);
@@ -60,6 +65,10 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   @Override
   public void evaluateState(final Player player, final IOutput out) {
+    if (player.place()==train_tracks){
+      player.die();
+      out.println("you jumped on the train tracks and got hit by a train and you died");
+    }
   }
 
   public static void main(final String[] args) {
