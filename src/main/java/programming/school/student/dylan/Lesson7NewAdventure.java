@@ -41,6 +41,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place crazybadstuff = new Place("Oh no! You are about to crash into an iceberg!");
   private final Place eek = new Place("AAAAH! SO CLOSE...");
   private final Place CRASH = new Place("Oh no! You crashed into the iceberg. Run to the lifeboats!");
+  private final Place Lifeboats = new Place("Everybody in the cruise is getting on a lifeboat.");
 
 
     //Create things
@@ -106,6 +107,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   gym.addDirection("weights", weights);
   gym.setPicture(getClass().getResource("cruiseshipgym.jpg"));
   gym.addDirection("south", captainsroom);
+  gym.addDirection("east", pool_room);
 
   dollar.setCost(100);
   dollar.setAutoConvertible(true);
@@ -127,6 +129,9 @@ public class Lesson7NewAdventure implements IAdventureGame {
   crazybadstuff.addDirection("continue lessons", eek);
 
   eek.addDirection("continue", CRASH);
+
+  CRASH.addDirection("lifeboats", Lifeboats);
+  CRASH.setPicture(getClass().getResource("titanic.jpg"));
 
   Store storeExtension = new Store();
   Thing cake = new Thing("cake", "It's a chocolate cake.");
