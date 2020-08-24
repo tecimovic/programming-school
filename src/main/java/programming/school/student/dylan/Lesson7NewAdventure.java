@@ -42,6 +42,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place eek = new Place("AAAAH! SO CLOSE...");
   private final Place CRASH = new Place("Oh no! You crashed into the iceberg. Run to the lifeboats!");
   private final Place Lifeboats = new Place("Everybody in the cruise is getting on a lifeboat.");
+  private final Place Choosewisely = new Place("Choose one of the lifeboats. Choose between the red one, the green one, or the blue one.");
+  private final Place redone = new Place("A red lifeboat.");
 
 
     //Create things
@@ -133,6 +135,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
   CRASH.addDirection("lifeboats", Lifeboats);
   CRASH.setPicture(getClass().getResource("titanic.jpg"));
 
+  Lifeboats.addDirection("choose", Choosewisely);
+
   Store storeExtension = new Store();
   Thing cake = new Thing("cake", "It's a chocolate cake.");
   cake.setCost(100);
@@ -173,6 +177,10 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   @Override
   public void evaluateState(final Player player, final IOutput out) {
+    if(player.isIn(redone)) {
+      out.println("The red one...err malfunctioned....");
+      player.die();
+    }
   }
 
   public static void main(final String[] args) {
