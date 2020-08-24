@@ -17,8 +17,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place dunkin_donuts = new Place("a normal dunkin' donuts that is out of strawberry donuts");
   private final Place exit_27 = new Place("a normal highway exit");
   private final Place train_tracks = new Place("a normal train track");
-  
-
+  private final Place a_street_in_the_middle_of_nowhere = new Place("just what it sounds like...");
+  private final Place cave = new Place("a dark and eerie cave a couple miles off the highway ");
 
   
 
@@ -36,6 +36,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
     dunkin_donuts.addDirection("west", train_station);
     home.addDirection("out", vautrinot_avenue);
     exit_27.addDirection("east",  highway);
+    exit_27.addDirection("west",  a_street_in_the_middle_of_nowhere);
+    a_street_in_the_middle_of_nowhere.addDirection("east",  cave);
      
     Store storeExtension = new Store();
     
@@ -58,6 +60,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   public String introductionText() {
     return "welcome to train game. in this game you are a professer at anchorage university and you have to get the train ticket to go on the train to anchorage.";
   }
+  //more stuff
 
   @Override
   public String victoryText() {
