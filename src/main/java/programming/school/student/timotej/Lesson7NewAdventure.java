@@ -43,7 +43,6 @@ public class Lesson7NewAdventure implements IAdventureGame {
                                                "A cute little guinea pig, four-colored one.");
   private final Creature cloudy = new Creature("Cloudy",
                                                "A cute little guinea pig, white and a little bit brown.");
-
   private final Creature rocky = new Creature("Rocky",
                                               "A chicken. Somewhat brownish with gray on her head.");
   private final Creature snowflake = new Creature("Snowflake",
@@ -52,10 +51,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
                                               "A chicken, black and brown.");
   private final Creature sirchirps = new Creature("Sir Chirps",
                                                   "A chicken, black and brown.");
-
   private final Creature daddylonglegs = new Creature("Daddy Longlegs",
                                                       "Daddy long legs of an alien type.");
-
   private final Creature daddy = new Creature("daddy",
                                               "Growling, always growling.");
   private final Creature bilbo = new Creature("bilbo",
