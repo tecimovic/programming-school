@@ -172,7 +172,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   @Override
   public void evaluateState(final Player player, final IOutput out) {
     if ( !player.place().hasCreature(bilbo) ) {
-      out.println("Bilbo comes flying in and is sitting on your shoulder!");
+      out.println("Bilbo misses you, so she comes flying in after you and is sitting on your shoulder!");
       bilbo.place().removeCreature(bilbo);
       player.place().addCreature(bilbo);
     }

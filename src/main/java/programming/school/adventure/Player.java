@@ -337,7 +337,6 @@ public class Player {
     this.lastDescribedPlace = place;
 
     if (needsToRedescribePlace) {
-      OutUtil.separate(out);
       if (out.supportsImages() && place.hasPicture()) {
         URL resource = place.picture();
         out.image(resource);

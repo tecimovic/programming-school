@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 public class OutUtil {
-  public static void separate(IOutput out) {
-    out.println("\n-----------------------------------------------------------------");
-  }
 
   public static void describePlace(IOutput out, Place place) {
     out.println(place.description());
