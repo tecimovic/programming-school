@@ -45,6 +45,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
                                                "A cute little guinea pig, white and a little bit brown.");
   private final Creature rocky = new Creature("Rocky",
                                               "A chicken. Somewhat brownish with gray on her head.");
+  private final Creature ghostOfSandy = new Creature("Ghost of Sandy",
+                                                     "Ethereal apparition of sandy is shimmering in the air.");
   private final Creature snowflake = new Creature("Snowflake",
                                                   "A chicken. White, with a little brown patch on the head.");
   private final Creature syrup = new Creature("Syrup",
@@ -139,6 +141,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
     chickenland.addCreature(sirchirps);
     chickenland.addCreature(snowflake);
     chickenland.addCreature(syrup);
+    chickenland.addCreature(ghostOfSandy);
 
     office.addCreature(daddy);
     office.addCreature(bilbo);
@@ -171,7 +174,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   @Override
   public void evaluateState(final Player player, final IOutput out) {
-    if ( !player.place().hasCreature(bilbo) ) {
+    if (!player.place().hasCreature(bilbo)) {
       out.println("Bilbo misses you, so she comes flying in after you and is sitting on your shoulder!");
       bilbo.place().removeCreature(bilbo);
       player.place().addCreature(bilbo);
