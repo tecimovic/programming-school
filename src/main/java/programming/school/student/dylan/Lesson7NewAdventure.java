@@ -1,5 +1,6 @@
 package programming.school.student.dylan;
 
+import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
@@ -48,6 +49,10 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
     //Create things
  private final Thing dollar = new Thing("1 dollar bill", "a 1 dollar bill.");
+
+    //Create creatures
+ private final Creature captain = new Creature("captain", "Advice from the captain: Look forward at all times!");
+
 
   public Lesson7NewAdventure() {
       //Link places
@@ -137,6 +142,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   Lifeboats.addDirection("choose", Choosewisely);
 
+  captainsroom.addCreature(captain);
+
   Store storeExtension = new Store();
   Thing cake = new Thing("cake", "It's a chocolate cake.");
   cake.setCost(100);
@@ -177,10 +184,18 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   @Override
   public void evaluateState(final Player player, final IOutput out) {
+    
     if(player.isIn(redone)) {
       out.println("The red one...err malfunctioned....");
       player.die();
     }
+
+    if(player.isIn(captainsroom) || (player.isIn(drivinglessons)) || (player.isIn(startdriving)) || (player.isIn(crazybadstuff)) || (player.isIn(eek)) || (player.isIn(CRASH)) ){
+      captain.place().removeCreature(captain);
+      player.place().addCreature(captain);
+    }
+
+
   }
 
   public static void main(final String[] args) {
@@ -188,3 +203,5 @@ public class Lesson7NewAdventure implements IAdventureGame {
   }
 
 }
+
+iuewfhiewfewoifhfiewuhfiuewhfuiewhf
