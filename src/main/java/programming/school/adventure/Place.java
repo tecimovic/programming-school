@@ -130,6 +130,7 @@ public class Place {
   
   public void removeCreature(final Creature c) {
     creatures.remove(c);
+    c.setPlace(null);
   }
 
   public Creature[] creatures() {
@@ -141,8 +142,10 @@ public class Place {
   }
 
   public void addCreature(final Creature c) {
-    if (!creatures.contains(c))
+    if (!creatures.contains(c)) {
       creatures.add(c);
+      c.setPlace(this);
+    }
   }
 
   public Creature findCreature(String creatureName) {
