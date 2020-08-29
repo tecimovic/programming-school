@@ -203,5 +203,3 @@ public class Lesson7NewAdventure implements IAdventureGame {
   }
 
 }
-
-iuewfhiewfewoifhfiewuhfiuewhfuiewhf
