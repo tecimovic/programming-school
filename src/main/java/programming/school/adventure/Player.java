@@ -1,6 +1,5 @@
 package programming.school.adventure;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,22 +10,22 @@ import java.util.Random;
 public class Player {
 
   private boolean allowGoShortcut = false;
-  
+
   private final IOutput out;
   private final Random rnd = new Random();
 
   private int money = 0;
   private int energy = 100;
-  private int energyDecrease =  1;
+  private int energyDecrease = 1;
   private int stepCount = 0;
-  
+
   private final String name;
   private Place place;
   private final List<Thing> inventory = new ArrayList<>();
   private PlayerState state = PlayerState.NORMAL;
   private List<String> attributes = new ArrayList<>();
   private Map<String, Integer> counters = new HashMap<>();
-  
+
   private IAdventureGame game;
 
   public Player(final IOutput out, IAdventureGame game) {
@@ -38,12 +37,13 @@ public class Player {
 
   /**
    * Turns on or off the ability to avoid having to type 'go'
+   * 
    * @param flag
    */
   public void setAllowGoShortcut(boolean flag) {
     this.allowGoShortcut = flag;
   }
-  
+
   public PlayerState state() {
     return state;
   }
@@ -59,7 +59,7 @@ public class Player {
   public int stepCount() {
     return stepCount;
   }
-  
+
   public int random(int n) {
     return rnd.nextInt(n);
   }
@@ -98,19 +98,19 @@ public class Player {
   public String describeCost(int cost) {
     return game.currency().describeCurrency(cost);
   }
-  
+
   public boolean carries(final Thing t) {
     return inventory.contains(t);
   }
 
-  public void die() { 
+  public void die() {
     setState(PlayerState.DEAD);
   }
-  
+
   public void win() {
     setState(PlayerState.WIN);
   }
-  
+
   void setState(final PlayerState s) {
     this.state = s;
   }
@@ -127,31 +127,32 @@ public class Player {
     return money;
   }
 
-  public int energy() { 
+  public int energy() {
     return energy;
   }
-  
+
   public void changeEnergy(int diff) {
     energy += diff;
-    if ( energy > 100 )
+    if (energy > 100)
       energy = 100;
   }
+
   public void setCounter(String x, int value) {
     counters.put(x, value);
   }
-  
+
   public void changeCounterBy(String x, int howMuch) {
     int currentValue = counter(x);
     setCounter(x, currentValue + howMuch);
   }
-  
+
   public int counter(String x) {
-    if ( counters.containsKey(x))
+    if (counters.containsKey(x))
       return counters.get(x);
     else
       return 0;
   }
-  
+
   public void drop(final Thing t) {
     inventory.remove(t);
     place.addThing(t);
@@ -193,17 +194,18 @@ public class Player {
 
   public void eat(String name) {
     Thing thing = place.findThing(name);
-    if ( thing == null )  {
+    if (thing == null) {
       out.println("I can't see " + name + " here.");
-    } else if ( !thing.isFood() ) {
+    } else if (!thing.isFood()) {
       out.println("You can't eat " + name + ". It's not a food.");
     } else {
       place.removeThing(thing);
       changeEnergy(thing.energy());
-      out.println("You ate " + name + ". Your energy level is " + energy + "%.");
+      out.println("You ate " + name + ". Your energy level is " + energy
+                  + "%.");
     }
   }
-  
+
   // Takes an object from a room. Returns true if succesful.
   public void take(String name) {
     Thing thing = place.findThing(name);
@@ -234,6 +236,13 @@ public class Player {
     if (t == null) {
       out.println("I can't see " + argument + " here.");
     } else {
+      
+      if (out.supportsImages() && t.hasPicture())
+        out.image(t.picture());
+
+      if (out.supportsSound() && t.hasSound())
+        out.sound(t.sound());
+      
       String desc = t.description();
       if (desc == null) {
         out.println("There is nothing special about the " + argument);
@@ -243,8 +252,8 @@ public class Player {
       if (t instanceof Thing) {
         Thing tt = (Thing) t;
         if (tt.cost() > 0) {
-          out.println("Its value is " + game.currency().describeCurrency(tt.cost())
-                      + ".");
+          out.println("Its value is "
+                      + game.currency().describeCurrency(tt.cost()) + ".");
         }
       }
     }
@@ -279,7 +288,7 @@ public class Player {
       break;
     default:
       boolean executed = place.runExtensionCommand(this, cmd, argument);
-      if ( !executed && allowGoShortcut  ) {
+      if (!executed && allowGoShortcut) {
         // Try to go shortcut directly
         Place newPlace = place.findDirection(cmd);
         if (newPlace != null) {
@@ -338,12 +347,10 @@ public class Player {
 
     if (needsToRedescribePlace) {
       if (out.supportsImages() && place.hasPicture()) {
-        URL resource = place.picture();
-        out.image(resource);
+        out.image(place.picture());
       }
       if (out.supportsSound() && place.hasSound()) {
-        URL resource = place.sound();
-        out.sound(resource);
+        out.sound(place.sound());
       }
       place.describeExtensions(out);
       OutUtil.describePlace(out, place);
@@ -371,8 +378,8 @@ public class Player {
         it.remove();
       }
     }
-    energy-=energyDecrease;
-    if ( energy() <= 0 ) {
+    energy -= energyDecrease;
+    if (energy() <= 0) {
       out.println("You ran out of energy. You died.");
       die();
     }
@@ -383,11 +390,11 @@ public class Player {
     this.energy = energyDecrease;
     this.energyDecrease = energyDecrease;
   }
-  
+
   public void newCommand(String text) {
     processText(game, text);
     evaluateEngineState(out);
-    if ( state() == PlayerState.DEAD )
+    if (state() == PlayerState.DEAD)
       return;
     game.evaluateState(this, out);
     List<Object[]> placeCreaturePairs = new ArrayList<>();

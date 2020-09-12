@@ -1,5 +1,7 @@
 package programming.school.adventure;
 
+import java.net.URL;
+
 public class Thing implements IExaminable {
 
   private final String name, description;
@@ -8,6 +10,10 @@ public class Thing implements IExaminable {
   private boolean autoConvertible = false; // If this is true,  then picking this object results in increasing money.
   private boolean isFood = false;
   
+  private URL picture = null;
+  private URL sound = null;
+
+
   public Thing(final String name, final String description) {
     this.name = name;
     this.description = description;
@@ -52,5 +58,33 @@ public class Thing implements IExaminable {
   
   public boolean isFood() { 
     return isFood;
+  }
+
+  @Override
+  public boolean hasSound() {
+    return sound !=  null;
+  }
+
+  @Override
+  public URL sound() {
+    return sound;
+  }
+
+  @Override
+  public boolean hasPicture() {
+    return picture != null;
+  }
+
+  @Override
+  public URL picture() {
+    return picture;
+  }
+  
+  public void setSound(URL url) {
+    this.sound = url;
+  }
+
+  public void setPicture(URL url) {
+    this.picture = url;
   }
 }
