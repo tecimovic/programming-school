@@ -22,7 +22,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place cave = new Place("a dark and eerie cave a couple miles off the highway ");
 
   // CRRRRRRRREEEEEEEEEECCCCCCCCCCCCCCHHHHHHHHHHHHHHHHEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRZZZZZZZZZZZZZZZZZ
-  private final Creature puppy = new Creature("puppy","your pet golden retriever name: ruff age: 5 months")
+  private final Creature puppy = new Creature("puppy","your pet golden retriever name: ruff age: 5 months");
 
   // link places
   public Lesson7NewAdventure()
