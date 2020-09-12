@@ -96,7 +96,7 @@ public class Player {
   }
 
   public String describeCost(int cost) {
-    return game.currencyDescription(cost);
+    return game.currency().describeCurrency(cost);
   }
   
   public boolean carries(final Thing t) {
@@ -225,7 +225,7 @@ public class Player {
 
   public void inventoryDescription() {
     out.println("You carry: " + OutUtil.inventoryDescription(inventory));
-    out.println("You have " + game.currencyDescription(money));
+    out.println("You have " + game.currency().describeCurrency(money));
     out.println("Your energy level is " + energy + "%.");
   }
 
@@ -243,7 +243,7 @@ public class Player {
       if (t instanceof Thing) {
         Thing tt = (Thing) t;
         if (tt.cost() > 0) {
-          out.println("Its value is " + game.currencyDescription(tt.cost())
+          out.println("Its value is " + game.currency().describeCurrency(tt.cost())
                       + ".");
         }
       }
