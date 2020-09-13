@@ -1,5 +1,6 @@
 package programming.school.student.julia;
 
+import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
@@ -20,37 +21,39 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place a_street_in_the_middle_of_nowhere = new Place("just what it sounds like...");
   private final Place cave = new Place("a dark and eerie cave a couple miles off the highway ");
 
-  
+  // CRRRRRRRREEEEEEEEEECCCCCCCCCCCCCCHHHHHHHHHHHHHHHHEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRZZZZZZZZZZZZZZZZZ
+  private final Creature puppy = new Creature("puppy","your pet golden retriever name: ruff age: 5 months");
 
-    //link places
-  public Lesson7NewAdventure() {
+  // link places
+  public Lesson7NewAdventure()
+  {
     train_station.addDirection("north", train);
-    train_station.addDirection("south",  highway);
-    train_station.addDirection("east",  dunkin_donuts);
-    train_station.addDirection("somewhere dumb",  train_tracks);
+    train_station.addDirection("south", highway);
+    train_station.addDirection("east", dunkin_donuts);
+    train_station.addDirection("somewhere dumb", train_tracks);
     highway.addDirection("north", train_station);
-    highway.addDirection("south",  vautrinot_avenue);
-    highway.addDirection("west",  exit_27);
-    vautrinot_avenue.addDirection("southeast",  home);
-    vautrinot_avenue.addDirection("north",  highway);
+    highway.addDirection("south", vautrinot_avenue);
+    highway.addDirection("west", exit_27);
+    vautrinot_avenue.addDirection("southeast", home);
+    vautrinot_avenue.addDirection("north", highway);
     dunkin_donuts.addDirection("west", train_station);
     home.addDirection("out", vautrinot_avenue);
-    exit_27.addDirection("east",  highway);
-    exit_27.addDirection("west",  a_street_in_the_middle_of_nowhere);
-    a_street_in_the_middle_of_nowhere.addDirection("east",  cave);
-     
-    Store storeExtension = new Store();
-    
-    
-    // Add place extensions
-    dunkin_donuts.addExtension(storeExtension); }
+    exit_27.addDirection("east", highway);
+    exit_27.addDirection("west", a_street_in_the_middle_of_nowhere);
+    a_street_in_the_middle_of_nowhere.addDirection("east", cave);
 
-    //stuff
+    Store storeExtension = new Store();
+
+    // Add place extensions
+    dunkin_donuts.addExtension(storeExtension);
+  }
+
+  // stuff
   @Override
   public String playerName() {
     return "proffesser. qwerty qazwax";
   }
- 
+
   @Override
   public Place startingPlace() {
     return train_station;
@@ -60,17 +63,24 @@ public class Lesson7NewAdventure implements IAdventureGame {
   public String introductionText() {
     return "welcome to train game. in this game you are a professer at anchorage university and you have to get the train ticket to go on the train to anchorage.";
   }
-  //more stuff
+  // more stuff
 
   @Override
   public String victoryText() {
     return "You are happy!";
   }
-  
+
+  @Override
+  public void creatureAction(Player player, Creature creature, Place place, IOutput out) {
+    if (creature == puppy) {
+      place.removeCreature(puppy);
+      player.place().addCreature(puppy);
+    }
+  }
 
   @Override
   public void evaluateState(final Player player, final IOutput out) {
-    if (player.place()==train_tracks){
+    if (player.place() == train_tracks) {
       player.die();
       out.println("you jumped on the train tracks and got hit by a train and you died");
     }
