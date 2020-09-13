@@ -45,6 +45,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place Lifeboats = new Place("Everybody in the cruise is getting on a lifeboat.");
   private final Place Choosewisely = new Place("Choose one of the lifeboats. Choose between the red one, the green one, or the blue one.");
   private final Place redone = new Place("A red lifeboat.");
+  private final Place blueone = new Place("An atomic bomb.");
 
 
     //Create things
@@ -144,6 +145,9 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
   captainsroom.addCreature(captain);
 
+  Choosewisely.addDirection("red lifeboat", redone);
+  Choosewisely.addDirection("blue lifeboat", blueone);
+
   Store storeExtension = new Store();
   Thing cake = new Thing("cake", "It's a chocolate cake.");
   cake.setCost(100);
@@ -188,6 +192,9 @@ public class Lesson7NewAdventure implements IAdventureGame {
     if(player.isIn(redone)) {
       out.println("The red one...err malfunctioned....");
       player.die();
+    if(player.isIn(blueone))
+    out.println("The blue one... Is an atomic bomb!!!!!! BOOOOOOOOOOOOOMMMMMMMMMM!!!!!!!!!!!!!!!");
+    player.die();
     }
 
     if(player.isIn(captainsroom) || (player.isIn(drivinglessons)) || (player.isIn(startdriving)) || (player.isIn(crazybadstuff)) || (player.isIn(eek)) || (player.isIn(CRASH)) ){
