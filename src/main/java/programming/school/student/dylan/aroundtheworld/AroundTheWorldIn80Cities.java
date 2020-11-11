@@ -5,23 +5,29 @@ import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
+import programming.school.adventure.Store;
 import programming.school.adventure.Thing;
 import programming.school.adventure.ui.GameUi;
 
 public class AroundTheWorldIn80Cities implements IAdventureGame {
 
   // Create places
-  private static Place startingPlace = new Place("nowhere");
-  
+  private static Place startingPlace = new Place("You are in the capital of the United States. Washington DC.");
+
   // Create Creatures
   public AroundTheWorldIn80Cities() {
+    Store storeExtension = new Store();
+Thing NORTHKOREATOURISM = new Thing ("North Korea Tourism Access","Go to North Korea and leave.");
+NORTHKOREATOURISM.setCost(50);
+storeExtension.addThing(NORTHKOREATOURISM);
+startingPlace.addExtension(storeExtension);
+}
 
 
-  }
 
   @Override
   public String playerName() {
-    return "nobody";
+    return "Traveller";
   }
 
   @Override
@@ -31,7 +37,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
 
   @Override
   public String introductionText() {
-    return "You need to get somewhere.";
+    return "You need to visit many cities without dieing.";
   }
 
   @Override
