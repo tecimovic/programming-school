@@ -20,6 +20,10 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place havana = new Place("You are in the huge capital of Cuba");
   private Place mexicocity = new Place("You are in The capital of Mexico, and the largest city in North America.");
   private Place guatemalacity = new Place("You are in Guatemala City, Guatemala's high altitude capital.");
+  private Place panamacity = new Place("You are in one of the most important ports in the world. Panama City.");
+  private Place bogota = new Place("You are in the capital of Colombia. Bogota.");
+  private Place guayaquil = new Place("You are in Ecuador's largest city, and a port. Guayaquil.");
+  private Place lima = new Place("You are in Peru's famous capital, Lima.");
   // Create Creatures
 
   public AroundTheWorldIn80Cities() {
@@ -39,11 +43,11 @@ miami.addExtension(storeExtnsion);
  underwater.addThing(onehundredollarbill);
 
  Store storehavana = new Store();
- Thing Cubanfood = new Thing("Cuban food","Comida criolla, and other things.");
+ Thing Cigarsandrum = new Thing("Cigars and Rum","What Cuba is known for.");
  Thing Havanawaveglider = new Thing("Havana Waveglider", "A cheap boat, a good deal. LVL: 1");
- Cubanfood.setCost(5000);
+ Cigarsandrum.setCost(5000);
  Havanawaveglider.setCost(5000);
- storehavana.addThing(Cubanfood);
+ storehavana.addThing(Cigarsandrum);
  storehavana.addThing(Havanawaveglider);
  havana.addExtension(storehavana);
 
@@ -58,6 +62,30 @@ miami.addExtension(storeExtnsion);
  mayanartifact.setCost(5000);
  storeguatemalacity.addThing(mayanartifact);
  guatemalacity.addExtension(storeguatemalacity);
+
+ Store storepanamacity = new Store();
+ Thing PanamaSupaFast = new Thing("Panama Supa Fast", "An awesome boat. LVL: 3");
+ PanamaSupaFast.setCost(15000);
+ storepanamacity.addThing(PanamaSupaFast);
+ panamacity.addExtension(storepanamacity);
+
+ Store storebogota = new Store();
+ Thing Bogotaemerald = new Thing("Bogota Emerald", "Bogota is known for producing the world's finest emeralds.");
+ Bogotaemerald.setCost(5000);
+ storebogota.addThing(Bogotaemerald);
+ bogota.addExtension(storebogota);
+
+ Store storeguayaquil = new Store();
+ Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 4");
+ storeguayaquil.addThing(GuayaquilJUNGLEBOAT);
+ guayaquil.addExtension(storeguayaquil);
+
+ Store storelima = new Store();
+ Thing LimaAdventurer = new Thing("Lima Adventurer", "A cozy, little boat. LVL: 2");
+ Thing Peruvianfood = new Thing ("Peruvian food", "A bunch of yummy things, but NO GUINEA PIGS.");
+ storelima.addThing(LimaAdventurer);
+ storelima.addThing(Peruvianfood);
+ lima.addExtension(storelima);
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
 onehundredollarbill.setCost(10000);
@@ -77,7 +105,15 @@ havana.addDirection("miami", miami);
 havana.addDirection("mexico city", mexicocity);
 mexicocity.addDirection("havana", havana);
 mexicocity.addDirection("guatemala city", guatemalacity);
-guatemalacity.addDirection("Mexico City", mexicocity);
+guatemalacity.addDirection("mexico city", mexicocity);
+guatemalacity.addDirection("panama city", panamacity);
+panamacity.addDirection("guatemala city", guatemalacity);
+panamacity.addDirection("bogota", bogota);
+bogota.addDirection("panama city", panamacity);
+bogota.addDirection("guayaquil", guayaquil);
+guayaquil.addDirection("bogota", bogota);
+guayaquil.addDirection("lima", lima);
+lima.addDirection("guayaquil", guayaquil);
 }
 
 
