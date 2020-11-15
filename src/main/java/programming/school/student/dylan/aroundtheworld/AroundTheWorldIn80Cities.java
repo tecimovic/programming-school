@@ -24,6 +24,8 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place bogota = new Place("You are in the capital of Colombia. Bogota.");
   private Place guayaquil = new Place("You are in Ecuador's largest city, and a port. Guayaquil.");
   private Place lima = new Place("You are in Peru's famous capital, Lima.");
+  private Place santiago = new Place("You are in Chile's capital and largest city.");
+  private Place ushuaia = new Place("You are in the city at the end of the world... It is pretty cold here...");
   // Create Creatures
 
   public AroundTheWorldIn80Cities() {
@@ -86,6 +88,11 @@ miami.addExtension(storeExtnsion);
  storelima.addThing(LimaAdventurer);
  storelima.addThing(Peruvianfood);
  lima.addExtension(storelima);
+
+ Store storesantiago = new Store();
+ Thing Snowjar = new Thing("Jar of Snow", "From the nearby mountains.");
+ storesantiago.addThing(Snowjar);
+ santiago.addExtension(storesantiago);
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
 onehundredollarbill.setCost(10000);
@@ -114,6 +121,9 @@ bogota.addDirection("guayaquil", guayaquil);
 guayaquil.addDirection("bogota", bogota);
 guayaquil.addDirection("lima", lima);
 lima.addDirection("guayaquil", guayaquil);
+lima.addDirection("santiago", santiago);
+santiago.addDirection("lima", lima);
+santiago.addDirection("ushuaia", ushuaia);
 }
 
 
