@@ -2,6 +2,7 @@ package programming.school.adventure.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -207,8 +208,14 @@ public class GameUi extends JFrame implements IOutput {
     appendText("\n", uiStyle);
   }
 
+  private Font createGameFont() {
+    return new Font("Comic Sans MS", Font.BOLD, 18);
+  }
   private void initComponents() {
+    Font newFont = createGameFont(); 
+    
     pane = new JTextPane();
+    pane.setFont(newFont);
     scrollPane = new JScrollPane(pane);
     doc = pane.getStyledDocument();
     field = new JTextField();
@@ -226,6 +233,7 @@ public class GameUi extends JFrame implements IOutput {
     add(field, BorderLayout.SOUTH);
     pane.setFocusable(false);
     field.requestFocus();
+    field.setFont(newFont);
 
     field.addKeyListener(new KeyAdapter() {
       @Override
