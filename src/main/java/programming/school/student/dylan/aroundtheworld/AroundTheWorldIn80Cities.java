@@ -25,7 +25,8 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place guayaquil = new Place("You are in Ecuador's largest city, and a port. Guayaquil.");
   private Place lima = new Place("You are in Peru's famous capital, Lima.");
   private Place santiago = new Place("You are in Chile's capital and largest city.");
-  private Place ushuaia = new Place("You are in the city at the end of the world... It is pretty cold here...");
+  private Place ushuaia = new Place("You are in the city at the end of the world... It is pretty cold here... You see some nice mountains... Maybe you can explore?");
+  private Place themountains = new Place("You went to explore some mountains near ushuaia... AAAAAAAAAAAAAAAAAAAA A YETIIIIIIIIII RUN AWAY... oops too late he trapped you in his lair... You can't get out.");
   // Create Creatures
 
   public AroundTheWorldIn80Cities() {
@@ -79,20 +80,31 @@ miami.addExtension(storeExtnsion);
 
  Store storeguayaquil = new Store();
  Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 4");
+ GuayaquilJUNGLEBOAT.setCost(20000);
  storeguayaquil.addThing(GuayaquilJUNGLEBOAT);
  guayaquil.addExtension(storeguayaquil);
 
  Store storelima = new Store();
  Thing LimaAdventurer = new Thing("Lima Adventurer", "A cozy, little boat. LVL: 2");
  Thing Peruvianfood = new Thing ("Peruvian food", "A bunch of yummy things, but NO GUINEA PIGS.");
+ LimaAdventurer.setCost(10000);
+ Peruvianfood.setCost(5000);
  storelima.addThing(LimaAdventurer);
  storelima.addThing(Peruvianfood);
  lima.addExtension(storelima);
 
  Store storesantiago = new Store();
  Thing Snowjar = new Thing("Jar of Snow", "From the nearby mountains.");
+ Snowjar.setCost(5000);
  storesantiago.addThing(Snowjar);
  santiago.addExtension(storesantiago);
+
+ Store storeushuaia = new Store();
+ Thing UshuaiaGlaciercutter = new Thing("Ushuaia Glaciercutter", "A boat used for getting though frozen water. LVL: 4");
+ UshuaiaGlaciercutter.setCost(20000);
+ storeushuaia.addThing(UshuaiaGlaciercutter);
+ ushuaia.addExtension(storeushuaia);
+
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
 onehundredollarbill.setCost(10000);
@@ -124,6 +136,7 @@ lima.addDirection("guayaquil", guayaquil);
 lima.addDirection("santiago", santiago);
 santiago.addDirection("lima", lima);
 santiago.addDirection("ushuaia", ushuaia);
+ushuaia.addDirection("explore the mountains", themountains);
 }
 
 
