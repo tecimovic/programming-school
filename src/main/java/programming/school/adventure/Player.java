@@ -64,13 +64,18 @@ public class Player {
     return rnd.nextInt(n);
   }
 
+  private void lookCommand() {
+    OutUtil.describePlace(out, place);
+  }
+  
   // Makes player go to a destination with a given name. Returns true if
   // succesful.
   public void go(final String name) {
     Place newPlace = place.findDirection(name);
     if (newPlace == null) {
-      out.println("Unknown destination. Valid destinations are: "
-                  + place().directions());
+      StringBuilder sb = new StringBuilder("Unknown destination. Valid destinations are: ");
+      sb.append(OutUtil.toString(place().directions()));
+      out.println(sb.toString());
     } else {
       if (game.canPlayerMove(this, place, newPlace, out)) {
         this.place = newPlace;
@@ -210,8 +215,15 @@ public class Player {
   public void take(String name) {
     Thing thing = place.findThing(name);
     if (thing == null) {
-      out.println("You can't take this. Valid things to take are: "
-                  + place().things());
+      if ( place().hasThings() ) {
+        List<String> things = new ArrayList<>();
+        for ( Thing t: place().things() ) 
+          things.add(t.name());
+        out.println("You can't take this. Valid things to take are: " + OutUtil.toString(things));
+        
+      } else {
+        out.println("There is nothing to take here.");
+      }
     } else {
       inventory.add(thing);
       place.removeThing(thing);
@@ -260,33 +272,22 @@ public class Player {
   }
 
   public void help() {
-    out.println("Valid commands are 'go', 'take', 'examine', 'drop', 'die', 'eat', 'inventory'\n");
+    List<String> validCommands = new ArrayList<>();
+    for ( Command c: Command.values() ) {
+      validCommands.add(c.name().toLowerCase());
+    }
+    for ( String s: place.extensionCommands() ) {
+      validCommands.add(s);
+    }
+    StringBuilder sb = new StringBuilder("Valid commands are: ");
+    sb.append(OutUtil.toString(validCommands));
+    sb.append("\n");
+    out.println(sb.toString());
   }
 
   public void runCommand(final String cmd, final String argument) {
-    switch (cmd) {
-    case "go":
-      go(argument);
-      break;
-    case "take":
-      take(argument);
-      break;
-    case "examine":
-      examine(argument);
-      break;
-    case "drop":
-      drop(argument);
-      break;
-    case "die":
-      dieCommand();
-      break;
-    case "inventory":
-      inventoryDescription();
-      break;
-    case "eat":
-      eat(argument);
-      break;
-    default:
+    Command c = Command.resolve(cmd);
+    if (c == null) {
       boolean executed = place.runExtensionCommand(this, cmd, argument);
       if (!executed && allowGoShortcut) {
         // Try to go shortcut directly
@@ -301,7 +302,36 @@ public class Player {
       if (!executed) {
         help();
       }
-      break;
+    } else {
+      switch (c) {
+      case GO:
+        go(argument);
+        break;
+      case TAKE:
+        take(argument);
+        break;
+      case EXAMINE:
+        examine(argument);
+        break;
+      case DROP:
+        drop(argument);
+        break;
+      case DIE:
+        dieCommand();
+        break;
+      case LOOK:
+        lookCommand();
+        break;
+      case INVENTORY:
+        inventoryDescription();
+        break;
+      case HELP:
+        help();
+        break;
+      case EAT:
+        eat(argument);
+        break;
+      }
     }
   }
 

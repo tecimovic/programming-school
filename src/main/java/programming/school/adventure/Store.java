@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Store implements IPlaceExtension {
 
+  private static final String BUY = "buy";
+  private static final String SELL = "sell";
+  private static final String[] commands = { BUY, SELL };
+  
   private List<Thing> storeInventory = new ArrayList<>();
 
   public void addThing(Thing t) {
@@ -34,9 +38,14 @@ public class Store implements IPlaceExtension {
   }
   
   @Override
+  public String[] validCommands() {
+    return commands;
+  }
+  
+  @Override
   public boolean runCommand(Player player, String command, String argument) {
     switch (command) {
-    case "buy":
+    case BUY:
       Iterator<Thing> it = storeInventory.iterator();
       boolean wasThere = false;
       while (it.hasNext()) {
@@ -57,7 +66,7 @@ public class Store implements IPlaceExtension {
         player.out().println("Store does not have " + argument);
       return true;
 
-    case "sell":
+    case SELL:
       Thing t = player.findInInventory(argument);
       if (t == null)
         player.out().println("You don't have " + argument);

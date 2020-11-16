@@ -14,6 +14,29 @@ public class OutUtil {
     out.println("You can go: " + directionDescription(place.directions()));
   }
 
+  public static String toString(List<String> items) {
+    return toString(items.toArray(new String[items.size()]));
+  }
+  
+  public static String toString(Set<String> items) {
+    return toString(items.toArray(new String[items.size()]));
+  }
+  
+  public static String toString(String[] items) {
+    StringBuilder sb = new StringBuilder();
+    for ( int i=0; i<items.length; i++  ) {
+      String x = items[i];
+      if ( i == 0 ) {
+        sb.append("'").append(x).append("'");
+      } else if ( i == items.length - 1 ) {
+        sb.append(" and ").append("'").append(x).append("'");
+      } else {
+        sb.append(", ").append("'").append(x).append("'");        
+      }
+    }
+    return sb.toString();
+  }
+  
   private static String creatureInventory(Place place) {
     StringBuilder sb = new StringBuilder();
     Creature[] creaturesHere = place.creatures();

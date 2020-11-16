@@ -31,14 +31,8 @@ public class Place {
     allPlaces.add(this);
   }
 
-  public String things() {
-    StringBuilder sb = new StringBuilder();
-    String prefix = "";
-    for (Thing d : things) {
-      sb.append(prefix).append(d.name());
-      prefix = ", ";
-    }
-    return sb.toString();
+  public List<Thing> things() {
+    return things;
   }
 
   public void moveCreatureRandomly(Creature c) {
@@ -94,6 +88,16 @@ public class Place {
         return t;
     }
     return null;    
+  }
+  
+  public List<String> extensionCommands() {
+    List<String> cmds = new ArrayList<>();
+    for ( IPlaceExtension ext: extensions ) {
+      for ( String s: ext.validCommands() ) {
+        cmds.add(s);
+      }
+    }
+    return cmds;
   }
   
   public boolean runExtensionCommand(Player player, String cmd, String arg) {
@@ -156,6 +160,10 @@ public class Place {
     return null;
   }
 
+  public boolean hasThings() { 
+    return !things.isEmpty();
+  }
+  
   public Thing findThing(final String thingName) {
     for (Thing t : things) {
       if (t.name().equals(thingName)) {
