@@ -1,6 +1,6 @@
 package programming.school.adventure;
 
-public enum Command {
+public enum Command implements ICommand {
   GO, 
   TAKE, 
   EXAMINE, 
@@ -11,10 +11,15 @@ public enum Command {
   EAT,
   HELP;
   
+  @Override
+  public String commandName() {
+    return name().toLowerCase();
+  }
+  
   /** Resolves a command */
   public static Command resolve(String txt) {
     for ( Command c: values() ) {
-      if ( c.name().toLowerCase().equals(txt.trim().toLowerCase())) return c;
+      if ( c.commandName().equals(txt.trim().toLowerCase())) return c;
     }
     return null;
   }
