@@ -27,6 +27,8 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place santiago = new Place("You are in Chile's capital and largest city.");
   private Place ushuaia = new Place("You are in the city at the end of the world... It is pretty cold here... You see some nice mountains... Maybe you can explore?");
   private Place themountains = new Place("You went to explore some mountains near ushuaia... AAAAAAAAAAAAAAAAAAAA A YETIIIIIIIIII RUN AWAY... oops too late he trapped you in his lair... You can't get out.");
+  private Place buenosaires = new Place("You visited the capital, and largest city of Argentina, Buenos Aires.");
+
   // Create Creatures
 
   public AroundTheWorldIn80Cities() {
@@ -105,6 +107,15 @@ miami.addExtension(storeExtnsion);
  storeushuaia.addThing(UshuaiaGlaciercutter);
  ushuaia.addExtension(storeushuaia);
 
+ Store storebuenosaires = new Store();
+ Thing argentinianfood = new Thing("Argentinian food", "Delicious food");
+ Thing buenosairessprinter = new Thing("Buenos Aires Sprinter", "A very fast boat. LVL: 3");
+ buenosairessprinter.setCost(15000);
+ argentinianfood.setCost(5000);
+ storebuenosaires.addThing(argentinianfood);
+ storebuenosaires.addThing(buenosairessprinter);
+ buenosaires.addExtension(storebuenosaires);
+
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
 onehundredollarbill.setCost(10000);
@@ -137,6 +148,9 @@ lima.addDirection("santiago", santiago);
 santiago.addDirection("lima", lima);
 santiago.addDirection("ushuaia", ushuaia);
 ushuaia.addDirection("explore the mountains", themountains);
+ushuaia.addDirection("santiago", santiago);
+ushuaia.addDirection("buenos aires", buenosaires);
+buenosaires.addDirection("ushuaia", ushuaia);
 }
 
 
