@@ -28,6 +28,11 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place ushuaia = new Place("You are in the city at the end of the world... It is pretty cold here... You see some nice mountains... Maybe you can explore?");
   private Place themountains = new Place("You went to explore some mountains near ushuaia... AAAAAAAAAAAAAAAAAAAA A YETIIIIIIIIII RUN AWAY... oops too late he trapped you in his lair... You can't get out.");
   private Place buenosaires = new Place("You visited the capital, and largest city of Argentina, Buenos Aires.");
+  private Place montevideo = new Place("Welcome to Montevideo, The capital, largest city, and a port of Uruguay. You can visit  José Gervasio Artigas's monument.");
+  private Place joségervasioartigasmonument = new Place("You went to see his monument! Hmm... You are so tempted to jump on his head... But maybe you shouldn't? You decide...");
+  private Place hishead = new Place("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA THE COPS ARE CHASING YOU RUUUUUUUUUUUUN!");
+  private Place leftorright = new Place("Wait... You don't know which way you came from... CHOOSE WISELY!!! QUICK!!!");
+  private Place internationaljail = new Place("You landed in international jail. For the worst crimes only.");
 
   // Create Creatures
 
@@ -151,6 +156,15 @@ ushuaia.addDirection("explore the mountains", themountains);
 ushuaia.addDirection("santiago", santiago);
 ushuaia.addDirection("buenos aires", buenosaires);
 buenosaires.addDirection("ushuaia", ushuaia);
+buenosaires.addDirection("santiago", santiago);
+buenosaires.addDirection("montevideo", montevideo);
+montevideo.addDirection("buenos aires", buenosaires);
+montevideo.addDirection("to his monument", joségervasioartigasmonument);
+joségervasioartigasmonument.addDirection("jump on his head", hishead);
+hishead.addDirection("RUUUUUN", leftorright);
+leftorright.addDirection("left", joségervasioartigasmonument);
+leftorright.addDirection("right", internationaljail);
+
 }
 
 
