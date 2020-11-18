@@ -33,6 +33,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place hishead = new Place("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA THE COPS ARE CHASING YOU RUUUUUUUUUUUUN!");
   private Place leftorright = new Place("Wait... You don't know which way you came from... CHOOSE WISELY!!! QUICK!!!");
   private Place internationaljail = new Place("You landed in international jail. For the worst crimes only.");
+  private Place asunción = new Place("You enter paraguay's capital, but you head out to the country for it's beautiful nature.");
 
   // Create Creatures
 
@@ -164,6 +165,8 @@ joségervasioartigasmonument.addDirection("jump on his head", hishead);
 hishead.addDirection("RUUUUUN", leftorright);
 leftorright.addDirection("left", joségervasioartigasmonument);
 leftorright.addDirection("right", internationaljail);
+montevideo.addDirection("asuncion", asunción);
+asunción.addDirection("montevideo", montevideo);
 
 }
 
