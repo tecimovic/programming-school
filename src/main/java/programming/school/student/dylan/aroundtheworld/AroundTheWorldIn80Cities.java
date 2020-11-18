@@ -53,6 +53,9 @@ miami.addExtension(storeExtnsion);
  Thing onehundredollarbill = new Thing("100 dollar bill","OOOOOOOOOOOOOO DATS A LOOOOOOOOOOOOOOOOOT OF MONEH!");
  underwater.addThing(onehundredollarbill);
 
+ Thing ahundreddollarbill = new Thing("100 dollar bill", "found it on top of a statue");
+ hishead.addThing(ahundreddollarbill);
+
  Store storehavana = new Store();
  Thing Cigarsandrum = new Thing("Cigars and Rum","What Cuba is known for.");
  Thing Havanawaveglider = new Thing("Havana Waveglider", "A cheap boat, a good deal. LVL: 1");
@@ -122,16 +125,24 @@ miami.addExtension(storeExtnsion);
  storebuenosaires.addThing(buenosairessprinter);
  buenosaires.addExtension(storebuenosaires);
 
+ Store storeparaguay = new Store();
+ Thing ziplineset = new Thing("A set that you can use to set up a zipline", "Made in Asunción");
+ ziplineset.setCost(5000);
+ storeparaguay.addThing(ziplineset);
+ asunción.addExtension(storeparaguay);
+
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
 onehundredollarbill.setCost(10000);
+ahundreddollarbill.setAutoConvertible(true);
+ahundreddollarbill.setCost(10000);
 
 
 //link places
 startingPlace.addDirection("miami", miami);
 miami.addDirection("washington DC", startingPlace);
 miami.addDirection("the beach", thebeach);
-thebeach.addDirection("miami", miami);
+thebeach.addDirection("back", miami);
 thebeach.addDirection("water", ocean);
 ocean.addDirection("out of the water", thebeach);
 ocean.addDirection("dive deeper", underwater);
@@ -162,10 +173,11 @@ buenosaires.addDirection("montevideo", montevideo);
 montevideo.addDirection("buenos aires", buenosaires);
 montevideo.addDirection("to his monument", joségervasioartigasmonument);
 joségervasioartigasmonument.addDirection("jump on his head", hishead);
+joségervasioartigasmonument.addDirection("back", montevideo);
 hishead.addDirection("RUUUUUN", leftorright);
 leftorright.addDirection("left", joségervasioartigasmonument);
 leftorright.addDirection("right", internationaljail);
-montevideo.addDirection("asuncion", asunción);
+montevideo.addDirection("paraguay", asunción);
 asunción.addDirection("montevideo", montevideo);
 
 }
