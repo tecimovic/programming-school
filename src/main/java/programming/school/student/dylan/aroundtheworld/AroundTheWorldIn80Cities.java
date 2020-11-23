@@ -34,13 +34,16 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place leftorright = new Place("Wait... You don't know which way you came from... CHOOSE WISELY!!! QUICK!!!");
   private Place internationaljail = new Place("You landed in international jail. For the worst crimes only.");
   private Place asunción = new Place("You enter paraguay's capital, but you head out to the country for it's beautiful nature.");
-
+  private Place santacruzdelasierra = new Place("You are in Bolivia's largest city.");
+  private Place lapaz = new Place("You are in one of the highest altitude cities in the world. You should be careful here...");
   // Create Creatures
-
+  Thing cannedair = new Thing("canned air", "Made in Thneedville...");
   public AroundTheWorldIn80Cities() {
     Store storeExtension = new Store();
 Thing NORTHKOREATOURISM = new Thing ("North Korea Tourism Access","Go to North Korea and leave.");
+cannedair.setCost(5000);
 NORTHKOREATOURISM.setCost(5000);
+storeExtension.addThing(cannedair);
 storeExtension.addThing(NORTHKOREATOURISM);
 startingPlace.addExtension(storeExtension);
 
@@ -131,6 +134,12 @@ miami.addExtension(storeExtnsion);
  storeparaguay.addThing(ziplineset);
  asunción.addExtension(storeparaguay);
 
+ Store storesantacruzdelasierra = new Store();
+ Thing crateofjewels = new Thing("Crate of Jewels", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOH SHINY");
+ crateofjewels.setCost(5000);
+ storesantacruzdelasierra.addThing(crateofjewels);
+ santacruzdelasierra.addExtension(storesantacruzdelasierra);
+
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
 onehundredollarbill.setCost(10000);
@@ -179,6 +188,10 @@ leftorright.addDirection("left", joségervasioartigasmonument);
 leftorright.addDirection("right", internationaljail);
 montevideo.addDirection("paraguay", asunción);
 asunción.addDirection("montevideo", montevideo);
+asunción.addDirection("santa cruz de la sierra", santacruzdelasierra);
+santacruzdelasierra.addDirection("asucion", asunción);
+santacruzdelasierra.addDirection("la paz", lapaz);
+lapaz.addDirection("santa cruz de la sierra", santacruzdelasierra);
 
 }
 
@@ -221,10 +234,18 @@ asunción.addDirection("montevideo", montevideo);
   // Be CAREFUL with my computer
   @Override
   public void evaluateState(final Player player, final IOutput out) {
+    if (player.isIn(lapaz) && !player.carries(cannedair)) {
+      out.println("The good news: you visited and enjoyed La Paz for a little, the bad news: there was not enough oxegyn for you to survive.");
+      player.die();
+    }
+      if (player.isIn(themountains)){
+        out.println("They were beautiful mountains... AAAAAAAAAAAAAAAAAAAAAAAAAAA A YETI!!! The yeti ate you.");
+        player.die();
+    }
   }
+
 
   public static void main(final String[] args) {
     new GameUi(new AroundTheWorldIn80Cities()).start();
   }
-
 }
