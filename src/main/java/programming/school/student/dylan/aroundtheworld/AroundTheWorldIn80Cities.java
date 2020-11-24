@@ -14,7 +14,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   // Create places
   private Place startingPlace = new Place("You are in the capital of the United States. Washington DC.");
   private Place miami = new Place("You are in Miami. Will you go to the beach?");
-  private Place thebeach = new Place("You are swimming in the beach");
+  private Place thebeach = new Place("You are playing on the sand in the beach");
   private Place ocean = new Place("You went in the water");
   private Place underwater = new Place("You are underwater");
   private Place havana = new Place("You are in the huge capital of Cuba");
@@ -129,16 +129,22 @@ miami.addExtension(storeExtnsion);
  buenosaires.addExtension(storebuenosaires);
 
  Store storeparaguay = new Store();
- Thing ziplineset = new Thing("A set that you can use to set up a zipline", "Made in Asunción");
+ Thing ziplineset = new Thing("zipline set", "Made in Asunción");
  ziplineset.setCost(5000);
  storeparaguay.addThing(ziplineset);
  asunción.addExtension(storeparaguay);
 
  Store storesantacruzdelasierra = new Store();
- Thing crateofjewels = new Thing("Crate of Jewels", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOH SHINY");
+ Thing crateofjewels = new Thing("crate of jewels", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOH SHINY");
  crateofjewels.setCost(5000);
  storesantacruzdelasierra.addThing(crateofjewels);
  santacruzdelasierra.addExtension(storesantacruzdelasierra);
+
+ Store storelapaz = new Store();
+ Thing tiwanakuruins = new Thing ("tiwanaku ruins", "ruins from an ancient city");
+ tiwanakuruins.setCost(5000);
+ storelapaz.addThing(tiwanakuruins);
+ lapaz.addExtension(storelapaz);
 
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
