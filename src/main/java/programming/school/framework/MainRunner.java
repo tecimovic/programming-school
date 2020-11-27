@@ -15,6 +15,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import programming.school.student.dylan.aroundtheworld.AroundTheWorldIn80Cities;
+
 public class MainRunner extends JFrame {
 
   private static final long serialVersionUID = -8818261713323847768L;
@@ -40,6 +42,7 @@ public class MainRunner extends JFrame {
                                  programming.school.student.dylan.Lesson5CircleRoom.class,
                                  programming.school.student.dylan.Lesson6Adventure.class,
                                  programming.school.student.dylan.Lesson7NewAdventure.class, 
+                                 AroundTheWorldIn80Cities.class,
                                  programming.school.student.manca.Lesson1Circles.class,
                                  programming.school.student.manca.Lesson2Patterns.class,
                                  programming.school.student.manca.Lesson3Drawing.class,
@@ -135,8 +138,20 @@ public class MainRunner extends JFrame {
   private JMenuBar addStudentItems(JMenuBar b) {
     Map<String, JMenu> menus = new HashMap<>();
     for (Class<?> c : classes) {
-      String[] ns = c.getPackageName().split(Pattern.quote("."));
-      String menuName = ns[ns.length - 1];
+      String menuName;
+      if ( c.getPackageName().contains("reference")) {
+        menuName = "Reference";
+      } else if ( c.getPackageName().contains("julia")) {
+        menuName = "Julia";
+      } else if ( c.getPackageName().contains("dylan")) {
+        menuName = "Dylan";
+      } else if ( c.getPackageName().contains("manca")) {
+        menuName = "Manca";
+      } else if ( c.getPackageName().contains("timotej")) {
+        menuName = "Timotej";
+      } else {
+        menuName = "Other";
+      }
       JMenu m = menus.get(menuName);
       if (m == null) {
         m = new JMenu(menuName.substring(0, 1).toUpperCase() + menuName.substring(1));
