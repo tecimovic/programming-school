@@ -28,3 +28,9 @@ jobs:
       run: ./gradlew test
     - name: Build jar file
       run: ./gradlew jar
+    - name: Archive jar file
+      uses: actions/upload-artifact@v2
+      with:
+        name: programming-school
+        path: build/libs/*.jar
+
