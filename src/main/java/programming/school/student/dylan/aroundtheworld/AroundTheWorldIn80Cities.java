@@ -36,8 +36,18 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place asunción = new Place("You enter paraguay's capital, but you head out to the country for it's beautiful nature.");
   private Place santacruzdelasierra = new Place("You are in Bolivia's largest city.");
   private Place lapaz = new Place("You are in one of the highest altitude cities in the world. You should be careful here...");
+  private Place cusco = new Place("You are in the city of Cusco, near machu pichu.");
+  private Place warning = new Place("WARNING: TO STAY ALIVE IN THE CITY OF IQUITOS, YOU NEED A JUNGLEBOAT. IT IS THE ONLY BOAT THAT CAN TAKE YOU THERE. IF YOU DON'T HAVE A JUNGLEBOAT, THIS GAME WILL KILL YOU. HMM... I FORGET WHICH CITY IT WAS IN, THOUGH.");
+  private Place iquitos = new Place("You are in the world's largest city unaccesable by road. Iquitos. You are in the middle of a jungle...");
+  private Place caracas = new Place("You have visited Venezuela's capital, Caracas. You see beautiful mountains in the distance.");
+  private Place newyork = new Place("You have visited the largest city in the United States, New York City");
+  private Place chicago = new Place("You have visited the largest city on the Great Lakes, Chicago. You can eat Deep-dish pizza at Pizzeria Uno.");
+  private Place pizzeriauno = new Place("You are at Pizzaria Uno. On the menu is Deep Dish Pizza, Coke, and the World's Most Alcoholic Drink.");
+
   // Create Creatures
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
+  Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 3");
+  Thing worldsmostalcoholicdrink = new Thing("Worlds Most Alcoholic Drink", "A bottle with a clear drink, and a golden lable that says W O R L D S  M O S T  A L C O H O L I C  D R I N K");
   public AroundTheWorldIn80Cities() {
     Store storeExtension = new Store();
 Thing NORTHKOREATOURISM = new Thing ("North Korea Tourism Access","Go to North Korea and leave.");
@@ -93,7 +103,6 @@ miami.addExtension(storeExtnsion);
  bogota.addExtension(storebogota);
 
  Store storeguayaquil = new Store();
- Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 4");
  GuayaquilJUNGLEBOAT.setCost(20000);
  storeguayaquil.addThing(GuayaquilJUNGLEBOAT);
  guayaquil.addExtension(storeguayaquil);
@@ -141,10 +150,42 @@ miami.addExtension(storeExtnsion);
  santacruzdelasierra.addExtension(storesantacruzdelasierra);
 
  Store storelapaz = new Store();
- Thing tiwanakuruins = new Thing ("tiwanaku ruins", "ruins from an ancient city");
+ Thing tiwanakuruins = new Thing("tiwanaku ruins", "ruins from an ancient city");
  tiwanakuruins.setCost(5000);
  storelapaz.addThing(tiwanakuruins);
  lapaz.addExtension(storelapaz);
+
+ Store storecusco = new Store();
+ Thing incatools = new Thing("inca tools", "can be used for many things");
+ incatools.setCost(5000);
+ storecusco.addThing(incatools);
+ cusco.addExtension(storecusco);
+
+ Store storeiquitos = new Store();
+ Thing junglematerials = new Thing("jungle materials", "jungle wood, many other jungle materials");
+ junglematerials.setCost(5000);
+ storeiquitos.addThing(junglematerials);
+ iquitos.addExtension(storeiquitos);
+
+ Store storenewyork = new Store();
+ Thing cheesecake = new Thing("cheesecake", "a New York style cheesecake");
+ Thing newyorkoceanrunner = new Thing("New York Ocean Runner", "A extremely good boat. LVL: 3");
+ cheesecake.setCost(5000);
+ newyorkoceanrunner.setCost(15000);
+ storenewyork.addThing(cheesecake);
+ storenewyork.addThing(newyorkoceanrunner);
+ newyork.addExtension(storenewyork);
+
+ Store pizzeriaunomenu = new Store();
+ Thing deepdishpizza = new Thing("Deep Dish Pizza", "Also known as Chicago Style Pizza.");
+ Thing coke = new Thing("Coke", "Looks like Coke.");
+ deepdishpizza.setCost(3000);
+ coke.setCost(2000);
+ worldsmostalcoholicdrink.setCost(3000);
+ pizzeriaunomenu.addThing(deepdishpizza);
+ pizzeriaunomenu.addThing(coke);
+ pizzeriaunomenu.addThing(worldsmostalcoholicdrink);
+ pizzeriauno.addExtension(pizzeriaunomenu);;
 
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
@@ -195,9 +236,26 @@ leftorright.addDirection("right", internationaljail);
 montevideo.addDirection("paraguay", asunción);
 asunción.addDirection("montevideo", montevideo);
 asunción.addDirection("santa cruz de la sierra", santacruzdelasierra);
-santacruzdelasierra.addDirection("asucion", asunción);
+santacruzdelasierra.addDirection("paraguay", asunción);
 santacruzdelasierra.addDirection("la paz", lapaz);
 lapaz.addDirection("santa cruz de la sierra", santacruzdelasierra);
+lapaz.addDirection("cusco", cusco);
+asunción.addDirection("cusco", cusco);
+cusco.addDirection("la paz", lapaz);
+cusco.addDirection("iquitos", warning);
+warning.addDirection("nevermind", cusco);
+warning.addDirection("go", iquitos);
+cusco.addDirection("caracas", caracas);
+iquitos.addDirection("caracas", caracas);
+caracas.addDirection("cusco", cusco);
+caracas.addDirection("iquitos", warning);
+cusco.addDirection("caracas", caracas);
+startingPlace.addDirection("new york city", newyork);
+newyork.addDirection("washington DC", startingPlace);
+newyork.addDirection("chicago", chicago);
+chicago.addDirection("pizzeria uno", pizzeriauno);
+chicago.addDirection("new york city", newyork);
+pizzeriauno.addDirection("back", chicago);
 
 }
 
@@ -223,12 +281,10 @@ lapaz.addDirection("santa cruz de la sierra", santacruzdelasierra);
     return "Yay!";
   }
 
-  // Saddle bonus points ++
   @Override
   public void thingAdded(Player player, Thing t, IOutput out) {
   }
 
-  // Saddle bonus points --
   @Override
   public void thingRemoved(Player player, Thing t, IOutput out) {
   }
@@ -247,6 +303,17 @@ lapaz.addDirection("santa cruz de la sierra", santacruzdelasierra);
       if (player.isIn(themountains)){
         out.println("They were beautiful mountains... AAAAAAAAAAAAAAAAAAAAAAAAAAA A YETI!!! The yeti ate you.");
         player.die();
+
+        
+    }
+    if (player.isIn(iquitos) && !player.carries(GuayaquilJUNGLEBOAT)) {
+      out.println("I warned you...");
+      player.die();
+    }
+    if (player.isIn(pizzeriauno) && player.carries(worldsmostalcoholicdrink)) {
+      out.println("You drank too much and died.");
+      player.die();
+
     }
   }
 
