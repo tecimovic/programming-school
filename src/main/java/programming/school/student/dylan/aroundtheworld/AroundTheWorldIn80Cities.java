@@ -43,11 +43,17 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place newyork = new Place("You have visited the largest city in the United States, New York City");
   private Place chicago = new Place("You have visited the largest city on the Great Lakes, Chicago. You can eat Deep-dish pizza at Pizzeria Uno.");
   private Place pizzeriauno = new Place("You are at Pizzaria Uno. On the menu is Deep Dish Pizza, Coke, and the World's Most Alcoholic Drink.");
+  private Place denver = new Place("You have arrived at Denver, near the Rocky Mountains.");
+  private Place rockies = new Place("You are climbing the Rockies near Denver. Nothing went wrong. It was really nice.");
+  private Place losangeles = new Place("You are in the second largest city in the United States, and the largest in the state of California, Los Angeles.");
+  private Place sanfrancisco = new Place("You are in the city famous for the Golden Gate Bridge, Cable Cars, and much more, San Francisco. You can ride a cable car, or drive across the golden gate bridge.");
+  private Place cablecar = new Place("You enjoy the cable car ride.");
+  private Place goldengatebridge = new Place("You rode across the Golden Gate Bridge.");
 
   // Create Creatures
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
-  Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 3");
-  Thing worldsmostalcoholicdrink = new Thing("Worlds Most Alcoholic Drink", "A bottle with a clear drink, and a golden lable that says W O R L D S  M O S T  A L C O H O L I C  D R I N K");
+  Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 4");
+  Thing worldsmostalcoholicdrink = new Thing("Worlds Most Alcoholic Drink", "A bottle with a clear drink, and a golden lable that says  W O R L D S  M O S T  A L C O H O L I C  D R I N K");
   public AroundTheWorldIn80Cities() {
     Store storeExtension = new Store();
 Thing NORTHKOREATOURISM = new Thing ("North Korea Tourism Access","Go to North Korea and leave.");
@@ -187,6 +193,16 @@ miami.addExtension(storeExtnsion);
  pizzeriaunomenu.addThing(worldsmostalcoholicdrink);
  pizzeriauno.addExtension(pizzeriaunomenu);;
 
+ Store storelosangeles = new Store();
+ Thing boxofmovies = new Thing("box of movies", "A box of Hollywood movies.");
+ Thing losangeleskite = new Thing("Los Angeles Kite", "The world's fastest kite for kitesurfing. LVL:2");
+ boxofmovies.setCost(5000);
+ losangeleskite.setCost(15000);
+ storelosangeles.addThing(boxofmovies);
+ storelosangeles.addThing(losangeleskite);
+ losangeles.addExtension(storelosangeles);
+
+
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
 onehundredollarbill.setCost(10000);
@@ -256,6 +272,21 @@ newyork.addDirection("chicago", chicago);
 chicago.addDirection("pizzeria uno", pizzeriauno);
 chicago.addDirection("new york city", newyork);
 pizzeriauno.addDirection("back", chicago);
+chicago.addDirection("denver", denver);
+newyork.addDirection("denver", denver);
+denver.addDirection("new york city", newyork);
+denver.addDirection("chicago", chicago);
+denver.addDirection("explore the mountains", rockies);
+rockies.addDirection("back to the city", denver);
+denver.addDirection("los angeles", losangeles);
+losangeles.addDirection("denver", denver);
+denver.addDirection("san francisco", sanfrancisco);
+losangeles.addDirection("san francisco", sanfrancisco);
+sanfrancisco.addDirection("cable cars", cablecar);
+cablecar.addDirection("back", sanfrancisco);
+sanfrancisco.addDirection("drive across the Golden Gate Bridge", goldengatebridge);
+goldengatebridge.addDirection("back", sanfrancisco);
+goldengatebridge.addDirection("blow up the bridge", internationaljail);
 
 }
 
