@@ -49,6 +49,9 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place sanfrancisco = new Place("You are in the city famous for the Golden Gate Bridge, Cable Cars, and much more, San Francisco. You can ride a cable car, or drive across the golden gate bridge.");
   private Place cablecar = new Place("You enjoy the cable car ride.");
   private Place goldengatebridge = new Place("You rode across the Golden Gate Bridge.");
+  private Place vancouver = new Place("You are in one of Canada's most famous cities, Vancouver.");
+  private Place iqaluit = new Place("You are in a city in Northern Canada's Nunavut Territory, Iqaluit. It is known for it's Inuit culture. 84% of Nunavut's population is Inuit!");
+  private Place quebeccity = new Place("You are in a famous city that is good for tourists, and the province of Quebec's 2nd largest city, Quebec City.");
 
   // Create Creatures
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
@@ -202,6 +205,34 @@ miami.addExtension(storeExtnsion);
  storelosangeles.addThing(losangeleskite);
  losangeles.addExtension(storelosangeles);
 
+ Store storevancouver = new Store();
+ Thing vancouverfly = new Thing("Vancouver Fly", "A good boat for people who are learning to drive a boat. LVL:2");
+ vancouverfly.setCost(15000);
+ storevancouver.addThing(vancouverfly);
+ vancouver.addExtension(storevancouver);
+
+ Store storeiqaluit = new Store();
+ Thing walrus = new Thing("walrus", "Inuits like to eat walrus. This one was freshely caught");
+ Thing freshwaterfish = new Thing("freshwater fish", "Inuits eat freshwater fish often. This one is being sold at a market.");
+ Thing iqaluitinuitboat = new Thing("Iqaluit Inuit Boat", "Does not go very fast, does not have a motor, but has a beautiful design, and is a great souvenir LVL: 1");
+ walrus.setCost(5000);
+ freshwaterfish.setCost(5000);
+ iqaluitinuitboat.setCost(5000);
+ storeiqaluit.addThing(walrus);
+ storeiqaluit.addThing(freshwaterfish);
+ storeiqaluit.addThing(iqaluitinuitboat);
+ iqaluit.addExtension(storeiqaluit);
+
+ Store storequebec = new Store();
+ Thing poutine = new Thing("poutine", "Probably the most famous Canadian food.");
+ Thing coureurduquébec = new Thing("Coureur du Quebec", "A cool, sparkely boat. LVL: 2");
+ poutine.setCost(5000);
+ coureurduquébec.setCost(15000);
+ storequebec.addThing(poutine);
+ storequebec.addThing(coureurduquébec);
+ quebeccity.addExtension(storequebec);
+ 
+
 
 //turnobjectsintomoney
 onehundredollarbill.setAutoConvertible(true);
@@ -287,6 +318,13 @@ cablecar.addDirection("back", sanfrancisco);
 sanfrancisco.addDirection("drive across the Golden Gate Bridge", goldengatebridge);
 goldengatebridge.addDirection("back", sanfrancisco);
 goldengatebridge.addDirection("blow up the bridge", internationaljail);
+sanfrancisco.addDirection("vancouver", vancouver);
+vancouver.addDirection("san francisco", sanfrancisco);
+vancouver.addDirection("iqaluit", iqaluit);
+iqaluit.addDirection("vancouver", vancouver);
+iqaluit.addDirection("quebec city", quebeccity);
+quebeccity.addDirection("iqaluit", iqaluit);
+quebeccity.addDirection("new york city", newyork);
 
 }
 
