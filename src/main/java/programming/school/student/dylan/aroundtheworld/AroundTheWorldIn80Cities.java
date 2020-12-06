@@ -52,6 +52,8 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place vancouver = new Place("You are in one of Canada's most famous cities, Vancouver.");
   private Place iqaluit = new Place("You are in a city in Northern Canada's Nunavut Territory, Iqaluit. It is known for it's Inuit culture. 84% of Nunavut's population is Inuit!");
   private Place quebeccity = new Place("You are in a famous city that is good for tourists, and the province of Quebec's 2nd largest city, Quebec City.");
+  private Place lagos = new Place("You are in the largest city in Africa, Lagos.");
+  private Place cairo = new Place("You are in Egypt's capital and largest city, Cairo");
 
   // Create Creatures
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
@@ -232,6 +234,12 @@ miami.addExtension(storeExtnsion);
  storequebec.addThing(coureurduquébec);
  quebeccity.addExtension(storequebec);
  
+ Store storecairo = new Store();
+ Thing modelpyramid = new Thing("model pyramid", "a model of a pyramid");
+ modelpyramid.setCost(5000);
+ storecairo.addThing(modelpyramid);
+ cairo.addExtension(storecairo);
+ 
 
 
 //turnobjectsintomoney
@@ -325,6 +333,8 @@ iqaluit.addDirection("vancouver", vancouver);
 iqaluit.addDirection("quebec city", quebeccity);
 quebeccity.addDirection("iqaluit", iqaluit);
 quebeccity.addDirection("new york city", newyork);
+lagos.addDirection("cairo", cairo);
+cairo.addDirection("lagos", lagos);
 
 }
 
