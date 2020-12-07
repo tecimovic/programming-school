@@ -60,6 +60,35 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 4");
   Thing worldsmostalcoholicdrink = new Thing("Worlds Most Alcoholic Drink", "A bottle with a clear drink, and a golden lable that says  W O R L D S  M O S T  A L C O H O L I C  D R I N K");
   public AroundTheWorldIn80Cities() {
+
+    startingPlace.setPicture(getClass().getResource("washingtondc.jpg"));
+    miami.setPicture(getClass().getResource("miami.jpg"));
+    havana.setPicture(getClass().getResource("havana.jpg"));
+    mexicocity.setPicture(getClass().getResource("mexicocity.jpg"));
+    guatemalacity.setPicture(getClass().getResource("guatemalacity.jpg"));
+    panamacity.setPicture(getClass().getResource("panamacity.jpg"));
+    bogota.setPicture(getClass().getResource("bogota.jpg"));
+    guayaquil.setPicture(getClass().getResource("guayaquil.jpg"));
+    lima.setPicture(getClass().getResource("lima.jpg"));
+    santiago.setPicture(getClass().getResource("santiago.jpg"));
+    ushuaia.setPicture(getClass().getResource("ushuaia.jpg"));
+    buenosaires.setPicture(getClass().getResource("buenosaires.jpg"));
+    montevideo.setPicture(getClass().getResource("montevideo.jpg"));
+    asunción.setPicture(getClass().getResource("asuncion.jpg"));
+    santacruzdelasierra.setPicture(getClass().getResource("santacruzdelasierra.jpg"));
+    lapaz.setPicture(getClass().getResource("lapaz.jpg"));
+    iquitos.setPicture(getClass().getResource("iquitos.jpg"));
+    caracas.setPicture(getClass().getResource("caracas.jpg"));
+    cusco.setPicture(getClass().getResource("cusco.jpg"));
+    newyork.setPicture(getClass().getResource("newyork.jpg"));
+    chicago.setPicture(getClass().getResource("chicago.jpg"));
+    denver.setPicture(getClass().getResource("denver.jpg"));
+    losangeles.setPicture(getClass().getResource("losangeles.jpg"));
+    sanfrancisco.setPicture(getClass().getResource("sanfrancisco.jpg"));
+    vancouver.setPicture(getClass().getResource("vancouver.jpg"));
+    iqaluit.setPicture(getClass().getResource("iqaluit.jpg"));
+    quebeccity.setPicture(getClass().getResource("quebeccity.jpg"));
+    
     Store storeExtension = new Store();
 Thing NORTHKOREATOURISM = new Thing ("North Korea Tourism Access","Go to North Korea and leave.");
 cannedair.setCost(5000);

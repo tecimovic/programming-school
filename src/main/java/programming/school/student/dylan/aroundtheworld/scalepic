@@ -1,0 +1,4 @@
+#!/bin/bash
+convert -scale 900x800 $1 .tmp.jpg
+mv -f .tmp.jpg $1
+rm -f .tmp.jpg
