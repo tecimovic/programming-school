@@ -54,6 +54,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place quebeccity = new Place("You are in a famous city that is good for tourists, and the province of Quebec's 2nd largest city, Quebec City.");
   private Place lagos = new Place("You are in the largest city in Africa, Lagos.");
   private Place cairo = new Place("You are in Egypt's capital and largest city, Cairo");
+  private Place istanbul = new Place("You are in the trans-continental city, ");
 
   // Create Creatures
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
@@ -364,6 +365,7 @@ quebeccity.addDirection("iqaluit", iqaluit);
 quebeccity.addDirection("new york city", newyork);
 lagos.addDirection("cairo", cairo);
 cairo.addDirection("lagos", lagos);
+newyork.addDirection("quebec city", quebeccity);
 
 }
 
