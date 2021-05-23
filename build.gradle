@@ -41,6 +41,15 @@ test {
     useJUnitPlatform()
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/java"]
+            includes = ["**/*.jpg"]
+        }
+    }
+}
+
 jar {
     archiveBaseName = 'programming-school'
     archiveVersion = '1.0'
