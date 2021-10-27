@@ -40,7 +40,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place warning = new Place("WARNING: TO STAY ALIVE IN THE CITY OF IQUITOS, YOU NEED A JUNGLEBOAT. IT IS THE ONLY BOAT THAT CAN TAKE YOU THERE. IF YOU DON'T HAVE A JUNGLEBOAT, THIS GAME WILL KILL YOU. HMM... I FORGET WHICH CITY IT WAS IN, THOUGH.");
   private Place iquitos = new Place("You are in the world's largest city unaccesable by road. Iquitos. You are in the middle of a jungle...");
   private Place caracas = new Place("You have visited Venezuela's capital, Caracas. You see beautiful mountains in the distance.");
-  private Place newyork = new Place("You have visited the largest city in the United States, New York City");
+  private Place newyork = new Place("You have visited the largest city in the United States, New York City. You can eat a cheesecake, buy a boat, and go to the top of the Freedom Tower, the tallest building in the USA.");
   private Place chicago = new Place("You have visited the largest city on the Great Lakes, Chicago. You can eat Deep-dish pizza at Pizzeria Uno.");
   private Place pizzeriauno = new Place("You are at Pizzaria Uno. On the menu is Deep Dish Pizza, Coke, and the World's Most Alcoholic Drink.");
   private Place denver = new Place("You have arrived at Denver, near the Rocky Mountains.");
@@ -52,21 +52,38 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place vancouver = new Place("You are in one of Canada's most famous cities, Vancouver.");
   private Place iqaluit = new Place("You are in a city in Northern Canada's Nunavut Territory, Iqaluit. It is known for it's Inuit culture. 84% of Nunavut's population is Inuit!");
   private Place quebeccity = new Place("You are in a famous city that is good for tourists, and the province of Quebec's 2nd largest city, Quebec City.");
-  private Place lagos = new Place("You are in the largest city in Africa, Lagos.");
+  private Place lagos = new Place("You are in the largest cigty in Africa, Lagos.");
   private Place cairo = new Place("You are in Egypt's capital and largest city, Cairo");
   private Place istanbul = new Place("You are in the city in two continents (Unless Eurasia is one continent), Istanbul ");
   private Place dubrovnik = new Place("You are in Croatia's 13th largest city, although a very small city, it is also a very beautiful and old city.");
   private Place rotterdam = new Place("You are in Europe's busiest port, Rotterdam");
-  private Place charleston = new Place("You are in a small, but beautiful city, though it is the largest city in South Carolina. Charleston.");
+  private Place charleston = new Place("You are in a beautiful city, and the largest city in South Carolina. Charleston.");
   private Place jailhalls = new Place("The hallways of the jail.");
   private Place cafeteria = new Place("Where the jail serves their 'gourmet' food");
   private Place jailyard = new Place("You are in the yard of the jail. This is where you exercise.");
   private Place celltime = new Place("Jail Guard: ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. I repeat: ITS CELL TIME GO BACK TO YOUR CELL. Yes, I said ITS CELL TIME GO BACK TO YOUR CELL. Yup. ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Are you even listening? ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. So, you're not listening? Alright, ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Aand... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Ooh... Fun fact... The entire world's population could fit inside Los Angeles... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL... Ooh... Another fun fact... North Korea and Cuba are the only places you can't buy Coca-Cola... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ...That's it.");
+  private Place Staugustine = new Place ("Ben's Hometown and America's oldest city");
+  private Place thepathway = new Place ("you dont know what you are doing");
+  private Place ohgreat = new Place ("this place is still under construction");
+  private Place notthere = new Place ("it Is  a GLITCH that THIS place is even accesible e!");
+  private Place no = new Place ("you  w    i LL regre t THI S               !");
+  private Place territoryoflostsouls = new Place ("You are in a strange room. 'Hi there' a man greets you. Then he gasps and stares in awe at your purple stick that you found in Novosibirsk. 'THE KEY!' he yells. 'HOW DID YOU FIND IT? WE HID IT IN THE FORESTS NEXT TO SOME CITY IN THE MIDDLE OF NOWHERE! welcome to the Territory of Lost Souls! You were the first ever not lost soul here, cuz you found the key.' You see a crystal on a table. 'What is that?' you ask. 'Oh.' he says. 'Thats the crystal of despair. It turns people who touch it into lost souls, but please don't take it.' You are thinking. Maybe you could pick it up using a spork? You see one lying on the floor. Or you could just leave it. ");
+  private Place novosibirsk = new Place ("You are in the largest city in Siberia, Novosibirsk");
+  private Place Washingtonmuseum = new Place ("You are in a museum in Washington DC.");
+  private Place portofnewyork = new Place ("You are in a huge dock, and you see your boat right there. Before going to the dock, go to the Port Schedules and make sure your boat is appropriate for the route.");
+  private Place newyorkportschedules = new Place ("LVL 1: BC LVL 2: LA, LG LVL 3: CT, SP");
+  private Place newyorkdock = new Place ("You are in a dock. This is your final warning to decide your route, and make sure you can accomplish the route. ");
+  private Place barcelona = new Place ("You are in a beautiful, old, and 2nd largest in Spain, Barcelona.");
+  private Place barcelonawaters = new Place("You see Barcelona! After hours and hours of steering, yessss!!!!");
+  
 
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
   Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 4");
   Thing worldsmostalcoholicdrink = new Thing("Worlds Most Alcoholic Drink", "A bottle with a clear drink, and a golden lable that says  W O R L D S  M O S T  A L C O H O L I C  D R I N K");
   Thing deadratcasserole = new Thing("Dead Rat Casserole", "Looks weird...");
+  Thing apurplestick = new Thing("A purple stick", "Wow! Looks cool! Never seen anything like it. Just lying on the ground!");
+  Thing MiamiSpeeder = new Thing ("Miami Speeder", "A pretty good boat. LVL: 2");
+
   public AroundTheWorldIn80Cities() {
 
     startingPlace.setPicture(getClass().getResource("washingtondc.jpg"));
@@ -107,7 +124,6 @@ storeExtension.addThing(NORTHKOREATOURISM);
 startingPlace.addExtension(storeExtension);
 
 Store storeExtnsion = new Store();
-Thing MiamiSpeeder = new Thing ("Miami Speeder", "A pretty good boat. LVL: 2");
 storeExtnsion.addThing(MiamiSpeeder);
 MiamiSpeeder.setCost(10000);
 miami.addExtension(storeExtnsion);
@@ -254,8 +270,8 @@ miami.addExtension(storeExtnsion);
  vancouver.addExtension(storevancouver);
 
  Store storeiqaluit = new Store();
- Thing walrus = new Thing("walrus", "Inuits like to eat walrus. This one was freshely caught");
- Thing freshwaterfish = new Thing("freshwater fish", "Inuits eat freshwater fish often. This one is being sold at a market.");
+ Thing walrus = new Thing("walrus", "Inuits liked to eat walrus. This one was freshely caught");
+ Thing freshwaterfish = new Thing("freshwater fish", "Inuits would eat freshwater fish often. This one is being sold at a market.");
  Thing iqaluitinuitboat = new Thing("Iqaluit Inuit Boat", "Does not go very fast, does not have a motor, but has a beautiful design, and is a great souvenir LVL: 1");
  walrus.setCost(5000);
  freshwaterfish.setCost(5000);
@@ -279,6 +295,12 @@ miami.addExtension(storeExtnsion);
  modelpyramid.setCost(5000);
  storecairo.addThing(modelpyramid);
  cairo.addExtension(storecairo);
+
+ Store storenovosibirsk = new Store();
+ apurplestick.setCost(200000);
+ storenovosibirsk.addThing(apurplestick);
+ novosibirsk.addExtension(storenovosibirsk);
+
  
 
 
@@ -389,7 +411,28 @@ jailhalls.addDirection("yard", jailyard);
 jailyard.addDirection("go back inside", jailhalls);
 jailyard.addDirection("play basketball", celltime);
 celltime.addDirection("okay okay i get it ill go back to my cell", internationaljail);
+miami.addDirection("st. augustine", Staugustine);
+charleston.addDirection("st. augustine", Staugustine);
+Staugustine.addDirection("miami", miami);
+Staugustine.addDirection("charleston", charleston);
+chicago.addDirection("D#ONT Y#OU DAR#E", thepathway);
+thepathway.addDirection("hehe hehe h e", ohgreat);
+thepathway.addDirection("THIS WAY, BACK TO WHERE YOU WERE BEFORE", chicago);
+ohgreat.addDirection("PLEASE GO BACK THIS WAY", chicago);
+ohgreat.addDirection("STUBBORN stub#born S T U B B O R N", notthere);
+notthere.addDirection("ohMY gOd y####ou ar e ST OOoPID", no);
+caracas.addDirection("bogota", bogota);
+no.addDirection("LAST WAAAAAAAAAAAAAAAAR#####NINNNNNNNNNNNGGGGGGG", territoryoflostsouls);
+startingPlace.addDirection("Washington DC Museum", Washingtonmuseum);
+Washingtonmuseum.addDirection("back", startingPlace);
+newyork.addDirection("Port of New York", portofnewyork);
+portofnewyork.addDirection("back", newyork);
+portofnewyork.addDirection("View Port Schedules", newyorkportschedules);
+newyorkportschedules.addDirection("back", portofnewyork);
+portofnewyork.addDirection("dock", newyorkdock);
+newyorkdock.addDirection(" barcelona", barcelonawaters);
 
+MiamiSpeeder.setProperty("LVL2BOAT", "true");
 }
 
 
@@ -451,8 +494,17 @@ celltime.addDirection("okay okay i get it ill go back to my cell", international
     if (player.isIn(cafeteria) && player.carries(deadratcasserole)) {
       out.println("Err... Let's just say it was not as good as that Chicago-Style Pizza...");
       player.die();
+
     }
+
+    if (player.isIn(territoryoflostsouls) && !player.carries(apurplestick)) {
+        out.println("idiot");
+        player.die();
+
+    }
+
   }
+ 
 
 
   public static void main(final String[] args) {

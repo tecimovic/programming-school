@@ -197,6 +197,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
     player.die();
     }
 
+
     if(player.isIn(captainsroom) || (player.isIn(drivinglessons)) || (player.isIn(startdriving)) || (player.isIn(crazybadstuff)) || (player.isIn(eek)) || (player.isIn(CRASH)) ){
       captain.place().removeCreature(captain);
       player.place().addCreature(captain);

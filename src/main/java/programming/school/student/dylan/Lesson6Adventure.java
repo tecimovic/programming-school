@@ -141,7 +141,7 @@ public class Lesson6Adventure implements IAdventureGame {
     forest.addThing(coin);
 
     Store storeExtension = new Store();
-    fruit.setCost(50000);
+    fruit.setCost(10000);
     Thing dylan = new Thing("dylan", "It's an extremely rare Dylan Action Figure!");
     dylan.setCost(20000);
     roman_coin.setCost(20000);

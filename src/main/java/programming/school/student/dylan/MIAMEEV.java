@@ -12,12 +12,12 @@ import programming.school.adventure.ui.GameUi;
 public class MIAMEEV implements IAdventureGame {
 
     //Create Places
-    
+
     private final Place starting_place = new Place ("Please choose your gamemode.");
 
     @Override
     public String introductionText() {
-        return "Welcome to Mantette Is Already Married Extremely Early Version. (MIAMEEV) What would you like to do?";
+        return "Welcome to Mantette Is Already Married Extremely Early Version. (MIAMEEV)";
     }
 
     @Override

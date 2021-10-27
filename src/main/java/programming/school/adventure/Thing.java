@@ -1,6 +1,8 @@
 package programming.school.adventure;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Thing implements IExaminable {
 
@@ -12,7 +14,7 @@ public class Thing implements IExaminable {
   
   private URL picture = null;
   private URL sound = null;
-
+  private Map<String, Object> properties = new HashMap<>();
 
   public Thing(final String name, final String description) {
     this.name = name;
@@ -87,4 +89,13 @@ public class Thing implements IExaminable {
   public void setPicture(URL url) {
     this.picture = url;
   }
+
+  public void setProperty(String name, Object value) {
+    this.properties.put(name, value);
+  }
+
+  public Object getProperty(String name) {
+    return this.properties.get(name);
+  }
+
 }
