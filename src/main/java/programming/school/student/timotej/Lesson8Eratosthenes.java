@@ -9,21 +9,36 @@ import programming.school.framework.IDrawingInstructions;
 public class Lesson8Eratosthenes implements IDrawingInstructions {
 
   private void plotDot(int x, int y, Graphics2D g) {
-    g.drawOval(x - 1, y - 1, 2, 2);
+    g.drawOval(x, y, 1, 1);
+  }
+
+  private int nextTry(int x) {
+    if (x < 2)
+      return x + 1;
+    if (x == 2)
+      return 3;
+    return x + 2;
   }
 
   @Override
   public void draw(Graphics2D g) {
     int MAX_X = 500;
     int MAX_Y = 500;
-    int EDGE_X = 50;
-    int EDGE_Y = 50;
-    g.setColor(Color.RED);
+    int EDGE_X = 10;
+    int EDGE_Y = 10;
 
-    for (int x = 0; x < MAX_X; x++) {
-      for (int y = 0; y < MAX_Y; y++) {
-        if (x * y > 5000)
-          plotDot(EDGE_X + x, EDGE_Y + y, g);
+    //g.setColor(Color.BLACK);
+    //g.drawRect(EDGE_X - 1, EDGE_Y - 1, MAX_X + 2, MAX_Y + 2);
+
+    g.setColor(Color.BLUE);
+    int prime = 1;
+
+    while (prime <= (MAX_X * MAX_Y)/2) {
+      prime = nextTry(prime);
+      for (int n = prime * 2; n < MAX_X * MAX_Y; n += prime) {
+        int x = n % MAX_X;
+        int y = n / MAX_Y;
+        plotDot(EDGE_X + x, EDGE_Y + y, g);
       }
     }
   }
