@@ -22,8 +22,8 @@ public class Lesson8Eratosthenes implements IDrawingInstructions {
     g.setColor(Color.RED);
 
     // if (y == 1 || x == 1 || x == 499 || y == 200)
-
-    for (int n = 2 * 2; n <= 500 * 500; n+=2) {
+    for (int prime=2; prime<MAX_Y*MAX_X;prime++)
+    for (int n = 2 * prime; n <= 500 * 500; n+=prime) {
       int x = n % 500;
       int y = n / 500;
         plotDot(EDGE_X + x, EDGE_Y + y, g);
@@ -34,5 +34,4 @@ public class Lesson8Eratosthenes implements IDrawingInstructions {
     Lesson8Eratosthenes l = new Lesson8Eratosthenes();
     new DrawingContainer(l).runContainer(args);
   }
-
 }

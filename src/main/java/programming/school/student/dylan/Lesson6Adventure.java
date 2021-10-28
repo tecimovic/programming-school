@@ -59,6 +59,8 @@ public class Lesson6Adventure implements IAdventureGame {
   // Create Creatures
   private final Creature WalkingTree = new Creature("Walking Tree",
       "It's a huge, walking tree that chases you wherever you go. If you travel 5 rooms with the tree, he will kill you.");
+  private final Creature Policeman = new Creature("Policeman",
+  "Shoots criminals he sees. Make sure you don't break the law! ");
 
   // Create Variables
   private int saddlebonuspoints = 0;
@@ -177,11 +179,11 @@ public class Lesson6Adventure implements IAdventureGame {
     forest.addCreature(WalkingTree);
     // Turn objects into money
     dollar.setAutoConvertible(true);
-    dollar.setCost(100000);
+    dollar.setCost(10000);
     goldengreatness.setAutoConvertible(true);
-    goldengreatness.setCost(500000);
+    goldengreatness.setCost(50000);
     dollar2.setAutoConvertible(true);
-    dollar2.setCost(100000);
+    dollar2.setCost(10000);
 
   }
 
