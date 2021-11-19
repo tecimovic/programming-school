@@ -19,7 +19,8 @@ public class Place {
   private final String description;
 
   private final Map<String, Place> directionsMap = new LinkedHashMap<>();
-
+  private final Map<String, Thing> directionKeys = new LinkedHashMap<>();
+  
   private final List<Thing> things = new ArrayList<>();
   private final List<Creature> creatures = new ArrayList<>();
 
@@ -82,7 +83,8 @@ public class Place {
   }
 
   public void addLockedDirection(final String direction, final Place place, Thing keyThing) {
-    
+    directionsMap.put(direction, place);
+    directionKeys.put(direction, keyThing);
   }
   
   public Thing findInExtensions(String name) {
