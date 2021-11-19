@@ -81,6 +81,10 @@ public class Place {
     directionsMap.put(direction, place);
   }
 
+  public void addLockedDirection(final String direction, final Place place, Thing keyThing) {
+    
+  }
+  
   public Thing findInExtensions(String name) {
     for ( IPlaceExtension ext: extensions ) {
       Thing t = ext.findThing(name);
