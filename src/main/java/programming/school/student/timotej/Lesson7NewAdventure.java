@@ -5,6 +5,7 @@ import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
+import programming.school.adventure.Thing;
 import programming.school.adventure.ui.GameUi;
 
 public class Lesson7NewAdventure implements IAdventureGame {
@@ -24,6 +25,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place littleBathroom = new Place("You are in a little bathroom on the first floor.");
   private final Place playroom = new Place("You are in a playroom. It's very messy.");
   private final Place office = new Place("You are in the office. Daddy is sitting at his desk and growling.");
+  private final Place closetofdoom = new Place("You are in the evil place where daddy locks peoples tablets and laptops and wiis");
 
   // 2nd floor
   private final Place upstairsHallway = new Place("You are upstairs.");
@@ -35,6 +37,9 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place guestbedroom = new Place("You are in a guest bedroom.");
   private final Place attic = new Place("You are in the attic.");
   private final Place upstairsDeck = new Place("Upper deck.");
+
+  //Things
+  private final Thing obsidiankey = new Thing("Obsidian Key", "The most powerful and almighty thing in the universe");
 
   // Creatures
   private final Creature fluffy = new Creature("Fluffy",
@@ -119,6 +124,7 @@ public class Lesson7NewAdventure implements IAdventureGame {
 
     office.addDirection("out", deck);
     office.addDirection("playroom", playroom);
+    office.addLockedDirection("closet of doom", closetofdoom, obsidiankey);
 
     basement.addDirection("upstairs", littleHallway);
     basement.addDirection("pool", poolroom);

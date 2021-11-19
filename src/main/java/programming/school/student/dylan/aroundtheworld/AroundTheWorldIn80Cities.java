@@ -61,7 +61,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place jailhalls = new Place("The hallways of the jail.");
   private Place cafeteria = new Place("Where the jail serves their 'gourmet' food");
   private Place jailyard = new Place("You are in the yard of the jail. This is where you exercise.");
-  private Place celltime = new Place("Jail Guard: ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. I repeat: ITS CELL TIME GO BACK TO YOUR CELL. Yes, I said ITS CELL TIME GO BACK TO YOUR CELL. Yup. ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Are you even listening? ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. So, you're not listening? Alright, ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Aand... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Ooh... Fun fact... The entire world's population could fit inside Los Angeles... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL... Ooh... Another fun fact... North Korea and Cuba are the only places you can't buy Coca-Cola... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ...That's it.");
+  //private Place celltime = new Place("Jail Guard: ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. I repeat: ITS CELL TIME GO BACK TO YOUR CELL. Yes, I said ITS CELL TIME GO BACK TO YOUR CELL. Yup. ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Are you even listening? ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. So, you're not listening? Alright, ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Aand... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL. Ooh... Fun fact... The entire world's population could fit inside Los Angeles... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL... Ooh... Another fun fact... North Korea and Cuba are the only places you can't buy Coca-Cola... ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ITS CELL TIME GO BACK TO YOUR CELL ...That's it.");
   private Place Staugustine = new Place ("Ben's Hometown and America's oldest city");
   private Place thepathway = new Place ("you dont know what you are doing");
   private Place ohgreat = new Place ("this place is still under construction");
@@ -75,6 +75,9 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place newyorkdock = new Place ("You are in a dock. This is your final warning to decide your route, and make sure you can accomplish the route. ");
   private Place barcelona = new Place ("You are in a beautiful, old, and 2nd largest in Spain, Barcelona.");
   private Place barcelonawaters = new Place("You see Barcelona! After hours and hours of steering, yessss!!!!");
+  private Place iqaluitbeach = new Place("You are in the Iqaluit Beach.");
+  private Place iqaluitswimming = new Place("You are swimming in Iqaluit. Brr!!! It is cold!");
+  private Place jailtelephoneroom = new Place("A room with telephones... but none of them work.");
   
 
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
@@ -83,6 +86,11 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   Thing deadratcasserole = new Thing("Dead Rat Casserole", "Looks weird...");
   Thing apurplestick = new Thing("A purple stick", "Wow! Looks cool! Never seen anything like it. Just lying on the ground!");
   Thing MiamiSpeeder = new Thing ("Miami Speeder", "A pretty good boat. LVL: 2");
+  Thing eternalheater = new Thing("Eternal Heater", "Helps you survive colder places!");
+  Thing jailtelephone1 = new Thing("Broken Telephone", "you can't call anybody with it");
+  Thing jailtelephone2 = new Thing("Broken Telephone", "you can't call anybody with it");
+  Thing jailtelephone3 = new Thing("Broken Telephone", "you can't call anybody with it");
+  Thing benedictarnoldwasatraitor = new Thing("A book titled Benedict Arnold Was a Traitor", "Why not buy it?");
 
   public AroundTheWorldIn80Cities() {
 
@@ -134,7 +142,11 @@ miami.addExtension(storeExtnsion);
  Thing ahundreddollarbill = new Thing("100 dollar bill", "found it on top of a statue");
  hishead.addThing(ahundreddollarbill);
 
+ Thing twohundreddollarbill = new Thing("200 dollar bill", "found while swimming in IQALUIT!");
+ iqaluitswimming.addThing(twohundreddollarbill);
+
  cafeteria.addThing(deadratcasserole);
+
 
  Store storehavana = new Store();
  Thing Cigarsandrum = new Thing("Cigars and Rum","What Cuba is known for.");
@@ -276,18 +288,22 @@ miami.addExtension(storeExtnsion);
  walrus.setCost(5000);
  freshwaterfish.setCost(5000);
  iqaluitinuitboat.setCost(5000);
+ eternalheater.setCost(10000);
  storeiqaluit.addThing(walrus);
  storeiqaluit.addThing(freshwaterfish);
  storeiqaluit.addThing(iqaluitinuitboat);
+ storeiqaluit.addThing(eternalheater);
  iqaluit.addExtension(storeiqaluit);
 
  Store storequebec = new Store();
  Thing poutine = new Thing("poutine", "Probably the most famous Canadian food.");
  Thing coureurduquébec = new Thing("Coureur du Quebec", "A cool, sparkely boat. LVL: 2");
+ benedictarnoldwasatraitor.setCost(5000);
  poutine.setCost(5000);
  coureurduquébec.setCost(15000);
  storequebec.addThing(poutine);
  storequebec.addThing(coureurduquébec);
+ storequebec.addThing(benedictarnoldwasatraitor);
  quebeccity.addExtension(storequebec);
  
  Store storecairo = new Store();
@@ -309,6 +325,8 @@ onehundredollarbill.setAutoConvertible(true);
 onehundredollarbill.setCost(10000);
 ahundreddollarbill.setAutoConvertible(true);
 ahundreddollarbill.setCost(10000);
+twohundreddollarbill.setAutoConvertible(true);
+twohundreddollarbill.setCost(20000);
 
 
 //link places
@@ -409,8 +427,6 @@ jailhalls.addDirection("cafeteria", cafeteria);
 cafeteria.addDirection("hallways", jailhalls);
 jailhalls.addDirection("yard", jailyard);
 jailyard.addDirection("go back inside", jailhalls);
-jailyard.addDirection("play basketball", celltime);
-celltime.addDirection("okay okay i get it ill go back to my cell", internationaljail);
 miami.addDirection("st. augustine", Staugustine);
 charleston.addDirection("st. augustine", Staugustine);
 Staugustine.addDirection("miami", miami);
@@ -422,7 +438,7 @@ ohgreat.addDirection("PLEASE GO BACK THIS WAY", chicago);
 ohgreat.addDirection("STUBBORN stub#born S T U B B O R N", notthere);
 notthere.addDirection("ohMY gOd y####ou ar e ST OOoPID", no);
 caracas.addDirection("bogota", bogota);
-no.addDirection("LAST WAAAAAAAAAAAAAAAAR#####NINNNNNNNNNNNGGGGGGG", territoryoflostsouls);
+no.addDirection("LAST WAAAAAR#####NINNNNGGGGG", territoryoflostsouls);
 startingPlace.addDirection("Washington DC Museum", Washingtonmuseum);
 Washingtonmuseum.addDirection("back", startingPlace);
 newyork.addDirection("Port of New York", portofnewyork);
@@ -431,6 +447,13 @@ portofnewyork.addDirection("View Port Schedules", newyorkportschedules);
 newyorkportschedules.addDirection("back", portofnewyork);
 portofnewyork.addDirection("dock", newyorkdock);
 newyorkdock.addDirection(" barcelona", barcelonawaters);
+iqaluit.addDirection("iqaluit beach", iqaluitbeach);
+iqaluitbeach.addDirection("back", iqaluit);
+iqaluitbeach.addDirection("go swimming", iqaluitswimming);
+iqaluitswimming.addDirection("back", iqaluitbeach);
+Washingtonmuseum.addDirection("grab a painting or two, for the road, ya know", internationaljail);
+cafeteria.addDirection("telephone room", jailtelephoneroom);
+jailtelephoneroom.addDirection("cafeteria", cafeteria);
 
 MiamiSpeeder.setProperty("LVL2BOAT", "true");
 }
@@ -503,7 +526,24 @@ MiamiSpeeder.setProperty("LVL2BOAT", "true");
 
     }
 
+
+    if (player.isIn(iqaluitswimming)  && !player.carries(eternalheater)) {
+        out.println("You froze to death");
+        player.die();
+
+
+    }
+
+    if (player.carries(benedictarnoldwasatraitor)) {
+      out.println("Benedict Arnold's ghost was offended and murdered you.");
+      player.die();
+    }
+
   }
+
+
+    
+
  
 
 
