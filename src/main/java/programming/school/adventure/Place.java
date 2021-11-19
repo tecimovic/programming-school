@@ -124,6 +124,10 @@ public class Place {
     return directionsMap.get(direction);
   }
 
+  public Thing findDirectionKey(final String direction) {
+    return directionKeys.get(direction);
+  }
+  
   public void removeThing(final Thing t) {
     things.remove(t);
   }

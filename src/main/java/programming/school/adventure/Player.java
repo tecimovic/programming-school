@@ -67,7 +67,7 @@ public class Player {
   private void lookCommand() {
     OutUtil.describePlace(out, place);
   }
-  
+
   // Makes player go to a destination with a given name. Returns true if
   // succesful.
   public void go(final String name) {
@@ -77,8 +77,14 @@ public class Player {
       sb.append(OutUtil.toString(place().directions()));
       out.println(sb.toString());
     } else {
-      if (game.canPlayerMove(this, place, newPlace, out)) {
-        this.place = newPlace;
+      Thing key = place.findDirectionKey(name);
+      if (key != null && !inventory.contains(key)) {
+        out.println("You can't go there, because you don't have the "
+                    + key.description());
+      } else {
+        if (game.canPlayerMove(this, place, newPlace, out)) {
+          this.place = newPlace;
+        }
       }
     }
   }
@@ -215,12 +221,13 @@ public class Player {
   public void take(String name) {
     Thing thing = place.findThing(name);
     if (thing == null) {
-      if ( place().hasThings() ) {
+      if (place().hasThings()) {
         List<String> things = new ArrayList<>();
-        for ( Thing t: place().things() ) 
+        for (Thing t : place().things())
           things.add(t.name());
-        out.println("You can't take this. Valid things to take are: " + OutUtil.toString(things));
-        
+        out.println("You can't take this. Valid things to take are: "
+                    + OutUtil.toString(things));
+
       } else {
         out.println("There is nothing to take here.");
       }
@@ -248,13 +255,13 @@ public class Player {
     if (t == null) {
       out.println("I can't see " + argument + " here.");
     } else {
-      
+
       if (out.supportsImages() && t.hasPicture())
         out.image(t.picture());
 
       if (out.supportsSound() && t.hasSound())
         out.sound(t.sound());
-      
+
       String desc = t.description();
       if (desc == null) {
         out.println("There is nothing special about the " + argument);
@@ -273,10 +280,10 @@ public class Player {
 
   public void help() {
     List<String> validCommands = new ArrayList<>();
-    for ( Command c: Command.values() ) {
+    for (Command c : Command.values()) {
       validCommands.add(c.name().toLowerCase());
     }
-    for ( String s: place.extensionCommands() ) {
+    for (String s : place.extensionCommands()) {
       validCommands.add(s);
     }
     StringBuilder sb = new StringBuilder("Valid commands are: ");
