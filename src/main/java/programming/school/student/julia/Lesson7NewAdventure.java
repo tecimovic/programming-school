@@ -6,6 +6,7 @@ import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
 import programming.school.adventure.Player;
 import programming.school.adventure.Store;
+import programming.school.adventure.Thing;
 import programming.school.adventure.ui.GameUi;
 
 public class Lesson7NewAdventure implements IAdventureGame {
@@ -20,9 +21,14 @@ public class Lesson7NewAdventure implements IAdventureGame {
   private final Place train_tracks = new Place("a normal train track");
   private final Place a_street_in_the_middle_of_nowhere = new Place("just what it sounds like...");
   private final Place cave = new Place("a dark and eerie cave a couple miles off the highway ");
+  private final Place ticket_booth = new Place("you can buy your tickets here.");
 
   // CRRRRRRRREEEEEEEEEECCCCCCCCCCCCCCHHHHHHHHHHHHHHHHEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRZZZZZZZZZZZZZZZZZ
   private final Creature puppy = new Creature("puppy","your pet golden retriever name: ruff age: 5 months");
+
+  //Make Dem Tings
+private final Thing train_ticket = new Thing("A Ticket For The Train");
+
 
   // link places
   public Lesson7NewAdventure()
@@ -31,6 +37,8 @@ public class Lesson7NewAdventure implements IAdventureGame {
     train_station.addDirection("south", highway);
     train_station.addDirection("east", dunkin_donuts);
     train_station.addDirection("somewhere dumb", train_tracks);
+    train_station.addLockedDirection("into the train", train, train_ticket);
+  
     highway.addDirection("north", train_station);
     highway.addDirection("south", vautrinot_avenue);
     highway.addDirection("west", exit_27);
@@ -41,11 +49,14 @@ public class Lesson7NewAdventure implements IAdventureGame {
     exit_27.addDirection("east", highway);
     exit_27.addDirection("west", a_street_in_the_middle_of_nowhere);
     a_street_in_the_middle_of_nowhere.addDirection("east", cave);
-
     Store storeExtension = new Store();
 
     // Add place extensions
     dunkin_donuts.addExtension(storeExtension);
+    ticket_booth.addExtension(storeExtension);
+
+    //storestuffadd
+     ticket_booth.addThing(train_ticket);
   }
 
   // stuff
