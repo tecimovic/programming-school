@@ -70,14 +70,20 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place territoryoflostsouls = new Place ("You are in a strange room. 'Hi there' a man greets you. Then he gasps and stares in awe at your purple stick that you found in Novosibirsk. 'THE KEY!' he yells. 'HOW DID YOU FIND IT? WE HID IT IN THE FORESTS NEXT TO SOME CITY IN THE MIDDLE OF NOWHERE! welcome to the Territory of Lost Souls! You were the first ever not lost soul here, cuz you found the key.' You see a crystal on a table. 'What is that?' you ask. 'Oh.' he says. 'Thats the crystal of despair. It turns people who touch it into lost souls, but please don't take it.' You are thinking. Maybe you could pick it up using a spork? You see one lying on the floor. Or you could just leave it. ");
   private Place novosibirsk = new Place ("You are in the largest city in Siberia, Novosibirsk");
   private Place Washingtonmuseum = new Place ("You are in a museum in Washington DC.");
-  private Place portofnewyork = new Place ("You are in a huge dock, and you see your boat right there. Before going to the dock, go to the Port Schedules and make sure your boat is appropriate for the route.");
-  private Place newyorkportschedules = new Place ("LVL 1: BC LVL 2: LA, LG LVL 3: CT, SP");
+  private Place portofnewyork = new Place ("You are in a huge dock, and you see your boat right there. Before going to the dock, go to the Port Schedules and make sure your boat is appropriate for the route. You can also go straight to LA with the NY-LA ferry, or strait to Rio de Janerio.");
+  private Place newyorkportschedules = new Place ("All it says is this: It would take a strong boat to traverse the North Atlantic, and come to Rotterdam, and a boat must be good at withstanding heat to visit Lagos.");
   private Place newyorkdock = new Place ("You are in a dock. This is your final warning to decide your route, and make sure you can accomplish the route. ");
   private Place barcelona = new Place ("You are in a beautiful, old, and 2nd largest in Spain, Barcelona.");
-  private Place barcelonawaters = new Place("You see Barcelona! After hours and hours of steering, yessss!!!!");
   private Place iqaluitbeach = new Place("You are in the Iqaluit Beach.");
   private Place iqaluitswimming = new Place("You are swimming in Iqaluit. Brr!!! It is cold!");
   private Place jailtelephoneroom = new Place("A room with telephones... but none of them work.");
+  private Place portoflosangeles = new Place("You are in the port of Los Angeles. Go to the LA-NY ferry to go straight to New York City.");
+  private Place northatlantic = new Place("You wish there were planes in this game. The waves are huge.");
+  private Place portofrotterdam = new Place("You are in a huge port, the biggest in Europe!.");
+  private Place rotterdamdock = new Place("Let me guess, you just arrived from New York.");
+  private Place riodejanerio = new Place("You are in Brazil's most populous city, Rio De Janeiro.");
+  private Place portofriodejanerio = new Place("This port can take you to New York.");
+  private Place northatlanticthesecond = new Place("...");
   
 
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
@@ -90,7 +96,8 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   Thing jailtelephone1 = new Thing("Broken Telephone", "you can't call anybody with it");
   Thing jailtelephone2 = new Thing("Broken Telephone", "you can't call anybody with it");
   Thing jailtelephone3 = new Thing("Broken Telephone", "you can't call anybody with it");
-  Thing benedictarnoldwasatraitor = new Thing("A book titled Benedict Arnold Was a Traitor", "Why not buy it?");
+  Thing benedictarnoldwasatraitor = new Thing("A book titled The horrible benedict arnold", "Why not buy it?");
+  Thing newyorkoceanrunner = new Thing("New York Ocean Runner", "An extremely strong boat!");
 
   public AroundTheWorldIn80Cities() {
 
@@ -248,7 +255,6 @@ miami.addExtension(storeExtnsion);
 
  Store storenewyork = new Store();
  Thing cheesecake = new Thing("cheesecake", "a New York style cheesecake");
- Thing newyorkoceanrunner = new Thing("New York Ocean Runner", "A extremely good boat. LVL: 3");
  cheesecake.setCost(5000);
  newyorkoceanrunner.setCost(15000);
  storenewyork.addThing(cheesecake);
@@ -282,14 +288,14 @@ miami.addExtension(storeExtnsion);
  vancouver.addExtension(storevancouver);
 
  Store storeiqaluit = new Store();
- Thing walrus = new Thing("walrus", "Inuits liked to eat walrus. This one was freshely caught");
+ Thing fakewalrus = new Thing("fake walrus", "Inuits liked to eat walrus. This one is not a real walrus because they are endangered");
  Thing freshwaterfish = new Thing("freshwater fish", "Inuits would eat freshwater fish often. This one is being sold at a market.");
  Thing iqaluitinuitboat = new Thing("Iqaluit Inuit Boat", "Does not go very fast, does not have a motor, but has a beautiful design, and is a great souvenir LVL: 1");
- walrus.setCost(5000);
+ fakewalrus.setCost(5000);
  freshwaterfish.setCost(5000);
  iqaluitinuitboat.setCost(5000);
  eternalheater.setCost(10000);
- storeiqaluit.addThing(walrus);
+ storeiqaluit.addThing(fakewalrus);
  storeiqaluit.addThing(freshwaterfish);
  storeiqaluit.addThing(iqaluitinuitboat);
  storeiqaluit.addThing(eternalheater);
@@ -377,13 +383,11 @@ lapaz.addDirection("santa cruz de la sierra", santacruzdelasierra);
 lapaz.addDirection("cusco", cusco);
 asunción.addDirection("cusco", cusco);
 cusco.addDirection("la paz", lapaz);
-cusco.addDirection("iquitos", warning);
-warning.addDirection("nevermind", cusco);
-warning.addDirection("go", iquitos);
+cusco.addLockedDirection("iquitos", iquitos, GuayaquilJUNGLEBOAT);
 cusco.addDirection("caracas", caracas);
 iquitos.addDirection("caracas", caracas);
 caracas.addDirection("cusco", cusco);
-caracas.addDirection("iquitos", warning);
+caracas.addLockedDirection("iquitos", iquitos, GuayaquilJUNGLEBOAT);
 cusco.addDirection("caracas", caracas);
 startingPlace.addDirection("new york city", newyork);
 newyork.addDirection("washington DC", startingPlace);
@@ -443,10 +447,9 @@ startingPlace.addDirection("Washington DC Museum", Washingtonmuseum);
 Washingtonmuseum.addDirection("back", startingPlace);
 newyork.addDirection("Port of New York", portofnewyork);
 portofnewyork.addDirection("back", newyork);
-portofnewyork.addDirection("View Port Schedules", newyorkportschedules);
+portofnewyork.addDirection("view port schedules", newyorkportschedules);
 newyorkportschedules.addDirection("back", portofnewyork);
 portofnewyork.addDirection("dock", newyorkdock);
-newyorkdock.addDirection(" barcelona", barcelonawaters);
 iqaluit.addDirection("iqaluit beach", iqaluitbeach);
 iqaluitbeach.addDirection("back", iqaluit);
 iqaluitbeach.addDirection("go swimming", iqaluitswimming);
@@ -454,6 +457,23 @@ iqaluitswimming.addDirection("back", iqaluitbeach);
 Washingtonmuseum.addDirection("grab a painting or two, for the road, ya know", internationaljail);
 cafeteria.addDirection("telephone room", jailtelephoneroom);
 jailtelephoneroom.addDirection("cafeteria", cafeteria);
+portofnewyork.addDirection("NY-LA ferry", portoflosangeles);
+portoflosangeles.addDirection("back", losangeles);
+portoflosangeles.addDirection("LA-NY ferry", portofnewyork);
+losangeles.addDirection("Port of Los Angeles", portoflosangeles);
+newyorkdock.addDirection("voyage to rotterdam", northatlantic);
+newyorkdock.addDirection("cancel voyage", portofnewyork);
+northatlantic.addDirection("keep going!!", rotterdamdock);
+rotterdamdock.addDirection("back", portofrotterdam);
+rotterdamdock.addDirection("voyage to new york", northatlanticthesecond);
+portofrotterdam.addDirection("dock", rotterdamdock);
+sanfrancisco.addDirection("los angeles", losangeles);
+portofnewyork.addDirection("NY-RDJ ferry", portofriodejanerio);
+portofriodejanerio.addDirection("RDJ-NY ferry", portofnewyork);
+portofriodejanerio.addDirection("back", riodejanerio);
+riodejanerio.addDirection("Port of Rio de Janerio", portofriodejanerio);
+riodejanerio.addDirection("montevideo", montevideo);
+montevideo.addDirection("rio de janerio", riodejanerio);
 
 MiamiSpeeder.setProperty("LVL2BOAT", "true");
 }
@@ -493,6 +513,9 @@ MiamiSpeeder.setProperty("LVL2BOAT", "true");
   }
 
   // Be CAREFUL with my computer
+
+  // AND STOP TICKLING ME!!
+
   @Override
   public void evaluateState(final Player player, final IOutput out) {
     if (player.isIn(lapaz) && !player.carries(cannedair)) {
@@ -536,6 +559,17 @@ MiamiSpeeder.setProperty("LVL2BOAT", "true");
 
     if (player.carries(benedictarnoldwasatraitor)) {
       out.println("Benedict Arnold's ghost was offended and murdered you.");
+      player.die();
+
+    }
+
+    if (player.isIn(northatlantic)  && !player.carries(newyorkoceanrunner)) {
+      out.println("your boat sunk before you made it");
+      player.die();
+    }
+
+    if (player.isIn(northatlanticthesecond)  && !player.carries(newyorkoceanrunner)) {
+      out.println("Why did you drop the ocean runner???");
       player.die();
     }
 
