@@ -1,5 +1,6 @@
 package programming.school.student.timotej;
 
+import programming.school.adventure.Creature;
 import programming.school.adventure.IAdventureGame;
 import programming.school.adventure.IOutput;
 import programming.school.adventure.Place;
@@ -13,10 +14,17 @@ public class Lesson9Mantette implements IAdventureGame {
     private Place spinnerLand = new Place("Kaching, looks like Las Vegas in here! Wowzeee!!!!");
     private Place goblinLand = new Place("Horror show of smellyness and evilness.");
 
+    private Creature ogre = new Creature("Ogre",
+            "Smelly, wompy, horrible, insane, dangerous ogre. You hate him. And he hates you.");
+    private Creature goblin = new Creature("goblin", "The most horrible, mean, evil goblin one can find.");
+
     public Lesson9Mantette() {
         hole.addDirection("Blue Door", ogreLand);
         hole.addDirection("Red Door", spinnerLand);
         hole.addDirection("Green Door", goblinLand);
+
+        ogreLand.addCreature(ogre);
+        goblinLand.addCreature(goblin);
     }
 
     @Override
@@ -41,6 +49,9 @@ public class Lesson9Mantette implements IAdventureGame {
 
     @Override
     public void evaluateState(Player player, IOutput out) {
+        if (player.place() == goblinLand) {
+            player.die();
+        }
     }
 
     @Override
