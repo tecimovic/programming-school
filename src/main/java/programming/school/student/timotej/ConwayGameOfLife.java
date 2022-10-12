@@ -1,6 +1,13 @@
-package programming.school.cell;
+package programming.school.student.timotej;
+
+import programming.school.cell.ICellularRules;
 
 public class ConwayGameOfLife implements ICellularRules {
+
+  @Override
+  public String name() {
+    return "Conway Game of Life";
+  }
 
   @Override
   public int width() {

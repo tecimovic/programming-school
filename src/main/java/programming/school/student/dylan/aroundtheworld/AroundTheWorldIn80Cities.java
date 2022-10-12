@@ -84,7 +84,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place riodejanerio = new Place("You are in Brazil's most populous city, Rio De Janeiro.");
   private Place portofriodejanerio = new Place("This port can take you to New York.");
   private Place northatlanticthesecond = new Place("...");
-  
+
 
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
   Thing GuayaquilJUNGLEBOAT = new Thing("Guayaquil JUNGLEBOAT", "The only boat in the game that can take you to Iquitos. LVL: 4");
@@ -129,7 +129,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
     iqaluit.setPicture(getClass().getResource("iqaluit.jpg"));
     quebeccity.setPicture(getClass().getResource("quebeccity.jpg"));
     charleston.setPicture(getClass().getResource("charleston.jpg"));
-    
+
     Store storeExtension = new Store();
 Thing NORTHKOREATOURISM = new Thing ("North Korea Tourism Access","Go to North Korea and leave.");
 cannedair.setCost(5000);
@@ -311,7 +311,7 @@ miami.addExtension(storeExtnsion);
  storequebec.addThing(coureurduquébec);
  storequebec.addThing(benedictarnoldwasatraitor);
  quebeccity.addExtension(storequebec);
- 
+
  Store storecairo = new Store();
  Thing modelpyramid = new Thing("model pyramid", "a model of a pyramid");
  modelpyramid.setCost(5000);
@@ -323,7 +323,7 @@ miami.addExtension(storeExtnsion);
  storenovosibirsk.addThing(apurplestick);
  novosibirsk.addExtension(storenovosibirsk);
 
- 
+
 
 
 //turnobjectsintomoney
@@ -526,7 +526,7 @@ MiamiSpeeder.setProperty("LVL2BOAT", "true");
         out.println("They were beautiful mountains... AAAAAAAAAAAAAAAAAAAAAAAAAAA A YETI!!! The yeti ate you.");
         player.die();
 
-        
+
     }
     if (player.isIn(iquitos) && !player.carries(GuayaquilJUNGLEBOAT)) {
       out.println("I warned you...");
@@ -576,9 +576,9 @@ MiamiSpeeder.setProperty("LVL2BOAT", "true");
   }
 
 
-    
 
- 
+
+
 
 
   public static void main(final String[] args) {

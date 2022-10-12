@@ -33,17 +33,18 @@ public class CellularAutomataUi extends JFrame {
 
   private static enum MenuMeta {
     FILE_QUIT("File", "Quit", (ui) -> {
-      if (ui.yesOrNo("Confirm restart",
-          "This will end the current game.\n\nAre you sure you wish to quit?"))
+      if (ui.yesOrNo("Confirm restart", "This will end the current game.\n\nAre you sure you wish to quit?"))
         ui.dispatchEvent(new WindowEvent(ui, WindowEvent.WINDOW_CLOSING));
-    }),
-
-    GAME_GAMEOFLIFE("Automaton", "Game of life", (ui) -> {
-      ui.setRules(new ConwayGameOfLife());
     }),
 
     GAME_RESTART("Automaton", "One Step", (ui) -> {
       ui.oneStep();
+    }),
+    GAME_START("Automaton", "Start", (ui) -> {
+      ui.runAutomata();
+    }),
+    GAME_STOP("Automaton", "Stop", (ui) -> {
+      ui.stopAutomata();
     }),
 
     ;
@@ -51,6 +52,7 @@ public class CellularAutomataUi extends JFrame {
     private String topMenu;
     private String subMenu;
     private Consumer<CellularAutomataUi> consumer;
+
     MenuMeta(String top, String submenu, Consumer<CellularAutomataUi> consumer) {
       this.topMenu = top;
       this.subMenu = submenu;
@@ -83,6 +85,11 @@ public class CellularAutomataUi extends JFrame {
   private ICellularRules rules = new ICellularRules() {
 
     @Override
+    public String name() {
+      return "Default rule";
+    }
+
+    @Override
     public int width() {
       return 10;
     }
@@ -94,7 +101,7 @@ public class CellularAutomataUi extends JFrame {
 
     @Override
     public int newState(int oldState, int[] neigbors) {
-      return 1-oldState;
+      return 1 - oldState;
     }
 
     @Override
@@ -105,12 +112,12 @@ public class CellularAutomataUi extends JFrame {
 
   private CellularField cf = new CellularField(rules);
 
-  public CellularAutomataUi() {
+  public CellularAutomataUi(ICellularRules... rules) {
     super("Cellular Automata");
 
     initComponents();
 
-    setJMenuBar(createMenuBar());
+    setJMenuBar(createMenuBar(rules));
 
     setSize(WIDTH, HEIGHT);
     setLocation(100, 100);
@@ -118,11 +125,8 @@ public class CellularAutomataUi extends JFrame {
   }
 
   public boolean yesOrNo(String title, String text) {
-    int result = JOptionPane.showConfirmDialog(this,
-                                               text,
-                                               title,
-                                               JOptionPane.YES_NO_OPTION,
-                                               JOptionPane.QUESTION_MESSAGE);
+    int result = JOptionPane.showConfirmDialog(this, text, title, JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE);
     return (result == JOptionPane.YES_OPTION);
   }
 
@@ -137,7 +141,7 @@ public class CellularAutomataUi extends JFrame {
     panel.repaint();
   }
 
-  private JMenuBar createMenuBar() {
+  private JMenuBar createMenuBar(ICellularRules... rules) {
     JMenuBar bar = new JMenuBar();
     Map<String, JMenu> topMenus = new HashMap<>();
 
@@ -159,32 +163,43 @@ public class CellularAutomataUi extends JFrame {
       });
       jm.add(mi);
     }
+
+    for ( ICellularRules r: rules ) {
+      JMenu jm = topMenus.get("Automaton");
+      JMenuItem mi = new JMenuItem(r.name());
+      mi.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          setRules(r);
+        }
+      });
+      jm.add(mi);
+    }
     return bar;
   }
-
 
   private Font createGameFont() {
     return new Font("Comic Sans MS", Font.BOLD, 18);
   }
 
   private void redraw(Graphics g, int w, int h) {
-    int boxWidth = w/rules.width();
-    int boxHeight = h/rules.height();
+    int boxWidth = w / rules.width();
+    int boxHeight = h / rules.height();
 
-    for ( int x = 0; x<rules.width(); x++ ) {
-      int xCoord = (w*x)/rules.width();
-      for ( int y = 0; y<rules.height(); y++ ) {
-        int yCoord = (h*y)/rules.height();
+    for (int x = 0; x < rules.width(); x++) {
+      int xCoord = (w * x) / rules.width();
+      for (int y = 0; y < rules.height(); y++) {
+        int yCoord = (h * y) / rules.height();
         g.setColor(Color.LIGHT_GRAY);
         g.drawRect(xCoord, yCoord, boxWidth, boxHeight);
-        switch(cf.value(x, y)) {
+        switch (cf.value(x, y)) {
         case 0:
           g.setColor(Color.WHITE);
-          g.fillRect(xCoord+1, yCoord+1, boxWidth-1, boxHeight-1);
+          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
           break;
         case 1:
           g.setColor(Color.RED);
-          g.fillRect(xCoord+1, yCoord+1, boxWidth-1, boxHeight-1);
+          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
           break;
         }
       }
@@ -192,8 +207,8 @@ public class CellularAutomataUi extends JFrame {
   }
 
   private void fieldPressed(int x, int y, boolean on) {
-    if ( on ) {
-      cf.setValue(x,y,1);
+    if (on) {
+      cf.setValue(x, y, 1);
     } else {
       cf.setValue(x, y, 0);
     }
@@ -203,13 +218,16 @@ public class CellularAutomataUi extends JFrame {
   private Thread t = null;
 
   private void runAutomata() {
-    if ( t == null ) {
+    if (t == null) {
       t = new Thread() {
         @Override
         public void run() {
-          while(true) {
+          while (true) {
             oneStep();
-            try { sleep(100); } catch (Exception e) {}
+            try {
+              sleep(100);
+            } catch (Exception e) {
+            }
           }
         }
       };
@@ -218,7 +236,7 @@ public class CellularAutomataUi extends JFrame {
   }
 
   private void stopAutomata() {
-    if ( t != null  ) {
+    if (t != null) {
       t.stop();
       t = null;
     }
@@ -228,7 +246,7 @@ public class CellularAutomataUi extends JFrame {
     Font newFont = createGameFont();
 
     buttonPanel = new JPanel();
-    buttonPanel.setLayout(new GridLayout(1,2));
+    buttonPanel.setLayout(new GridLayout(1, 2));
 
     JButton bRun = new JButton();
     bRun.setText("Run");
@@ -248,8 +266,18 @@ public class CellularAutomataUi extends JFrame {
       }
     });
 
+    JButton bOne = new JButton();
+    bOne.setText("One step");
+    bOne.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        oneStep();
+      }
+    });
+
     buttonPanel.add(bRun);
     buttonPanel.add(bStop);
+    buttonPanel.add(bOne);
 
     panel = new JPanel() {
 
@@ -268,9 +296,9 @@ public class CellularAutomataUi extends JFrame {
         Dimension d = panel.getSize();
         int x = e.getX();
         int y = e.getY();
-        int i = (x*rules.width()) / d.width;
-        int j = (y*rules.height()) / d.height;
-        fieldPressed(i,j, isButton1);
+        int i = (x * rules.width()) / d.width;
+        int j = (y * rules.height()) / d.height;
+        fieldPressed(i, j, isButton1);
       }
     });
     panel.addMouseListener(new MouseAdapter() {
@@ -280,9 +308,9 @@ public class CellularAutomataUi extends JFrame {
         Dimension d = panel.getSize();
         int x = e.getX();
         int y = e.getY();
-        int i = (x*rules.width()) / d.width;
-        int j = (y*rules.height()) / d.height;
-        fieldPressed(i,j, isButton1);
+        int i = (x * rules.width()) / d.width;
+        int j = (y * rules.height()) / d.height;
+        fieldPressed(i, j, isButton1);
       }
 
     });
