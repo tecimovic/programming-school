@@ -39,6 +39,14 @@ public class CellularField {
     }
   }
 
+  public void clear() {
+    for ( int i=1; i<=w; i++ ) {
+      for ( int j=1; j<=h; j++ ) {
+        gen1[i][j] = gen2[i][j] = rules.initialValue(i, j);
+      }
+    }
+  }
+
   public void setValue(int x, int y, int value) {
     if ( first )  {
       gen1[x+1][y+1] = value;

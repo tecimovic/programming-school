@@ -33,10 +33,12 @@ public class CellularAutomataUi extends JFrame {
 
   private static enum MenuMeta {
     FILE_QUIT("File", "Quit", (ui) -> {
-      if (ui.yesOrNo("Confirm restart", "This will end the current game.\n\nAre you sure you wish to quit?"))
+      if (ui.yesOrNo("Confirm restart", "This will end the current automata.\n\nAre you sure you wish to quit?"))
         ui.dispatchEvent(new WindowEvent(ui, WindowEvent.WINDOW_CLOSING));
     }),
-
+    GAME_CLEAR("Automaton", "Clear", (ui) -> {
+      ui.clearAutomata();
+    }),
     GAME_RESTART("Automaton", "One Step", (ui) -> {
       ui.oneStep();
     }),
@@ -164,8 +166,10 @@ public class CellularAutomataUi extends JFrame {
       jm.add(mi);
     }
 
+    JMenu jm = topMenus.get("Automaton");
+    jm.addSeparator();
+
     for ( ICellularRules r: rules ) {
-      JMenu jm = topMenus.get("Automaton");
       JMenuItem mi = new JMenuItem(r.name());
       mi.addActionListener(new ActionListener() {
         @Override
@@ -240,6 +244,10 @@ public class CellularAutomataUi extends JFrame {
       t.stop();
       t = null;
     }
+  }
+
+  private void clearAutomata() {
+    cf.clear();
   }
 
   private void initComponents() {
