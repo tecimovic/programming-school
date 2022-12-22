@@ -169,7 +169,7 @@ public class CellularAutomataUi extends JFrame {
     JMenu jm = topMenus.get("Automaton");
     jm.addSeparator();
 
-    for ( ICellularRules r: rules ) {
+    for (ICellularRules r : rules) {
       JMenuItem mi = new JMenuItem(r.name());
       mi.addActionListener(new ActionListener() {
         @Override
@@ -197,34 +197,41 @@ public class CellularAutomataUi extends JFrame {
         g.setColor(Color.LIGHT_GRAY);
         g.drawRect(xCoord, yCoord, boxWidth, boxHeight);
         switch (cf.value(x, y)) {
-        case 0:
-          g.setColor(Color.WHITE);
-          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
-          break;
-        case 1:
-          g.setColor(Color.RED);
-          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
-          break;
-        case 2:
-          g.setColor(Color.BLUE);
-          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
-          break;
-        case 3:
-          g.setColor(Color.GREEN);
-          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
-          break;
-        case 4:
-          g.setColor(Color.ORANGE);
-          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
-          break;
+          case 0:
+            g.setColor(Color.WHITE);
+            g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
+            break;
+          case 1:
+            g.setColor(Color.RED);
+            g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
+            break;
+          case 2:
+            g.setColor(Color.BLUE);
+            g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
+            break;
+          case 3:
+            g.setColor(Color.GREEN);
+            g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
+            break;
+          case 4:
+            g.setColor(Color.ORANGE);
+            g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
+            break;
         }
       }
     }
   }
 
   private void fieldPressed(int x, int y, boolean on) {
+    int currentValue = cf.value(x, y);
     if (on) {
-      cf.setValue(x, y, 1);
+      if (currentValue == 1) {
+        cf.setValue(x, y, 2);
+      } else if (currentValue == 2) {
+        cf.setValue(x, y, 1);
+      } else {
+        cf.setValue(x, y, 1);
+      }
     } else {
       cf.setValue(x, y, 0);
     }
