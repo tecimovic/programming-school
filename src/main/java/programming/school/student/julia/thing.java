@@ -10,7 +10,7 @@ public class thing extends CellularAutomataUi {
   }
 
   public static void main(String[] args) {
-    new thing(new ConwayGameOfLife(),new gameoflife(),new funkerulechanges()).start();
+    new thing(new ConwayGameOfLife(),new gameoflife(),new funkerulechanges(), new THEVOTINGAME()).start();
   }
 
 }
