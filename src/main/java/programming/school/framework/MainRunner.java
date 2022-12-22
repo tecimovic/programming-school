@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -41,20 +40,21 @@ public class MainRunner extends JFrame {
                                  programming.school.student.dylan.Lesson4ScreenSaver.class,
                                  programming.school.student.dylan.Lesson5CircleRoom.class,
                                  programming.school.student.dylan.Lesson6Adventure.class,
-                                 programming.school.student.dylan.Lesson7NewAdventure.class, 
+                                 programming.school.student.dylan.Lesson7NewAdventure.class,
                                  AroundTheWorldIn80Cities.class,
                                  programming.school.student.manca.Lesson1Circles.class,
                                  programming.school.student.manca.Lesson2Patterns.class,
                                  programming.school.student.manca.Lesson3Drawing.class,
                                  programming.school.student.manca.Lesson4ScreenSaver.class,
                                  programming.school.student.manca.Lesson6Adventure.class,
-                                 programming.school.student.manca.Lesson7NewAdventure.class, 
+                                 programming.school.student.manca.Lesson7NewAdventure.class,
                                  programming.school.student.timotej.Lesson1Circles.class,
                                  programming.school.student.timotej.Lesson2Patterns.class,
                                  programming.school.student.timotej.Lesson3Drawing.class,
                                  programming.school.student.timotej.Lesson4ScreenSaver.class,
                                  programming.school.student.timotej.Lesson6Adventure.class,
-                                 programming.school.student.timotej.Lesson7NewAdventure.class, 
+                                 programming.school.student.timotej.Lesson7NewAdventure.class,
+                                 programming.school.student.timotej.LessonAutomata.class
                                  };
 
   private static enum MenuMeta {

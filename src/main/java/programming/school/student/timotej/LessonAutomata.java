@@ -10,7 +10,9 @@ public class LessonAutomata extends CellularAutomataUi {
   }
 
   public static void main(String[] args) {
-    new LessonAutomata(new ConwayGameOfLife()).start();
+    new LessonAutomata(new ConwayGameOfLife(),
+                       new Voting())
+      .start();
   }
 
 }

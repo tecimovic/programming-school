@@ -205,6 +205,18 @@ public class CellularAutomataUi extends JFrame {
           g.setColor(Color.RED);
           g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
           break;
+        case 2:
+          g.setColor(Color.BLUE);
+          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
+          break;
+        case 3:
+          g.setColor(Color.GREEN);
+          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
+          break;
+        case 4:
+          g.setColor(Color.ORANGE);
+          g.fillRect(xCoord + 1, yCoord + 1, boxWidth - 1, boxHeight - 1);
+          break;
         }
       }
     }
