@@ -48,8 +48,14 @@ public class GameOfLifeAndWar implements ICellularRules {
                     } else {
                         return RED;
                     }
-                } else if (totalCount == 4 && redCount != 0 && blueCount != 0) {
-                    return 1 + rnd.nextInt(2);
+                } else if (redCount != 0 && blueCount != 0) {
+                    if (redCount > blueCount) {
+                        return RED;
+                    } else if (blueCount > redCount) {
+                        return BLUE;
+                    } else {
+                        return 1 + rnd.nextInt(2);
+                    }
                 } else {
                     return EMPTY;
                 }
