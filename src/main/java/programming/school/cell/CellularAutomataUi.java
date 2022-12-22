@@ -36,6 +36,12 @@ public class CellularAutomataUi extends JFrame {
       if (ui.yesOrNo("Confirm restart", "This will end the current automata.\n\nAre you sure you wish to quit?"))
         ui.dispatchEvent(new WindowEvent(ui, WindowEvent.WINDOW_CLOSING));
     }),
+    EDIT_DRAW_RED("Edit", "Draw red", (ui) -> {
+      ui.setDrawingColor(1);
+    }),
+    EDIT_DRAW_BLUE("Edit", "Draw blue", (ui) -> {
+      ui.setDrawingColor(2);
+    }),
     GAME_CLEAR("Automaton", "Clear", (ui) -> {
       ui.clearAutomata();
     }),
@@ -84,6 +90,8 @@ public class CellularAutomataUi extends JFrame {
   private SimpleAttributeSet uiStyle;
   private SimpleAttributeSet gameStyle;
   private boolean isButton1;
+  private int whatToDraw = 1;
+
   private ICellularRules rules = new ICellularRules() {
 
     @Override
@@ -141,6 +149,10 @@ public class CellularAutomataUi extends JFrame {
   public void oneStep() {
     cf.oneStep();
     panel.repaint();
+  }
+
+  public void setDrawingColor(int x) {
+    this.whatToDraw = x;
   }
 
   private JMenuBar createMenuBar(ICellularRules... rules) {
@@ -223,15 +235,8 @@ public class CellularAutomataUi extends JFrame {
   }
 
   private void fieldPressed(int x, int y, boolean on) {
-    int currentValue = cf.value(x, y);
     if (on) {
-      if (currentValue == 1) {
-        cf.setValue(x, y, 2);
-      } else if (currentValue == 2) {
-        cf.setValue(x, y, 1);
-      } else {
-        cf.setValue(x, y, 1);
-      }
+      cf.setValue(x, y, whatToDraw);
     } else {
       cf.setValue(x, y, 0);
     }
