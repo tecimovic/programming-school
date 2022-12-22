@@ -1,4 +1,4 @@
-package programming.school.student.dylan;
+package programming.school.student.dylan.GOLgoal;
 
 import programming.school.cell.CellularAutomataUi;
 import programming.school.cell.ICellularRules;
@@ -10,7 +10,7 @@ public class GOLgoal extends CellularAutomataUi {
   }
 
   public static void main(String[] args) {
-    new GOLgoal(new golnormal (), new CWgolf(), new idk()).start();
+    new GOLgoal(new golnormal (), new CWgolf(), new idk(), new checkrboards(), new newgol()).start();
   }
 
 }

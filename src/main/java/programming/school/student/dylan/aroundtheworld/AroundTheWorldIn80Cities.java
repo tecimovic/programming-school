@@ -56,7 +56,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place cairo = new Place("You are in Egypt's capital and largest city, Cairo");
   private Place istanbul = new Place("You are in the city in two continents (Unless Eurasia is one continent), Istanbul ");
   private Place dubrovnik = new Place("You are in Croatia's 13th largest city, although a very small city, it is also a very beautiful and old city.");
-  private Place rotterdam = new Place("You are in Europe's busiest port, Rotterdam");
+  private Place rotterdam = new Place("You are in a very modern city and the 2nd largest city in the Netherlands");
   private Place charleston = new Place("You are in a beautiful city, and the largest city in South Carolina. Charleston.");
   private Place jailhalls = new Place("The hallways of the jail.");
   private Place cafeteria = new Place("Where the jail serves their 'gourmet' food");
@@ -80,10 +80,12 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   private Place portoflosangeles = new Place("You are in the port of Los Angeles. Go to the LA-NY ferry to go straight to New York City.");
   private Place northatlantic = new Place("You wish there were planes in this game. The waves are huge.");
   private Place portofrotterdam = new Place("You are in a huge port, the biggest in Europe!.");
-  private Place rotterdamdock = new Place("Let me guess, you just arrived from New York.");
+  private Place rotterdamdock = new Place("You are in the port of Rotterdam.");
   private Place riodejanerio = new Place("You are in Brazil's most populous city, Rio De Janeiro.");
   private Place portofriodejanerio = new Place("This port can take you to New York.");
   private Place northatlanticthesecond = new Place("...");
+  private Place rotterdammuseum = new Place("You are in a museum in Rotterdam");
+  private Place arthallwashington = new Place("You are in a grand hall with many paintings. But not enough. This could use some donations...");
 
 
   Thing cannedair = new Thing("canned air", "Made in Thneedville...");
@@ -98,6 +100,8 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   Thing jailtelephone3 = new Thing("Broken Telephone", "you can't call anybody with it");
   Thing benedictarnoldwasatraitor = new Thing("A book titled The horrible benedict arnold", "Why not buy it?");
   Thing newyorkoceanrunner = new Thing("New York Ocean Runner", "An extremely strong boat!");
+
+  private final Creature artobserver = new Creature("art observer", "He's looking at a painting by Timmy the Toddler.");
 
   public AroundTheWorldIn80Cities() {
 
@@ -143,7 +147,7 @@ storeExtnsion.addThing(MiamiSpeeder);
 MiamiSpeeder.setCost(10000);
 miami.addExtension(storeExtnsion);
 
- Thing onehundredollarbill = new Thing("100 dollar bill","OOOOOOOOOOOOOO DATS A LOOOOOOOOOOOOOOOOOT OF MONEH!");
+ Thing onehundredollarbill = new Thing("100 dollar bill","found it while swimming in miami");
  underwater.addThing(onehundredollarbill);
 
  Thing ahundreddollarbill = new Thing("100 dollar bill", "found it on top of a statue");
@@ -474,6 +478,11 @@ portofriodejanerio.addDirection("back", riodejanerio);
 riodejanerio.addDirection("Port of Rio de Janerio", portofriodejanerio);
 riodejanerio.addDirection("montevideo", montevideo);
 montevideo.addDirection("rio de janerio", riodejanerio);
+portofrotterdam.addDirection("back", rotterdam);
+Washingtonmuseum.addDirection("Grand Hall", arthallwashington);
+arthallwashington.addDirection("back", Washingtonmuseum);
+
+arthallwashington.addCreature(artobserver);
 
 MiamiSpeeder.setProperty("LVL2BOAT", "true");
 }
@@ -492,12 +501,12 @@ MiamiSpeeder.setProperty("LVL2BOAT", "true");
 
   @Override
   public String introductionText() {
-    return "You need to visit many cities without dieing.";
+    return "You need to visit many cities without dying.";
   }
 
   @Override
   public String victoryText() {
-    return "Yay!";
+    return "You somehow won!";
   }
 
   @Override

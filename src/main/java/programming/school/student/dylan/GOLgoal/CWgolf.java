@@ -1,12 +1,12 @@
-package programming.school.student.dylan;
+package programming.school.student.dylan.GOLgoal;
 
 import programming.school.cell.ICellularRules;
 
-public class idk implements ICellularRules {
+public class CWgolf implements ICellularRules {
 
   @Override
   public String name() {
-    return "Xpander";
+    return "Crazy Mazes";
   }
 
   @Override
@@ -25,18 +25,18 @@ public class idk implements ICellularRules {
   }
 
   @Override
-  public int newState(int oldState, int[] neigbors) {
+  public int newState(int unitedState, int[] neigbors) {
     int c = 0;
     for ( int i: neigbors ) {
       if ( i == 1 ) c++;
     }
-    if ( oldState == 0 ) {
-      if ( c == 2 ) return 1;
+    if ( unitedState == 0 ) {
+      if ( c == 3 ) return 1;
       else return 0;
     } else {
       if ( c < 2 ) {
-        return 0;
-      } else if ( c > 4 ) {
+        return 1;
+      } else if ( c > 3 ) {
         return 0;
       } else {
         return 1;

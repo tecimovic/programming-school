@@ -1,12 +1,12 @@
-package programming.school.student.dylan;
+package programming.school.student.dylan.GOLgoal;
 
 import programming.school.cell.ICellularRules;
 
-public class golnormal implements ICellularRules {
+public class idk implements ICellularRules {
 
   @Override
   public String name() {
-    return "Conway Game of Life";
+    return "Xpander";
   }
 
   @Override
@@ -31,12 +31,12 @@ public class golnormal implements ICellularRules {
       if ( i == 1 ) c++;
     }
     if ( oldState == 0 ) {
-      if ( c == 3 ) return 1;
+      if ( c == 2 ) return 1;
       else return 0;
     } else {
       if ( c < 2 ) {
         return 0;
-      } else if ( c > 3 ) {
+      } else if ( c > 4 ) {
         return 0;
       } else {
         return 1;
