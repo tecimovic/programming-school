@@ -1,0 +1,13 @@
+// HH  HH   EEEEEE   LL        LL        OOOOO          DDDDD    YY    YY   LL           A       NNNN    NN
+// HH  HH   EE       LL        LL       OO   OO         DD  DD    YY  YY    LL          A A      NN NN   NN
+// HHHHHH   EEEEEE   LL        LL      OO     OO        DD   DD    YYYY     LL         AAAAA     NN  NN  NN
+// HH  HH   EE       LL        LL       OO   OO         DD  DD      YY      LL        AA   AA    NN   NN NN
+// HH  HH   EEEEEE   LLLLLLL   LLLLLLL   OOOOO          DDDDD       YY      LLLLLLL  AA     AA   NN    NNNN
+//
+// LL        OOOOO   LL
+// LL       OO   OO  LL
+// LL      OO     OO LL
+// LL       OO   OO  LL
+// LLLLLLL   OOOOO   LLLLLLL
+//
+//
