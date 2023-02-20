@@ -10,7 +10,7 @@ public class GOLgoal extends CellularAutomataUi {
   }
 
   public static void main(String[] args) {
-    new GOLgoal(new golnormal (), new CWgolf(), new idk(), new checkrboards(), new newgol(), new votingforbiden(), new newvoting(), new gullibleseagull(), new anothervotingrulechange(), new lifeandwar()).start();
+    new GOLgoal(new golnormal (), new CWgolf(), new idk(), new checkrboards(), new newgol(), new votingforbiden(), new newvoting(), new gullibleseagull(), new anothervotingrulechange(), new lifeandwar(), new deadlywar()).start();
   }
 
 }

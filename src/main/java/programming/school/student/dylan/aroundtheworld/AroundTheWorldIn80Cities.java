@@ -578,7 +578,7 @@ MiamiSpeeder.setProperty("LVL2BOAT", "true");
     }
 
     if (player.isIn(northatlanticthesecond)  && !player.carries(newyorkoceanrunner)) {
-      out.println("Why did you drop the ocean runner???");
+      out.println("your boat sunk before you made it???");
       player.die();
     }
 
