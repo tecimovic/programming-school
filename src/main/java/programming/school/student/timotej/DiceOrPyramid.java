@@ -36,7 +36,8 @@ public class DiceOrPyramid {
 
             }
 
-            System.out.println("Box " + box + ": pyramids: " + pyramidCounts[box] + " / dice: " + diceCounts[box]);
+            System.out.println("Box " + box + ": pyramids: " + pyramidCounts[box] + " / dice: " + diceCounts[box]
+                    + ", best choice " + (pyramidCounts[box] > diceCounts[box] ? "pyramids" : "dice"));
         }
     }
 }
