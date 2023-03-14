@@ -8,7 +8,7 @@ public class DiceOrPyramid {
         System.out.println("Game of dice and pyramids....");
         Random rnd = new Random();
         final int maxCount = 24;
-        final int rollCount = 10000000;
+        final int rollCount = 1000000;
 
         for (int box = 0; box <= maxCount; box++) {
             int c4 = 0, c6 = 0, c2 = 0;
