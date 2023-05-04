@@ -49,19 +49,23 @@ public class DrawingContainer extends JPanel implements KeyListener {
     }
 
     public void runContainer(final String[] args) {
+        runContainer(args, MAX_X, MAX_Y);
+    }
+
+    public void runContainer(final String[] args, int x, int y) {
         JFrame f = new JFrame("Test");
         f.add(this);
         f.addKeyListener(this);
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        f.setSize(MAX_X, MAX_Y);
+        f.setSize(x, y);
         f.setVisible(true);
         if (loopForever) {
             Timer t = new Timer();
-            t.scheduleAtFixedRate(new TimerTask(){
+            t.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
                     DrawingContainer.this.repaint();
-                    if ( quit ) {
+                    if (quit) {
                         f.dispose();
                     }
                 }
@@ -72,7 +76,7 @@ public class DrawingContainer extends JPanel implements KeyListener {
     @Override
     public void keyTyped(final KeyEvent e) {
         if (keyboardAction != null) {
-            if ( e.getKeyChar() == 'q' ) {
+            if (e.getKeyChar() == 'q') {
                 quit = true;
             }
             keyboardAction.keyPressed((Graphics2D) getGraphics(), e.getKeyChar());
