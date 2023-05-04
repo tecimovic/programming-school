@@ -8,6 +8,9 @@ import programming.school.framework.IDrawingInstructions;
 
 public class DrawTrigonometry implements IDrawingInstructions {
 
+    private static int SIZE_X = 1000;
+    private static int SIZE_Y = 500;
+
     private static double degreeToRad(double degree) {
         return (Math.PI * degree / 180.0);
     }
@@ -18,15 +21,15 @@ public class DrawTrigonometry implements IDrawingInstructions {
 
         int x;
 
-        for (x = 0; x < 1000; x++) {
+        for (x = 0; x < SIZE_X; x++) {
             double sin = Math.sin(degreeToRad(x));
-            int y = (int) Math.round(sin * 200.0) + 200;
+            int y = (int) Math.round(sin * SIZE_Y / 2) + SIZE_Y / 2;
             g.drawOval(x, y, 2, 2);
         }
     }
 
     public static void main(String[] args) {
-        new DrawingContainer(new DrawTrigonometry()).runContainer(args, 100, 100);
+        new DrawingContainer(new DrawTrigonometry()).runContainer(args, SIZE_X, SIZE_Y);
     }
 
 }
