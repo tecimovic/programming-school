@@ -28,15 +28,15 @@ public interface IAdventureGame {
   }
 
   public default void creatureAction(Player player,
-                                     Creature creature,
-                                     Place place,
-                                     IOutput out) {
+      Creature creature,
+      Place place,
+      IOutput out) {
   }
 
   public default boolean canPlayerMove(Player player,
-                                       Place from,
-                                       Place to,
-                                       IOutput out) {
+      Place from,
+      Place to,
+      IOutput out) {
     return true;
   }
 
@@ -50,5 +50,9 @@ public interface IAdventureGame {
    * @param player
    */
   public default void initializePlayer(Player player) {
+  }
+
+  public default String windowTitle() {
+    return "Adventure game";
   }
 }

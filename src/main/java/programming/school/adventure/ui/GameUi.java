@@ -38,7 +38,7 @@ public class GameUi extends JFrame implements IOutput {
     FILE_QUIT("File", "Quit", (gameUi) -> {
       if (gameUi
           .yesOrNo("Confirm restart",
-                   "This will end the current game.\n\nAre you sure you wish to quit?"))
+              "This will end the current game.\n\nAre you sure you wish to quit?"))
         gameUi
             .dispatchEvent(new WindowEvent(gameUi, WindowEvent.WINDOW_CLOSING));
     }),
@@ -46,7 +46,7 @@ public class GameUi extends JFrame implements IOutput {
     GAME_RESTART("Game", "Restart", (gameUi) -> {
       if (gameUi
           .yesOrNo("Confirm restart",
-                   "This will end the current game.\n\nAre you sure you wish to do this?"))
+              "This will end the current game.\n\nAre you sure you wish to do this?"))
         gameUi.startGame(true);
     });
 
@@ -88,7 +88,7 @@ public class GameUi extends JFrame implements IOutput {
   private Class<? extends IAdventureGame> gameClass;
 
   public GameUi(IAdventureGame game) {
-    super("Adventure game");
+    super(game.windowTitle());
 
     initComponents();
 
@@ -103,10 +103,10 @@ public class GameUi extends JFrame implements IOutput {
 
   public boolean yesOrNo(String title, String text) {
     int result = JOptionPane.showConfirmDialog(this,
-                                               text,
-                                               title,
-                                               JOptionPane.YES_NO_OPTION,
-                                               JOptionPane.QUESTION_MESSAGE);
+        text,
+        title,
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE);
     return (result == JOptionPane.YES_OPTION);
   }
 
@@ -116,7 +116,7 @@ public class GameUi extends JFrame implements IOutput {
       game = gameClass.getDeclaredConstructor().newInstance();
     } catch (Exception e) {
       throw new IllegalStateException("Could not create game: "
-                                      + gameClass.getName());
+          + gameClass.getName());
     }
     this.player = new Player(this, game);
     this.player.setAllowGoShortcut(game.allowGoShortcut());
@@ -211,9 +211,10 @@ public class GameUi extends JFrame implements IOutput {
   private Font createGameFont() {
     return new Font("Comic Sans MS", Font.BOLD, 18);
   }
+
   private void initComponents() {
-    Font newFont = createGameFont(); 
-    
+    Font newFont = createGameFont();
+
     pane = new JTextPane();
     pane.setFont(newFont);
     scrollPane = new JScrollPane(pane);
