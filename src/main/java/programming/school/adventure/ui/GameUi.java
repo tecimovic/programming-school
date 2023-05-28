@@ -101,6 +101,11 @@ public class GameUi extends JFrame implements IOutput {
     startGame(false);
   }
 
+  @Override
+  public void setWindowTitle(String title) {
+    setTitle(title);
+  }
+
   public boolean yesOrNo(String title, String text) {
     int result = JOptionPane.showConfirmDialog(this,
         text,
