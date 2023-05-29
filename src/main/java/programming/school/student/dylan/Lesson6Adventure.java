@@ -38,8 +38,8 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Place wishing_well = new Place("You see a wishing well. Maybe drop a coin?");
   private final Place hiddenroom = new Place("So... you did not die in the Horse Parking lot. 1 bonus point 4 U");
   private final Place store = new Place("Welcome to the store. What would you like to buy?");
-  private final Place dungeon = new Place ("The dungeon is scary and dark...");
-  private final Place deepinthecave = new Place ("creepy, dark, deep in the cave. You should probably head back soon.");
+  private final Place dungeon = new Place("The dungeon is scary and dark...");
+  private final Place deepinthecave = new Place("creepy, dark, deep in the cave. You should probably head back soon.");
 
   // Create things
   private final Thing sword = new Thing("sword", "A decently good sword.");
@@ -54,13 +54,14 @@ public class Lesson6Adventure implements IAdventureGame {
   private final Thing coin = new Thing("coin", "A normal coin. Worth 25 cents.");
   Thing roman_coin = new Thing("roman coin", "Worth a lot...");
   Thing fruit = new Thing("fruit", "Supafruit. Kills the walking tree.");
-  Thing supakiller2001 = new Thing("supakiller2001", "Very, very powerful. Could kill anyone with just a measly supakiller2000.");
+  Thing supakiller2001 = new Thing("supakiller2001",
+      "Very, very powerful. Could kill anyone with just a measly supakiller2000.");
 
   // Create Creatures
   private final Creature WalkingTree = new Creature("Walking Tree",
       "It's a huge, walking tree that chases you wherever you go. If you travel 5 rooms with the tree, he will kill you.");
   private final Creature Policeman = new Creature("Policeman",
-  "Shoots criminals he sees. Make sure you don't break the law! ");
+      "Shoots criminals he sees. Make sure you don't break the law! ");
 
   // Create Variables
   private int saddlebonuspoints = 0;
@@ -168,7 +169,8 @@ public class Lesson6Adventure implements IAdventureGame {
     storeExtension.addThing(bread);
 
     Thing dollar = new Thing("100 dollar bill", "worth... a hundred dollars.");
-    Thing goldengreatness = new Thing("Golden Greatness", "The highest amount of any currency in the game. Made of pure gold. Worth 500 dollars");
+    Thing goldengreatness = new Thing("Golden Greatness",
+        "The highest amount of any currency in the game. Made of pure gold. Worth 500 dollars");
     Thing dollar2 = new Thing("100 dollar bill", "worth... a hundred dollars");
 
     store.addExtension(storeExtension);
@@ -270,9 +272,9 @@ public class Lesson6Adventure implements IAdventureGame {
         out.println("The walking tree tried to kill you, but he died because he ate the poisonous Supafruit.");
         player.place().removeCreature(WalkingTree);
 
-        }
       }
     }
+  }
 
   // Be CAREFUL with my computer
   @Override
@@ -303,7 +305,7 @@ public class Lesson6Adventure implements IAdventureGame {
       out.println("It turns out that it was a HORSE museum. A horse ran over you. You died.");
       player.die();
     }
-      if (player.isIn(dungeon) && !player.carries(supakiller2001)) {
+    if (player.isIn(dungeon) && !player.carries(supakiller2001)) {
       out.println("The dungeon master killed you with his superkiller2000.");
       player.die();
     }
