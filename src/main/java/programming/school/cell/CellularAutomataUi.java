@@ -122,8 +122,14 @@ public class CellularAutomataUi extends JFrame {
 
   private CellularField cf = new CellularField(rules);
 
-  public CellularAutomataUi(ICellularRules... rules) {
-    super("Cellular Automata");
+  /**
+   * Creates a window with specified title
+   * 
+   * @param title
+   * @param rules
+   */
+  public CellularAutomataUi(String title, ICellularRules... rules) {
+    super(title);
 
     initComponents();
 
@@ -132,6 +138,16 @@ public class CellularAutomataUi extends JFrame {
     setSize(WIDTH, HEIGHT);
     setLocation(100, 100);
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+  }
+
+  /**
+   * Creates a window with title "Cellular Automata"
+   * 
+   * @param rules
+   */
+  public CellularAutomataUi(ICellularRules... rules) {
+    this("Cellular Automata", rules);
   }
 
   public boolean yesOrNo(String title, String text) {
