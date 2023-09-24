@@ -2,8 +2,6 @@ package programming.school.student.timotej;
 
 import java.util.Random;
 
-import javax.lang.model.util.ElementScanner6;
-
 import programming.school.cell.ICellularRules;
 
 public class GameOfLifeAndWar implements ICellularRules {

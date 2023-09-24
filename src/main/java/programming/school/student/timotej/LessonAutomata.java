@@ -5,15 +5,15 @@ import programming.school.cell.ICellularRules;
 
 public class LessonAutomata extends CellularAutomataUi {
 
-  public LessonAutomata(ICellularRules... cellularRules) {
-    super(cellularRules);
-  }
+    public LessonAutomata(ICellularRules... cellularRules) {
+        super(cellularRules);
+    }
 
-  public static void main(String[] args) {
-    new LessonAutomata(new ConwayGameOfLife(),
-        new Voting(),
-        new GameOfLifeAndWar())
-        .start();
-  }
+    public static void main(String[] args) {
+        new LessonAutomata(new ConwayGameOfLife(),
+                new Voting(),
+                new GameOfLifeAndWar())
+                .start();
+    }
 
 }

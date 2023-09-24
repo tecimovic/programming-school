@@ -4,17 +4,17 @@ import java.net.URL;
 
 public interface IOutput {
 
-  public void println();
+    public void println();
 
-  public void println(String message);
+    public void println(String message);
 
-  public boolean supportsImages();
+    public boolean supportsImages();
 
-  public void image(URL resource);
+    public void image(URL resource);
 
-  public boolean supportsSound();
+    public boolean supportsSound();
 
-  public void sound(URL resource);
+    public void sound(URL resource);
 
-  public void setWindowTitle(String title);
+    public void setWindowTitle(String title);
 }

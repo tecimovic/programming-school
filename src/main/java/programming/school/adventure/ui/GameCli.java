@@ -10,23 +10,24 @@ import programming.school.adventure.Player;
 
 public class GameCli {
 
-  private IAdventureGame game;
-  public GameCli(IAdventureGame game) {
-    this.game = game;
-  }
-  
-  public void start(final InputStream input, final PrintStream out) {
-    try (Scanner in = new Scanner(input)) {
-      IOutput output = new CliOutput(out);
-      Player player = new Player(output, game);
-      player.intro();
-      while (!player.isGameOver()) {
-        player.describeCurrentPlace();
-        out.print("\nWhat would you  like to do?\n>");
-        player.newCommand(in.nextLine());
-      }
-      player.gameOver();
+    private IAdventureGame game;
+
+    public GameCli(IAdventureGame game) {
+        this.game = game;
     }
-  }
+
+    public void start(final InputStream input, final PrintStream out) {
+        try (Scanner in = new Scanner(input)) {
+            IOutput output = new CliOutput(out);
+            Player player = new Player(output, game);
+            player.intro();
+            while (!player.isGameOver()) {
+                player.describeCurrentPlace();
+                out.print("\nWhat would you  like to do?\n>");
+                player.newCommand(in.nextLine());
+            }
+            player.gameOver();
+        }
+    }
 
 }

@@ -10,6 +10,6 @@ import java.awt.Graphics2D;
  */
 public interface IPlottingInstructions {
 
-	public void draw(Graphics2D g);
+    public void draw(Graphics2D g);
 
 }

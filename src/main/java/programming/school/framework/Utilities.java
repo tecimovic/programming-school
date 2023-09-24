@@ -5,12 +5,15 @@ import java.util.Random;
 public class Utilities {
 
     private static Random rnd = new Random();
-    
+
     /**
      * Helpful sleep so we don't have to deal with exeptions yet.
      */
     public static void sleep(int milliseconds) {
-        try { Thread.sleep(milliseconds); } catch (Exception e) {}
+        try {
+            Thread.sleep(milliseconds);
+        } catch (Exception e) {
+        }
     }
 
     /**

@@ -6,96 +6,96 @@ import java.util.Map;
 
 public class Thing implements IExaminable {
 
-  private final String name, description;
-  private int cost = 0;
-  private int energy = 0;
-  private boolean autoConvertible = false; // If this is true,  then picking this object results in increasing money.
-  private boolean isFood = false;
-  
-  private URL picture = null;
-  private URL sound = null;
-  private Map<String, Object> properties = new HashMap<>();
+    private final String name, description;
+    private int cost = 0;
+    private int energy = 0;
+    private boolean autoConvertible = false; // If this is true, then picking this object results in increasing money.
+    private boolean isFood = false;
 
-  public Thing(final String name, final String description) {
-    this.name = name;
-    this.description = description;
-  }
+    private URL picture = null;
+    private URL sound = null;
+    private Map<String, Object> properties = new HashMap<>();
 
-  public Thing(final String name) {
-    this(name, null);
-  }
+    public Thing(final String name, final String description) {
+        this.name = name;
+        this.description = description;
+    }
 
-  public String name() {
-    return name;
-  }
+    public Thing(final String name) {
+        this(name, null);
+    }
 
-  public String description() {
-    return description;
-  }
+    public String name() {
+        return name;
+    }
 
-  public void setCost(int value) {
-    this.cost = value;
-  }
+    public String description() {
+        return description;
+    }
 
-  public void setFood(int energy) {
-    this.isFood = true;
-    this.energy = energy;
-  }
-  
-  public int cost() {
-    return cost;
-  }
-  
-  public void setAutoConvertible(boolean flag) {
-    this.autoConvertible = flag;
-  }
-  
-  public boolean isAutoConvertible() { 
-    return autoConvertible;
-  }
-  
-  public int energy() {
-    return energy;
-  }
-  
-  public boolean isFood() { 
-    return isFood;
-  }
+    public void setCost(int value) {
+        this.cost = value;
+    }
 
-  @Override
-  public boolean hasSound() {
-    return sound !=  null;
-  }
+    public void setFood(int energy) {
+        this.isFood = true;
+        this.energy = energy;
+    }
 
-  @Override
-  public URL sound() {
-    return sound;
-  }
+    public int cost() {
+        return cost;
+    }
 
-  @Override
-  public boolean hasPicture() {
-    return picture != null;
-  }
+    public void setAutoConvertible(boolean flag) {
+        this.autoConvertible = flag;
+    }
 
-  @Override
-  public URL picture() {
-    return picture;
-  }
-  
-  public void setSound(URL url) {
-    this.sound = url;
-  }
+    public boolean isAutoConvertible() {
+        return autoConvertible;
+    }
 
-  public void setPicture(URL url) {
-    this.picture = url;
-  }
+    public int energy() {
+        return energy;
+    }
 
-  public void setProperty(String name, Object value) {
-    this.properties.put(name, value);
-  }
+    public boolean isFood() {
+        return isFood;
+    }
 
-  public Object getProperty(String name) {
-    return this.properties.get(name);
-  }
+    @Override
+    public boolean hasSound() {
+        return sound != null;
+    }
+
+    @Override
+    public URL sound() {
+        return sound;
+    }
+
+    @Override
+    public boolean hasPicture() {
+        return picture != null;
+    }
+
+    @Override
+    public URL picture() {
+        return picture;
+    }
+
+    public void setSound(URL url) {
+        this.sound = url;
+    }
+
+    public void setPicture(URL url) {
+        this.picture = url;
+    }
+
+    public void setProperty(String name, Object value) {
+        this.properties.put(name, value);
+    }
+
+    public Object getProperty(String name) {
+        return this.properties.get(name);
+    }
 
 }

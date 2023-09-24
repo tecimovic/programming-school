@@ -7,11 +7,11 @@ package programming.school.adventure.currency;
  *
  */
 public interface ICurrency {
-  /**
-   * Given the value of a currency, return the human-readable description.
-   * 
-   * @param value
-   * @return
-   */
-  public String describeCurrency(int value);
+    /**
+     * Given the value of a currency, return the human-readable description.
+     * 
+     * @param value
+     * @return
+     */
+    public String describeCurrency(int value);
 }

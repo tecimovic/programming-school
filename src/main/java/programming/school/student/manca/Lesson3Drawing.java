@@ -15,49 +15,49 @@ public class Lesson3Drawing implements IDrawingInstructions, IKeyboardAction {
     private int size = 10;
 
     private void plotDot(Graphics2D g) {
-        g.drawOval(x-(size/2), y-(size/2), size, size);
+        g.drawOval(x - (size / 2), y - (size / 2), size, size);
     }
 
-	@Override
-	public void draw(Graphics2D g) {
+    @Override
+    public void draw(Graphics2D g) {
         plotDot(g);
-	}
-    private void setRandomColor(Graphics2D g) {
-		g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
-	}
+    }
 
+    private void setRandomColor(Graphics2D g) {
+        g.setColor(new Color(Utilities.randomNumber(255), Utilities.randomNumber(255), Utilities.randomNumber(255)));
+    }
 
     @Override
     public void keyPressed(Graphics2D g, char ch) {
-        switch(ch) {
-            case 'a': 
-                x-=3;
+        switch (ch) {
+            case 'a':
+                x -= 3;
                 size++;
                 break;
             case 'd':
-                x+=3;
+                x += 3;
                 size++;
                 break;
             case 's':
-                y+=3;
+                y += 3;
                 size++;
                 break;
             case 'w':
-                y-=3;
+                y -= 3;
                 size++;
                 break;
             case 'n':
-                size =10;
-                break;   
-            case 'c' :
+                size = 10;
+                break;
+            case 'c':
                 setRandomColor(g);
         }
         plotDot(g);
     }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         Lesson3Drawing l = new Lesson3Drawing();
-        new DrawingContainer(l,l).runContainer(args);
-	}
+        new DrawingContainer(l, l).runContainer(args);
+    }
 
 }

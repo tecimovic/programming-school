@@ -2,11 +2,11 @@ package programming.school.framework;
 
 public interface IMathPlotter {
 
-  String windowTitle();
+    String windowTitle();
 
-  int maxX();
+    int maxX();
 
-  int maxY();
+    int maxY();
 
-  void plot(CoordinateSystem cs);
+    void plot(CoordinateSystem cs);
 }
