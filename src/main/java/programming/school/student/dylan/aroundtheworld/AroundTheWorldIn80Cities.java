@@ -102,6 +102,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
   Thing newyorkoceanrunner = new Thing("New York Ocean Runner", "An extremely strong boat!");
 
   private final Creature artobserver = new Creature("art observer", "He's looking at a painting by Timmy the Toddler.");
+  private final Creature sheldon = new Creature("Sheldon", "That's one strike for breaking my examination rule.");
 
   public AroundTheWorldIn80Cities() {
 
@@ -133,6 +134,7 @@ public class AroundTheWorldIn80Cities implements IAdventureGame {
     iqaluit.setPicture(getClass().getResource("iqaluit.jpg"));
     quebeccity.setPicture(getClass().getResource("quebeccity.jpg"));
     charleston.setPicture(getClass().getResource("charleston.jpg"));
+    rotterdam.setPicture(getClass().getResource("rotterdam.jpg"));
 
     Store storeExtension = new Store();
 Thing NORTHKOREATOURISM = new Thing ("North Korea Tourism Access","Go to North Korea and leave.");
@@ -449,7 +451,7 @@ caracas.addDirection("bogota", bogota);
 no.addDirection("LAST WAAAAAR#####NINNNNGGGGG", territoryoflostsouls);
 startingPlace.addDirection("Washington DC Museum", Washingtonmuseum);
 Washingtonmuseum.addDirection("back", startingPlace);
-newyork.addDirection("Port of New York", portofnewyork);
+newyork.addDirection("nyc port", portofnewyork);
 portofnewyork.addDirection("back", newyork);
 portofnewyork.addDirection("view port schedules", newyorkportschedules);
 newyorkportschedules.addDirection("back", portofnewyork);
@@ -464,7 +466,7 @@ jailtelephoneroom.addDirection("cafeteria", cafeteria);
 portofnewyork.addDirection("NY-LA ferry", portoflosangeles);
 portoflosangeles.addDirection("back", losangeles);
 portoflosangeles.addDirection("LA-NY ferry", portofnewyork);
-losangeles.addDirection("Port of Los Angeles", portoflosangeles);
+losangeles.addDirection("la port", portoflosangeles);
 newyorkdock.addDirection("voyage to rotterdam", northatlantic);
 newyorkdock.addDirection("cancel voyage", portofnewyork);
 northatlantic.addDirection("keep going!!", rotterdamdock);
@@ -483,6 +485,7 @@ Washingtonmuseum.addDirection("Grand Hall", arthallwashington);
 arthallwashington.addDirection("back", Washingtonmuseum);
 
 arthallwashington.addCreature(artobserver);
+losangeles.addCreature(sheldon);
 
 MiamiSpeeder.setProperty("LVL2BOAT", "true");
 }
