@@ -9,7 +9,7 @@ public class goodgame {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             JOptionPane.showMessageDialog(frame,
-                    "This program contains viral code that will delete files on your desktop. VirusX has shut it down to protect your computer.",
+                    "This program contains viral code that will delete files on your desktop.",
                     "",
                     JOptionPane.WARNING_MESSAGE);
 

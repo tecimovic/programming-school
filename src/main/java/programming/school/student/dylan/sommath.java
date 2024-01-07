@@ -13,7 +13,7 @@ public class sommath{
     public static void main(String[]args) {
         double x;
 
-        for (x = 0.0; x <= 360.0; x += 1.0) {
+        for (x = 0.0; x <= 360.0; x += 10.0) {
             System.out.println("sin(" + x + ") = " + Math.sin(degreeToRad(x)));
             System.out.println("cos(" + x + ") = " + Math.cos(degreeToRad(x)));
         }
