@@ -4,11 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.PrintGraphics;
 
-import org.checkerframework.checker.units.qual.g;
 
 import programming.school.framework.DrawingContainer;
 import programming.school.framework.IDrawingInstructions;
-
+        
 public class drawgonometweedotjava implements IDrawingInstructions {
     private static int SIZE_X = 360;
     private static int SIZE_Y = 200;
