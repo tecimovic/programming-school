@@ -9,12 +9,39 @@ public class TarokCard {
   private TarockValue tarockValue;
   private SuitValue suitValue;
 
+  /**
+   * Initializes the card, either suitValue or tarockValue is used, depending on
+   * Suit.
+   * 
+   * @param suit
+   * @param suitValue
+   * @param tarockValue
+   */
   public TarokCard(Suit suit, SuitValue suitValue, TarockValue tarockValue) {
+    if (suit == null)
+      throw new IllegalArgumentException("You must pass valid suit.");
     this.suit = suit;
     if (suit == Suit.Tarok) {
+      if (tarockValue == null)
+        throw new IllegalArgumentException("You must pass valid tarockValue for the tarock suit.");
       this.tarockValue = tarockValue;
     } else {
+      if (suitValue == null)
+        throw new IllegalArgumentException("You must pass valid suitValue for the non-tarock suit.");
       this.suitValue = suitValue;
+    }
+  }
+
+  /**
+   * How many points is this card worth at the final count.
+   * 
+   * @return
+   */
+  public int points() {
+    if (suit == Suit.Tarok) {
+      return tarockValue.points();
+    } else {
+      return suitValue.points();
     }
   }
 
