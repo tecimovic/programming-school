@@ -3,7 +3,7 @@ package programming.school.student.timotej;
 import programming.school.tarok.TarokDeck;
 import programming.school.tarok.TarokSet;
 
-public class Lesson9Tarok {
+public class Lesson10Tarok {
   public static void main(String[] args) {
     TarokDeck t = new TarokDeck();
     System.out.println(t);

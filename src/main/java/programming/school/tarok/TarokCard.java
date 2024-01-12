@@ -54,10 +54,10 @@ public class TarokCard {
         return tarockValue.name();
       case Hearts:
       case Diamonds:
-        return redName(suitValue) + " " + suit.symbol();
+        return suit.symbol() + " " + redName(suitValue);
       case Clubs:
       case Spades:
-        return blackName(suitValue) + " " + suit.symbol();
+        return suit.symbol() + " " + blackName(suitValue);
       default:
         throw new IllegalStateException("Invalid suit: " + suit);
     }

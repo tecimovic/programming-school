@@ -3,7 +3,7 @@ package programming.school.reference;
 import programming.school.tarok.TarokDeck;
 import programming.school.tarok.TarokSet;
 
-public class Lesson9Tarok {
+public class Lesson10Tarok {
   public static void main(String[] args) {
     // Create a deck, fully sorted.
     TarokDeck t = new TarokDeck();

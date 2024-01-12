@@ -54,7 +54,10 @@ public class MainRunner extends JFrame {
             programming.school.student.timotej.Lesson4ScreenSaver.class,
             programming.school.student.timotej.Lesson6Adventure.class,
             programming.school.student.timotej.Lesson7NewAdventure.class,
-            programming.school.student.timotej.LessonAutomata.class
+            programming.school.student.timotej.LessonAutomata.class,
+            programming.school.student.timotej.Lesson8Eratosthenes.class,
+            programming.school.student.timotej.Lesson9Mantette.class,
+            programming.school.student.timotej.Lesson10Tarok.class
     };
 
     private static enum MenuMeta {
