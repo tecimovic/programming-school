@@ -16,7 +16,6 @@ public class Lesson8Eratosthenes implements IDrawingInstructions {
     public void draw(Graphics2D g) {
         int MAX_X = 500;
         int MAX_Y = 500;
-        int i = 0;
         int EDGE_X = 50;
         int EDGE_Y = 50;
         g.setColor(Color.RED);
