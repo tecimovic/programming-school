@@ -8,6 +8,22 @@ public class Tarok {
     Hearts,
     Diamonds,
     Tarok;
+
+    public String symbol() {
+      switch (this) {
+        case Clubs:
+          return "♣️";
+        case Diamonds:
+          return "♦️";
+        case Hearts:
+          return "♥️";
+        case Spades:
+          return "♠️";
+        case Tarok:
+          return "Tarok";
+      }
+      return "";
+    }
   }
 
   public static enum SuitValue {
