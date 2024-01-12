@@ -10,19 +10,7 @@ public class Tarok {
     Tarok;
 
     public String symbol() {
-      switch (this) {
-        case Clubs:
-          return "♣️";
-        case Diamonds:
-          return "♦️";
-        case Hearts:
-          return "♥️";
-        case Spades:
-          return "♠️";
-        case Tarok:
-          return "Tarok";
-      }
-      return "";
+      return this.name();
     }
   }
 
