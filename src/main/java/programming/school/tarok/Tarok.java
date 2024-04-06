@@ -13,7 +13,7 @@ public class Tarok {
       return this.name();
     }
   }
-
+// =^.^=
   public static enum SuitValue {
     Tiny(1),
     Small(1),
