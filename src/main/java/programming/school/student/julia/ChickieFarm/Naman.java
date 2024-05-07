@@ -19,5 +19,9 @@ public class Naman {
     public static String namefemale(){
         return fmalenames[rnd.nextInt(fmalenames.length)];
     }  
-    
+
+    public static String namecoop(){
+        return("poldi");
+    } 
+
 }
