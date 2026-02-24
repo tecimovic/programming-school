@@ -52,7 +52,6 @@ public class Coop {
     private void printstats(){
         int boys = 0;
         int grls = 0;
-        int gays = 0;
         for (int i=0 ; i<chickie.size(); i++){
             if (chickie.get(i).gender() == Gender.Boy){
                 boys++;
@@ -60,14 +59,11 @@ public class Coop {
             if (chickie.get(i).gender() == Gender.Girl){
                 grls++;
             }
-            if (chickie.get(i).isgay()==true){
-                gays++;
-            }
+            
             
         }
-        System.out.println("There are "+grls+" females in this coop");
-        System.out.println("There are "+boys+" males in this coop");
-        System.out.println("There are "+gays+" gays in this coop");
+        System.out.println("There are "+grls+" Females in this Coop");
+        System.out.println("There are "+boys+" Males in this Coop");
     } 
 
     public Coop(String name, int Chickiething){

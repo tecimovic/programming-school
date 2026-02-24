@@ -13,7 +13,6 @@ public class Chickie {
     private boolean Sick; // dead after 5 days
     private boolean Dead;
     private final boolean RareEggs; // eggs worth more
-    private final boolean Gay; //  G  A  Y
     private final Color color;
     enum Gender{Boy ,Girl}
     enum Color {white, brown, gray, black, yellow, waffled};
@@ -36,11 +35,7 @@ public class Chickie {
             this.Name =Naman.namemale();
         }
 
-        if (rnd.nextInt(5)==0){
-            this.Gay=true;
-        } else{
-            this.Gay=false;
-        }
+        
         if (rnd.nextInt(20)==0){
             this.RareEggs=true;
         } else{
@@ -56,14 +51,12 @@ public class Chickie {
     }
 
     public void ID(){
-        System.out.println(Name+" "+LastName+" | "+gender+" | "+(Age/365)+"y/o | "+color+" | Homosexual: "+Gay);
+        System.out.println(Name+" "+LastName+" | "+gender+" | "+(Age/365)+"y/o | "+color+"");
     }
     public Gender gender(){
         return gender;
     }
-    public boolean isgay(){
-        return Gay;
-    }
+    
     public double eg(){
         return EggsPerDay;
     }
