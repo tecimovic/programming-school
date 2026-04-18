@@ -9,11 +9,10 @@ public class Chickie {
     private int Age; // in days
     private int DailySeeds;
     private int DailyWater; // in cups
-    private int EggsPerDay;
+    private double EggsPerDay;
     private boolean Sick; // dead after 5 days
     private boolean Dead;
     private final boolean RareEggs; // eggs worth more
-    private final boolean Gay; //  G  A  Y
     private final Color color;
     enum Gender{Boy ,Girl}
     enum Color {white, brown, gray, black, yellow, waffled};
@@ -22,10 +21,11 @@ public class Chickie {
     Random rnd=new Random();
 
     
-    public Chickie(String LastName, String Name){
+    public Chickie(String LastName){
         this.gender =Gender.values()[rnd.nextInt(0, Gender.values().length)];
         this.Age=0;
         //this.Name=Name;
+        this.EggsPerDay=rnd.nextDouble(0.0,2.1);
         this.LastName=LastName;
         this.color =Color.values()[rnd.nextInt(0, Color.values().length)];
 
@@ -35,11 +35,7 @@ public class Chickie {
             this.Name =Naman.namemale();
         }
 
-        if (rnd.nextInt(5)==0){
-            this.Gay=true;
-        } else{
-            this.Gay=false;
-        }
+        
         if (rnd.nextInt(20)==0){
             this.RareEggs=true;
         } else{
@@ -50,13 +46,21 @@ public class Chickie {
 
     }
 
+    public void agebyaday(){
+        this.Age++;
+    }
+
     public void ID(){
-        System.out.println(Name+" "+LastName+" | "+gender+" | "+(Age/365)+"y/o | "+color+" | Homosexual: "+Gay);
+        System.out.println(Name+" "+LastName+" | "+gender+" | "+(Age/365)+"y/o | "+color+"");
     }
     public Gender gender(){
         return gender;
     }
-    public boolean isgay(){
-        return Gay;
+    
+    public double eg(){
+        return EggsPerDay;
+    }
+    public int age(){
+        return Age;
     }
 }

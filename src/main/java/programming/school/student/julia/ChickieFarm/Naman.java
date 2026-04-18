@@ -7,9 +7,9 @@ public class Naman {
     enum FemaleFirstName{Gabby, Esther, Grass, Lavender, Snowflake, Sandy, Siri, Alexa, Gosistan, Kaz, ツ, Shinobu, Cactus, Thorn, Pot, Ashmyah}
 
     static String[] fmalenames=
-    new String[]{"Gabby", "Esther", "Grass", "Lavender", "Snowflake", "Sandy", "Siri", "Alexa", "Gosistan", "Kaz", "ツ", "Shinobu", "Cactus", "Thorn", "Potetta", "Ashmyah", "Petra"};
+    new String[]{"Gabby", "Esther", "Emma", "Lavender", "Snowflake", "Sandy", "Siri", "Alexa", "Gosistan", "Karen", "Donna", "Shelly", "Carly", "Tessa", "Penny", "Ashley", "Petra"};
     static String[] malenames=
-    new String[]{"Bob", "Jeff", "Jerry", "James", "Jeremiah", "Johannes", "Poldi", "Bart", "Barry", "Tony", "Toby", "Soil", "Rocky", "BIDET", "rushbushbebe", "Weed", "Kyojuro", "gyatt", "jimothy"};
+    new String[]{"Bob", "Jeff", "Jerry", "James", "Jeremiah", "Johannes", "Poldi", "Bart", "Barry", "Tony", "Toby", "Sean", "Rocky", "Billy", "Rusty", "William", "Kenny", "George", "Jimmothy"};
     private static Random rnd = new Random();
 
     public static String namemale(){
@@ -19,5 +19,9 @@ public class Naman {
     public static String namefemale(){
         return fmalenames[rnd.nextInt(fmalenames.length)];
     }  
-    
+
+    public static String namecoop(){
+        return("poldi");
+    } 
+
 }
