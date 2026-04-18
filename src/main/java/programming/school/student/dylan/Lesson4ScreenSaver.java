@@ -43,10 +43,10 @@ public class Lesson4ScreenSaver implements IDrawingInstructions, IKeyboardAction
 	public void draw(final Graphics2D g) {
         reset();
         switch(rnd.nextInt(6)) {
-            case 0: g.setColor(Color.BLUE); break;
-            case 1: g.setColor(Color.RED); break;
-            case 2: g.setColor(Color.GREEN); break;
-            case 3: g.setColor(Color.CYAN); break;
+            case 0: g.setColor(Color.MAGENTA); break;
+            case 1: g.setColor(Color.YELLOW); break;
+            case 2: g.setColor(Color.MAGENTA); break;
+            case 3: g.setColor(Color.YELLOW); break;
             case 4: g.setColor(Color.MAGENTA); break;
             case 5: g.setColor(Color.YELLOW); break;
         }

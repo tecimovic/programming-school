@@ -1,12 +1,24 @@
 package programming.school.student.dylan.eggco;
 
 public class farm {
+    public int oneday () {
+        int dylan = 0;
+        for(coop c:coops) {
+            dylan += c.nummerofeggscoopruduced();
+        }
+        return dylan;
+    }
     private coop[] coops = new coop[4];
     public static void main(String[] args) {
         System.out.println("WELCOME TO GIDDY GIDEYOE'S RABBIDY CHIGGIN FARM! GUH GUH GUH!");
         System.out.println("GIDDY GIDEYOE: HELLO PAR'NER! I AM GOING ON A VAY-CAYSHUN, ANAH NEED YOU TO MANAG' MAH CHIGGIN VARM! YUPEE!");
         farm f = new farm();
         f.ah_ah_ha();
+        int evryday = 0;
+        for (int dadday=0; dadday<200; dadday++) {
+            evryday += f.oneday();
+        }
+        System.out.println("Disizmounnaeggsdufarmpruduced: " + evryday);
     }
     public farm () {
         for (int i=0; i<coops.length; i++) {

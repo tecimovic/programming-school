@@ -1,19 +1,28 @@
 package programming.school.student.dylan.eggco;
 
-public class coop {
-    private chicken[] ch;
-    private String coopname;
+import java.util.ArrayList;
+import java.util.List;
 
+public class coop {
+    private List<chicken> ch = new ArrayList<chicken>();
+    private String coopname;
+    public int nummerofeggscoopruduced () {
+        int summary=0;
+        for(int annoying=0; annoying<ch.size(); annoying++) {
+            summary += ch.get(annoying).myeh();
+            
+        }
+        return summary;
+    }
 
     public coop(String coopname, int chigginnumber) {
-        this.ch = new chicken[chigginnumber];
         this.coopname = coopname;
-        for(int b=0; b<ch.length; b++) {
-            ch[b] = new chicken();
+        for(int b=0; b<chigginnumber; b++) {
+            ch.add(new chicken());
         }
     }
     public void printpolyphemus () {
-        System.out.println("The chiggins inside of coop " + coopname + " | rezeedents: " + ch.length);
+        System.out.println("The chiggins inside of coop " + coopname + " | rezeedents: " + ch.size());
         for (chicken c:ch)  {
             c.quikprintpng();
     }

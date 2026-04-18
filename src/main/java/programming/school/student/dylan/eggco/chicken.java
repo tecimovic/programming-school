@@ -6,7 +6,8 @@ public class chicken {
     private String name;
     private int requiredSeedsPerDay;
     private int requiredCupsofWater;
-    private int eggsPerDay;
+    private Random eggsPerDay;
+    private Random whatnummeramifeelintuday;
     private int ageinDays;
     private int chickenhappiness;
     private final int crazynumber;
@@ -34,7 +35,7 @@ public class chicken {
         
         this.requiredSeedsPerDay = 10;
         this.requiredCupsofWater = 4;
-        this.eggsPerDay = 3;
+        this.eggsPerDay = new Random();
         this.ageinDays = 0;
         this.chickenhappiness = 10;
         this.isdead = false;
@@ -66,6 +67,16 @@ public class chicken {
             this.gender = Gender.ultimategender;
         }
         }
+
+    public int myeh() {
+        return eggsPerDay.nextInt(4);
+    }
+    public int whatnummeramifeelintuday() {
+        return whatnummeramifeelintuday.nextInt(20) + 1;
+    }
+    public int days() {
+        return ageinDays;
+    }
 
     public void print () {
         System.out.println("KFC'S NEWEST INVENTION: KNOW YOUR MEAL! LEARN ACCURATE INFORMATION ON THE FINGER LICKIN' GOOD CHICKEN YOU ARE EATING RIGHT NOW!");
